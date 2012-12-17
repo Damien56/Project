@@ -57,14 +57,14 @@ public class Echiquier
 		tableau[7][7] = new Tour(Position(7,7), couleur1, DejaDeplace = false);
 		
 		// Deuxième ligne des pièces blanches - Septième ligne echiquier
-		tableau[6][0] = new Pion (Position(6,0),couleur1, Nombrededeplacement = 0);
-		tableau[6][1] = new Pion (Position(6,1),couleur1, Nombrededeplacement = 0);
-		tableau[6][2] = new Pion (Position(6,2),couleur1, Nombrededeplacement = 0);
-		tableau[6][3] = new Pion (Position(6,3),couleur1, Nombrededeplacement = 0);
-		tableau[6][4] = new Pion (Position(6,4),couleur1, Nombrededeplacement = 0);
-		tableau[6][5] = new Pion (Position(6,5),couleur1, Nombrededeplacement = 0);
-		tableau[6][6] = new Pion (Position(6,6),couleur1, Nombrededeplacement = 0);
-		tableau[6][7] = new Pion (Position(6,7),couleur1, Nombrededeplacement = 0);
+		tableau[6][0] = new Pion(Position(6,0),couleur1, Nombrededeplacement = 0);
+		tableau[6][1] = new Pion(Position(6,1),couleur1, Nombrededeplacement = 0);
+		tableau[6][2] = new Pion(Position(6,2),couleur1, Nombrededeplacement = 0);
+		tableau[6][3] = new Pion(Position(6,3),couleur1, Nombrededeplacement = 0);
+		tableau[6][4] = new Pion(Position(6,4),couleur1, Nombrededeplacement = 0);
+		tableau[6][5] = new Pion(Position(6,5),couleur1, Nombrededeplacement = 0);
+		tableau[6][6] = new Pion(Position(6,6),couleur1, Nombrededeplacement = 0);
+		tableau[6][7] = new Pion(Position(6,7),couleur1, Nombrededeplacement = 0);
 	}
 	
 	public boolean deplacerPiece(Piece piece, String destination)
