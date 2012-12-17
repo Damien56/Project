@@ -2,15 +2,38 @@ package pieces;
 
 public class Piece {
 
-	private int Position;
-	private String couleur;
+	protected int[] Position;
+	protected String Couleur;
 	protected String Image;
-	private int PositionPossible[][];
+	protected int[][] PositionPossible;
 	
-	public Piece(){
+	
+	public Piece() {
 		
+		this.Position = {0,0};
+		this.Couleur = "rouge";
+		
+		// TODO Auto-generated constructor stub
+	}
+
+	public Piece(int[] position,String couleur){
+		
+		this.Position = position;
+		this.Couleur = couleur;
+		this.Image = " ";
+		for (int i = 0 ; i<8 ; i++){
+			for(int j = 0 ; j<8 ; j++)
+				this.PositionPossible[i][j] = 0;
+		}
 	}
 	
+	
+
+
+	
+	public int[][] getPositionPossible() {
+		return PositionPossible;
+	}
 	public boolean estbloquer(){
 		
 		return true;
