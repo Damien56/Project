@@ -14,6 +14,12 @@ public class Partie {
 		//le destructeur de la classe Partie
 	}
 	
+	public void rejeuPartie(){
+		
+	}
 	
+	public void reglerTimer(){
+		
+	}
 
 }
