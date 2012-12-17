@@ -21,6 +21,11 @@ public class Piece {
 	}
 
 	
+	public String getCouleur() {
+		return Couleur;
+	}
+
+
 	public Position getPosition() {
 		return position;
 	}

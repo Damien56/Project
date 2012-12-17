@@ -92,5 +92,20 @@ public class Echiquier
 		tableau[i][j] = null;
 	}
 	
-	public Vector<> destinationPossible
+	public Vector<> destinationPossible{
+}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }

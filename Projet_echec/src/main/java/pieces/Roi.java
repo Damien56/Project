@@ -118,9 +118,9 @@ public class Roi extends Piece {
 
 
 	public boolean estEchec() {
-
-		return true;
-	}
+		for (Piece : tableau)
+			if(Piece)
+	return true;
 
 	
 	
