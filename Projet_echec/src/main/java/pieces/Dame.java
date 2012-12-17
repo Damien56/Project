@@ -4,6 +4,7 @@ public class Dame extends Piece {
 
 	public Dame(Position position,String couleur) {
 		super(position,couleur);
+		this.setPositionPossible();
 		this.Image="image dame de cette couleur";
 	}
 
@@ -67,19 +68,12 @@ public class Dame extends Piece {
 	
 
 	
-	public String toStringDame() {//affiche les caracteristique de la dame
-		return "Dame [position=" + position.getI() + position.getJ() + ", Couleur=" + Couleur + "]";
+	public void toStringDame() {//affiche les caracteristique de la dame
+		System.out.println("Dame [position=" + position.getI() + position.getJ() + ", Couleur=" + Couleur + "]"+"PositionPossible= " );
+		this.toStringPositionPossible();
 	}
 	
 	
 	
-	public static void main(String[] args) {
-		Position pos = new Position(0,0);
-		
-		Dame dame = new Dame(pos,"blanc");
-		dame.setPositionPossible();
-		System.out.print(dame.toStringDame()+"\n");
-		dame.toStringPositionPossible();
-	}
 	
 }

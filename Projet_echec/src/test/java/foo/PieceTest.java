@@ -5,13 +5,14 @@ import junit.framework.*;
 import org.junit.Test;
 
 import pieces.Dame;
+import pieces.Fou;
 import pieces.Position;
 
 public class PieceTest {
 	
 	
 
-	@SuppressWarnings("deprecation")
+	
 	@Test
 	public void testsetPostitionPossibleDame() {
 		
