@@ -13,5 +13,20 @@ public class Affichage {
 	public void optionFinDePartie(){
 		
 	}
-
+	
+	public void choixDeLaPartie(){
+		
+	}
+	
+	public void confirmExit(){
+		
+	}
+	
+	public void afficherEchiquier(){
+		
+	}
+	
+	public void afficherPosition(){
+		
+	}
 }
