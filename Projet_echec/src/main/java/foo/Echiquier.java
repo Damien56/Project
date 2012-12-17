@@ -1,22 +1,23 @@
+package foo;
 import java.util.Vector;
 
 /* Cyril Mazouyer */
-/* 17 Décembre 2012 */
+/* 17 Decembre 2012 */
 /* Classe Echiquier */
 
 public class Echiquier
 {
-	/* Déclaration des attributs de la classe */
+	/* Declaration des attributs de la classe */
 	private Piece tableau[][];
 	private boolean aide;
 	
-	/* Déclaration du constructeur de la classe */
+	/* Declaration du constructeur de la classe */
 	public Echiquier()
 	{
 		
 	}
 	
-	/* Déclaration des méthodes de la classe */
+	/* Declaration des methodes de la classe */
 	public Echiquier echiquierStandard()
 	{
 		
