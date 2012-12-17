@@ -16,21 +16,66 @@ public class Roi extends Piece {
 	}
 	
 	
-	public boolean setPositionPossible() {
+	public boolean setPositionPossible() {//à modifier pour les bords
 		int i = this.position.getI();
 		int j = this.position.getJ();
-		PositionPossible[i+1][j+1] = 1 ;
-		PositionPossible[i+1][j] = 1 ;
-		PositionPossible[i+1][j-1] = 1 ;
-		PositionPossible[i][j+1] = 1 ;
-		PositionPossible[i][j] = 0 ;
-		PositionPossible[i][j-1] = 1 ;
-		PositionPossible[i-1][j+1] = 1 ;
-		PositionPossible[i-1][j] = 1 ;
-		PositionPossible[i-1][j-1] = 1 ;
-		return true;
 		
+		if ((i<7 && i>1) && (j<7 && j>1) ){
+			PositionPossible[i+1][j+1] = 1 ;
+			PositionPossible[i+1][j] = 1 ;
+			PositionPossible[i+1][j-1] = 1 ;
+			PositionPossible[i][j+1] = 1 ;
+			PositionPossible[i][j-1] = 1 ;
+			PositionPossible[i-1][j+1] = 1 ;
+			PositionPossible[i-1][j] = 1 ;
+			PositionPossible[i-1][j-1] = 1 ;
 		}
+		
+		if (i==0 && (j<8 && j>=0)){
+			if(j!=0){
+				PositionPossible[i][j-1] = 1 ;
+				PositionPossible[i+1][j-1] = 1 ;
+			}
+			if(j!=7){
+				PositionPossible[i][j+1] = 1 ;
+				PositionPossible[i+1][j+1] = 1 ;
+			}
+			PositionPossible[i+1][j] = 1 ;
+			
+		}
+		
+		if (i==7 &&(j<8 && j>=0)){			
+			if (j != 0){
+				PositionPossible[i][j-1] = 1 ;
+				PositionPossible[i-1][j-1] = 1 ;
+			}
+			if (j != 7){
+				PositionPossible[i-1][j+1] = 1 ;
+				PositionPossible[i][j+1] = 1 ;
+			}
+			PositionPossible[i-1][j] = 1 ;
+		}
+		
+		if (j==0 && (j<7 && j>0)){
+				PositionPossible[i-1][j] = 1 ;
+				PositionPossible[i+1][j] = 1 ;
+				PositionPossible[i][j+1] = 1 ;
+				PositionPossible[i+1][j+1] = 1 ;
+				PositionPossible[i-1][j+1] = 1 ;
+		}
+		
+		
+		if (j==7 &&(i<7 && i>0)){
+			PositionPossible[i-1][j] = 1 ;
+			PositionPossible[i+1][j] = 1 ;
+			PositionPossible[i][j-1] = 1 ;
+			PositionPossible[i+1][j-1] = 1 ;
+			PositionPossible[i-1][j-1] = 1 ;
+			
+		}
+		PositionPossible[i][j] = 0 ;
+		return true;
+}
 
 	
 	public void toStringRoi() {// affiche les caracteristique de la Tour

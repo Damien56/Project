@@ -9,10 +9,14 @@ public class testClasse {
 		fou.toStringFou();
 		Tour tour = new Tour (new Position(4,3), "blanc");
 		tour.toStringTour();
-		Roi roi = new Roi (new Position(4,3), "blanc");
-		roi.toStringRoi();
-		Pion pion =new Pion(new Position(4,3),"blanc");
+		Pion pion = new Pion (new Position(4,3), "blanc");
 		pion.toStringPion();
+		Roi Roi =new Roi(new Position(4,3),"blanc");
+		Roi.toStringRoi();
+		Roi Roi2 =new Roi(new Position(0,0),"blanc");
+		Roi2.toStringRoi();
+		Roi Roi3 =new Roi(new Position(0,7),"blanc");
+		Roi3.toStringRoi();
 	}
 
 }

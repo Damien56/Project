@@ -12,15 +12,17 @@ public class Pion extends Piece{
 	}
 	
 	
-	public boolean setPositionPossible() {
+	public boolean setPositionPossible() {//a modifier pour la dernière case
 	
 		
 		if (this.NombreDeDeplacement == 0){
 			PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
 			PositionPossible[this.position.getI()+2][this.position.getJ()] = 1 ;}
 		else
-			PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
-		
+			if(this.position.getI()!=7)
+				PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
+			else
+				System.out.println("changement de piece");
 		return true;
 		
 		}
