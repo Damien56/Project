@@ -24,7 +24,7 @@ public class Echiquier
 	{
 		String couleur = "noir";
 		
-		// Première ligne des pièces noires - Première ligne echiquier
+		// Premiere ligne des pieces noires - Premiere ligne echiquier
 		tableau[0][0] = new Tour(Position(0,0), couleur, DejaDeplace = false); 
 		tableau[0][1] = new Cavalier(Position(0,1), couleur);
 		tableau[0][2] = new Fou(Position(0,2), couleur);
@@ -34,37 +34,37 @@ public class Echiquier
 		tableau[0][6] = new Cavalier(Position(0,6), couleur);
 		tableau[0][7] = new Tour(Position(0,7), couleur, DejaDepace = false);
 		
-		// Deuxième ligne des pièces noires - Deuxième ligne echiquier
-		tableau[1][0] = new Pion (Position(1,0),couleur, Nombrededeplacement = 0);
-		tableau[1][1] = new Pion (Position(1,1),couleur, Nombrededeplacement = 0);
-		tableau[1][2] = new Pion (Position(1,2),couleur, Nombrededeplacement = 0);
-		tableau[1][3] = new Pion (Position(1,3),couleur, Nombrededeplacement = 0);
-		tableau[1][4] = new Pion (Position(1,4),couleur, Nombrededeplacement = 0);
-		tableau[1][5] = new Pion (Position(1,5),couleur, Nombrededeplacement = 0);
-		tableau[1][6] = new Pion (Position(1,6),couleur, Nombrededeplacement = 0);
-		tableau[1][7] = new Pion (Position(1,7),couleur, Nombrededeplacement = 0);
+		// Deuxieme ligne des pieces noires - Deuxieme ligne echiquier
+		tableau[1][0] = new Pion(Position(1,0), couleur, Nombrededeplacement = 0);
+		tableau[1][1] = new Pion(Position(1,1), couleur, Nombrededeplacement = 0);
+		tableau[1][2] = new Pion(Position(1,2), couleur, Nombrededeplacement = 0);
+		tableau[1][3] = new Pion(Position(1,3), couleur, Nombrededeplacement = 0);
+		tableau[1][4] = new Pion(Position(1,4), couleur, Nombrededeplacement = 0);
+		tableau[1][5] = new Pion(Position(1,5), couleur, Nombrededeplacement = 0);
+		tableau[1][6] = new Pion(Position(1,6), couleur, Nombrededeplacement = 0);
+		tableau[1][7] = new Pion(Position(1,7), couleur, Nombrededeplacement = 0);
 		
-		String couleur1 = "blanc";
+		couleur = "blanc";
 		
-		// Première ligne des pièces blanches - Huitième ligne echiquier
-		tableau[7][0] = new Tour(Position(7,0), couleur1, DejaDeplace = false);
-		tableau[7][1] = new Cavalier(Position(7,1), couleur1);
-		tableau[7][2] = new Fou(Position(7,2), couleur1);
-		tableau[7][3] = new Dame(Position(7,3), couleur1);
-		tableau[7][4] = new Roi(Position(7,4),couleur1, DejaDeplace = false, Echec = false, Positiondumechant = null);
-		tableau[7][5] = new Fou(Position(7,5), couleur1);
-		tableau[7][6] = new Cavalier(Position(7,6), couleur1);
-		tableau[7][7] = new Tour(Position(7,7), couleur1, DejaDeplace = false);
+		// Premiere ligne des pieces blanches - Huitieme ligne echiquier
+		tableau[7][0] = new Tour(Position(7,0), couleur, DejaDeplace = false);
+		tableau[7][1] = new Cavalier(Position(7,1), couleur);
+		tableau[7][2] = new Fou(Position(7,2), couleur);
+		tableau[7][3] = new Dame(Position(7,3), couleur);
+		tableau[7][4] = new Roi(Position(7,4), couleur, DejaDeplace = false, Echec = false, Positiondumechant = null);
+		tableau[7][5] = new Fou(Position(7,5), couleur);
+		tableau[7][6] = new Cavalier(Position(7,6), couleur);
+		tableau[7][7] = new Tour(Position(7,7), couleur, DejaDeplace = false);
 		
-		// Deuxième ligne des pièces blanches - Septième ligne echiquier
-		tableau[6][0] = new Pion(Position(6,0),couleur1, Nombrededeplacement = 0);
-		tableau[6][1] = new Pion(Position(6,1),couleur1, Nombrededeplacement = 0);
-		tableau[6][2] = new Pion(Position(6,2),couleur1, Nombrededeplacement = 0);
-		tableau[6][3] = new Pion(Position(6,3),couleur1, Nombrededeplacement = 0);
-		tableau[6][4] = new Pion(Position(6,4),couleur1, Nombrededeplacement = 0);
-		tableau[6][5] = new Pion(Position(6,5),couleur1, Nombrededeplacement = 0);
-		tableau[6][6] = new Pion(Position(6,6),couleur1, Nombrededeplacement = 0);
-		tableau[6][7] = new Pion(Position(6,7),couleur1, Nombrededeplacement = 0);
+		// Deuxieme ligne des pieces blanches - Septieme ligne echiquier
+		tableau[6][0] = new Pion(Position(6,0), couleur, Nombrededeplacement = 0);
+		tableau[6][1] = new Pion(Position(6,1), couleur, Nombrededeplacement = 0);
+		tableau[6][2] = new Pion(Position(6,2), couleur, Nombrededeplacement = 0);
+		tableau[6][3] = new Pion(Position(6,3), couleur, Nombrededeplacement = 0);
+		tableau[6][4] = new Pion(Position(6,4), couleur, Nombrededeplacement = 0);
+		tableau[6][5] = new Pion(Position(6,5), couleur, Nombrededeplacement = 0);
+		tableau[6][6] = new Pion(Position(6,6), couleur, Nombrededeplacement = 0);
+		tableau[6][7] = new Pion(Position(6,7), couleur, Nombrededeplacement = 0);
 	}
 	
 	public boolean deplacerPiece(Piece piece, String destination)
