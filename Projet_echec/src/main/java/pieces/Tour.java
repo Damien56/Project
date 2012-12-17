@@ -1,6 +1,6 @@
 package pieces;
 
-public class Tour {
+public class Tour extends Piece{
 
 	private boolean DejaDeplace;
 	
