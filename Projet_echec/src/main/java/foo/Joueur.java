@@ -14,12 +14,16 @@ public class Joueur {
 	public Joueur() // Constructeur de la classe Joueur
 	{ 
 		
+		Nom="Joueurdéfaut";
+		Couleur="Couleurdéfaut";
+		Score=0;
 	}
 	
-	public String AjouterJoueur(String Nom, String Couleur) // Méthode pour ajouter un Joueur avec son nom et sa couleur
+	public boolean AjouterJoueur(String Nom, String Couleur) // Méthode pour ajouter un Joueur avec son nom et sa couleur
 	
 	{
-		
+		return true;
+	
 	}
 
 }
