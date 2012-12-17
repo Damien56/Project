@@ -24,6 +24,7 @@ public class Echiquier
 	{
 		String couleur = "noir";
 		
+
 		// Premiere ligne des pieces noires - Premiere ligne echiquier
 		tableau[0][0] = new Tour(new Position(0,0), couleur, DejaDeplace = false); 
 		tableau[0][1] = new Cavalier(new Position(0,1), couleur);
@@ -43,9 +44,11 @@ public class Echiquier
 		tableau[1][5] = new Pion(new Position(1, 5), couleur, Nombrededeplacement = 0);
 		tableau[1][6] = new Pion(new Position(1, 6), couleur, Nombrededeplacement = 0);
 		tableau[1][7] = new Pion(new Position(1, 7), couleur, Nombrededeplacement = 0);
+
 		
-		couleur = "blanc";
+		String couleur1 = "blanc";
 		
+
 		// Premiere ligne des pieces blanches - Huitieme ligne echiquier
 		tableau[7][0] = new Tour(new Position(7, 0), couleur, DejaDeplace = false);
 		tableau[7][1] = new Cavalier(new Position(7, 1), couleur);
@@ -65,7 +68,7 @@ public class Echiquier
 		tableau[6][5] = new Pion(new Position(6, 5), couleur, Nombrededeplacement = 0);
 		tableau[6][6] = new Pion(new Position(6, 6), couleur, Nombrededeplacement = 0);
 		tableau[6][7] = new Pion(new Position(6, 7), couleur, Nombrededeplacement = 0);
-	}
+
 	
 	public boolean deplacerPiece(Piece piece, Position destination)
 	{
