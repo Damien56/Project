@@ -1,27 +1,44 @@
 package foo;
 
 import static org.junit.Assert.*;
-
+import junit.framework.*;
 import org.junit.Test;
 
 import pieces.Dame;
-import pieces.Piece;
+import pieces.Position;
 
 public class PieceTest {
+	
+	
 
+	@SuppressWarnings("deprecation")
 	@Test
 	public void testsetPostitionPossibleDame() {
 		
-		Piece dame = new Dame(33,"blanc");
+		Dame dame = new Dame(new Position(3,3),"blanc");
 		dame.setPositionPossible();
 		int tab[][] = { {1,0,0,1,0,0,1,0},{0,1,0,1,0,1,0,0},
 				{0,0,1,1,1,0,0,0},{1,1,1,0,1,1,1,1},
 				{0,0,1,1,1,0,0,0},{0,1,0,1,0,1,0,0},
-				{1,0,0,1,0,0,1,0},{0,0,0,0,0,0,0,0} };
-		assertEquals(tab,dame.getPositionPossible());
+				{1,0,0,1,0,0,1,0},{0,0,0,1,0,0,0,1} };
 		
+		int tab2[][]=dame.getPositionPossible();
+		assertEquals(tab,tab2);
+		
+		
+		
+		Dame dame2 = new Dame(new Position(0,0),"noire");
+		dame2.setPositionPossible();
+		int tab3[][] ={ {0,1,1,1,1,1,1,1}, {1,1,0,0,0,0,0,0},
+				{1,0,1,0,0,0,0,0},{1,0,0,1,0,0,0,0},
+				{1,0,0,0,1,0,0,0},{1,0,0,0,0,1,0,0},
+				{1,0,0,0,0,0,1,0},{1,0,0,0,0,0,0,1}};
+	
+		int tab4[][]=dame2.getPositionPossible();
+		assertEquals(tab3,tab4);
+	}
 		
 		
 	}
 
-}
+

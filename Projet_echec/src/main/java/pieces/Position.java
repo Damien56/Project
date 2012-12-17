@@ -5,6 +5,15 @@ public class Position {
 	protected int i;
 	protected int j;
 	
+	public Position()
+	{
+		
+	}
+	public Position(int i,int j)
+	{
+		this.i = i; 
+		this.j = j;
+	}
 	public int getI() {
 		return i;
 	}
