@@ -6,7 +6,7 @@ public class EchiquierTest
 	{
 		Echiquier e = new Echiquier();
 		e.echiquierStandard();
-		e.toString();
+		System.out.println("coucou");
 	}
 }
 
