@@ -121,7 +121,7 @@ public class Affichage {
 			}
 		}
 			
-		
+		fen.setSize(400,400);
 		fen.getContentPane().add(pan);
 		fen.pack();
 		fen.setVisible(true); 
@@ -139,9 +139,9 @@ public class Affichage {
 	
 	public static void main(String[] args) {
 		
-		menuPrincipal();
-		choixDeLaPartie();
-		optionChoixJoueur();
+		//menuPrincipal();
+		//choixDeLaPartie();
+		//optionChoixJoueur();
 		afficherEchiquier();
 	}
 }
