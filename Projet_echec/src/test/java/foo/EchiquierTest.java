@@ -7,6 +7,7 @@ public class EchiquierTest
 		Echiquier e = new Echiquier();
 		e.echiquierStandard();
 		System.out.println(e.toString());
+		e.setTableau(p)
 	}
 }
 
