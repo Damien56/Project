@@ -114,8 +114,6 @@ public class Echiquier
 		
 	}
 	
-	
-	
 	/*public boolean ajouterPiece(String nom, Position p, String couleur)
 	{
 		boolean isOk = false;
@@ -147,52 +145,92 @@ public class Echiquier
 	
 	public String toString()
 	{
-		String res = "";
-		
+		StringBuffer res = new StringBuffer("");
+		String piece = "";
+		String couleur = "";
+	
 		for(int i = 0; i < 8; i++)
 		{
 			for(int j = 0; j < 8; j++)
-			{
-				res.concat(" [ ");
-				res.concat(this.tableau[i][j].getClass().getName());
-				res.concat(" ");
-				res.concat(this.tableau[i][j].getCouleur());
-				res.concat(" ] ");
+			{	
+				if(this.tableau[i][j] == null)
+				{
+					piece = "Case vide";
+					couleur = "";
+				}
+				else
+				{
+					piece = this.tableau[i][j].getClass().getName();
+					couleur = this.tableau[i][j].getCouleur();
+					
+				}			
+				
+				res.append(" [ ");
+				res.append(piece);
+				res.append(" ");
+				res.append(couleur);
+				res.append(" ] ");
 			}
-			res.concat("\n");
-		}		
-		return res;
+			res.append("\n");
+		}
+		return res.toString();
 	}	
 	
 	
-	public Vector<Position> destinationPossible(Piece piece)
-	{
+	public Vector<Position> destinationPossible(Piece piece){
+		
 		Vector<Position> dest = new Vector<Position>();
+		int[][] tabposition = piece.getPositionPossible();
+		
+		for(int i=0; i<8; i++){
+			for(int j=0; j<8; j++){
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && this.tableau[i][j].getCouleur()!=piece.getCouleur()){
+						dest.add(new Position(i,j));
+					}
+				}
+			}
+		}
+		
 		return dest;
 	}
+		
 	
-	
-	public boolean estBloquer(Piece p) {
+	public boolean estBloquee(Piece p)
+	{
+
 		Piece sauv = p;
-		boolean bool = false;
+		boolean isOk = false;
 		
 		supprimerPiece(p.getPosition());
-		if (estEchec(new Roi(new Position(5,5),p.getCouleur())))/*roi de la meme couleur est en echec*/
-			bool=true;
 		
+		if (estPrenable(new Piece(new Position(5, 5), p.getCouleur())))	/*roi de la meme couleur*/
+		{
+			isOk = true;
+		}
+			
 		ajouterPiece(sauv); 
-		return bool;	
+		return isOk;
 	}
-	
-	public boolean estPrenable(Piece r){
+
+	public boolean estPrenable(Piece r)
+	{
 		boolean bool = false;
-		Vector <Position> destinationPossibleAdverse;
-		for (int i=0 ; i<8 ; i++){
-			for (int j=0 ; j<8 ; j++){
-				if (this.tableau[i][j].getCouleur()!= r.getCouleur()){
+		Vector<Position> destinationPossibleAdverse;
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (this.tableau[i][j].getCouleur() != r.getCouleur())
+				{
 					destinationPossibleAdverse = destinationPossible(tableau[i][j]);
-					for(Position pos : destinationPossibleAdverse){
-						if (pos== r.getPosition()){
+					for (Position pos : destinationPossibleAdverse)
+					{
+						if (pos == r.getPosition())
+						{
 							r.setPositionDuMechant(pos);
 							bool=true;
 						}

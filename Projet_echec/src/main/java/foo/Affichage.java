@@ -249,8 +249,13 @@ public class Affichage {
 
 	public  static class Ecouteur implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
-		if (e.getSource() == tab[1][1]) 
-		System.out.println("jaune"); 
+			for(int i=0; i<8; i++){
+				for(int j=0; j<8 ; j++){
+					if (e.getSource() == tab[i][j]){
+						System.out.println("proute"); 
+					}
+				}
+			}
 		}
 	}
 	
