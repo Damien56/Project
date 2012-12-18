@@ -27,5 +27,11 @@ public class Position {
 		this.j = j;
 	}
 	
-	
+	public boolean isEqual(Position p)
+	{
+		boolean isOk = false;
+		if((this.i == p.getI()) && (this.j == p.getJ()))
+			isOk = true;
+		return isOk;
+	}
 }
