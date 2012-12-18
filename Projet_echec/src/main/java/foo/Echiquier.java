@@ -92,20 +92,51 @@ public class Echiquier
 		tableau[i][j] = null;
 	}
 	
-	public Vector<> destinationPossible{
-}
-
+	public Vector<Position> destinationPossible(Piece piece){
+		Vector<Position> tab;
+		return tab; 
+	}
 	
+	public boolean estMat(Roi roi){
+		boolean mat = false;
+		Position positionTest = roi.getPosition();
+		Vector<Position> destination = destinationPossible(roi);
+		
+		for(int i=0; i<destination.size();i++){
+			roi.setPosition(destination.elementAt(i));					
+			if(estEchec(roi)==false){
+				roi.setPosition(positionTest);
+				mat = false;
+			}
+		}
+		
+		String couleurDuMechant;
+		if(roi.getCouleur()=="blanc"){
+			couleurDuMechant="noir";
+		}
+		else if(roi.getCouleur()=="noir"){
+			couleurDuMechant="blanc";
+		}
+		
+		Piece mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant)
+		
+		if(estPrenable(mechant)){
+			mat = false;
+		}
+		
+		destination = destinationPossible(mechant);
+		for(int i=0; i<destination.size(); i++){
+			mechant.setPosition(destination.elementAt(i));
+			if(estPrenable(mechant)){
+				Position protection = mechant.getPositionDuMechant();
+				deplacerPiece(tableau[protection.getI()][protection.getJ()],destination.elementAt(i));
+				if(estEchec(roi)){
+					mat = true;
+				}
+			}
+		}
+		
+		return mat;	
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
