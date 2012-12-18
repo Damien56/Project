@@ -17,6 +17,17 @@ public class testClasse {
 		Roi2.toStringRoi();
 		Roi Roi3 =new Roi(new Position(0,7),"blanc");
 		Roi3.toStringRoi();
+		Cavalier Cavalier = new Cavalier (new Position(4,3), "blanc");
+		Cavalier.toStringCavalier();
+		Cavalier Cavalier1 = new Cavalier (new Position(0,0), "blanc");
+		Cavalier1.toStringCavalier();
+		Cavalier Cavalier2 = new Cavalier (new Position(1,1), "blanc");
+		Cavalier2.toStringCavalier();
+		Cavalier Cavalier3 = new Cavalier (new Position(1,6), "blanc");
+		Cavalier3.toStringCavalier();
+		Cavalier Cavalier4 = new Cavalier (new Position(0,7), "blanc");
+		Cavalier4.toStringCavalier();
+		
 	}
 
 }

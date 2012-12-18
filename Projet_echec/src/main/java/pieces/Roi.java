@@ -117,11 +117,11 @@ public class Roi extends Piece {
 	}
 
 
-	public boolean estEchec() {
+	/*public boolean estEchec() {
 		for (Piece : tableau)
 			if(Piece)
 	return true;
-
+*/
 	
 	
 	

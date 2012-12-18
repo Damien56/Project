@@ -11,19 +11,13 @@ public class Cavalier extends Piece{
 	public boolean setPositionPossible(){
 		int i = this.position.getI();
 		int j = this.position.getJ();
-
-		for(int a=0; a<8; a++){
-			for(int b=0; b<8; b++){
-				PositionPossible[a][b]=0;
-			}
-		}
 		
 		//position actuelle du cavalier
 		PositionPossible[i][j]=0;
-		//position en haut à droite
+		//position en haut ï¿½ droite
 		i=i-2;
 		j++;
-		if(i>=0 && j>=0 && i<=7 && j<=7){//contrainte de dépassement de l'échiquier
+		if(i>=0 && j>=0 && i<=7 && j<=7){//contrainte de dï¿½passement de l'ï¿½chiquier
 			PositionPossible[i][j]=1;
 		}
 		//position vers la droite en haut
@@ -37,13 +31,13 @@ public class Cavalier extends Piece{
 		if(i>=0 && j>=0 && i<=7 && j<=7){
 			PositionPossible[i][j]=1;
 		}
-		//position vers le bas à droite
+		//position vers le bas ï¿½ droite
 		i++;
 		j--;
 		if(i>=0 && j>=0 && i<=7 && j<=7){
 			PositionPossible[i][j]=1;
 		}
-		//position vers le bas à gauche
+		//position vers le bas ï¿½ gauche
 		j=j-2;
 		if(i>=0 && j>=0 && i<=7 && j<=7){
 			PositionPossible[i][j]=1;
@@ -59,7 +53,7 @@ public class Cavalier extends Piece{
 		if(i>=0 && j>=0 && i<=7 && j<=7){
 			PositionPossible[i][j]=1;
 		}
-		//position vers le haut à droite
+		//position vers le haut ï¿½ droite
 		i--;
 		j++;
 		if(i>=0 && j>=0 && i<=7 && j<=7){
