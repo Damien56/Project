@@ -171,24 +171,21 @@ public class Echiquier
 	
 	public boolean estEchec(Roi r){
 		boolean bool = false;
-		Position[] destinationPossibleRoi = destinationPossible(r);
-		Position[] destinationPossibleAdverse;
+		Vector <Position> destinationPossibleAdverse;
 		for (int i=0 ; i<8 ; i++){
 			for (int j=0 ; j<8 ; j++){
 				if (this.tableau[i][j].getCouleur()!= r.getCouleur()){
 					destinationPossibleAdverse=destinationPossible(tableau[i][j]);
 					for(Position pos : destinationPossibleAdverse){
-						if (pos== r.getPosition()){
+						if (pos== r.getPosition())
 							bool=true;
-							return bool;
-							}
-										
+					
 						}
 						
 					}
 				}	
 			}
-					
+		return bool;			
 		}
 
 }
