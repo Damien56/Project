@@ -175,6 +175,44 @@ public class Echiquier
 		return dest;
 	}
 	
+	
+	public boolean estBloquer(Piece p) {
+		Piece sauv = p;
+		boolean bool = false;
+		
+		supprimerPiece(p.getPosition());
+		if (estEchec(new Piece(new Position(5,5),p.getCouleur())))/*roi de la meme couleur est en echec*/
+			bool=true;
+		
+		ajouterPiece(sauv); 
+		return bool;	
+	}
+	
+	public boolean estPrenable(Piece r){
+		boolean bool = false;
+		Vector <Position> destinationPossibleAdverse;
+		for (int i=0 ; i<8 ; i++){
+			for (int j=0 ; j<8 ; j++){
+				if (this.tableau[i][j].getCouleur()!= r.getCouleur()){
+					destinationPossibleAdverse = destinationPossible(tableau[i][j]);
+					for(Position pos : destinationPossibleAdverse){
+						if (pos== r.getPosition()){
+							r.setPositionDuMechant(pos);
+							bool=true;
+						}
+					
+					}
+						
+				}
+			}	
+		}
+		return bool;			
+	}
+	
+	public boolean estEchec(Roi roi){
+		return estPrenable(roi);
+	}
+	
 	public boolean estMat(Roi roi){
 		boolean mat = false;
 		Position positionTest = roi.getPosition();
@@ -216,38 +254,5 @@ public class Echiquier
 		
 		return mat;	
 	}
-	
-	public boolean estbloquer(Piece p) {
-		Piece sauv = p;
-		boolean bool = false;
-		
-		supprimerPiece(p.getPosition());
-		if (estPrenable(new Piece(new Position(5,5),p.getCouleur())))/*roi de la meme couleur*/
-			bool=true;
-		
-		ajouterPiece(sauv); 
-		return bool;	
-	}
-	
-	public boolean estPrenable(Piece r){
-		boolean bool = false;
-		Vector <Position> destinationPossibleAdverse;
-		for (int i=0 ; i<8 ; i++){
-			for (int j=0 ; j<8 ; j++){
-				if (this.tableau[i][j].getCouleur()!= r.getCouleur()){
-					destinationPossibleAdverse = destinationPossible(tableau[i][j]);
-					for(Position pos : destinationPossibleAdverse){
-						if (pos== r.getPosition()){
-							r.setPositionDuMechant(pos);
-							bool=true;
-						}
-					
-					}
-						
-				}
-			}	
-		}
-		return bool;			
-	}
-	
+
 }
