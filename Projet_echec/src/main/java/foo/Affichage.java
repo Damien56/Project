@@ -79,7 +79,8 @@ public class Affichage {
 	
 	public static void afficherEchiquier()
 	{
-		 JButton tab[][];
+		 
+		 JButton tab[][] = new JButton[8][8];
 		 JFrame fen = new JFrame("Jeu D'échec");
 		 fen.setLocationRelativeTo(null);
 		 
@@ -88,11 +89,13 @@ public class Affichage {
 		 pan.setLayout(new GridLayout(8,8));
 		 
 		for(int i=0; i<8; i++){
-			for(int j=0; j<8 ; j++)
+			for(int j=0; j<8 ; j++){
 				tab[i][j] = new JButton();
+				pan.add(tab[i][j]);
+			}
 		}
-			pan.add();
-		}
+			
+		
 		fen.getContentPane().add(pan);
 		fen.pack();
 		fen.setVisible(true); 
@@ -102,12 +105,16 @@ public class Affichage {
 	
 	public void afficherPosition(){
 		
-	}*/
+	}
+	
+	public static void affichageTotal(){
+		
+	}
 	
 	public static void main(String[] args) {
 		
-		menuPrincipal();
-		choixDeLaPartie();
-		//afficherEchiquier();
+		//menuPrincipal();
+		//choixDeLaPartie();
+		afficherEchiquier();
 	}
 }
