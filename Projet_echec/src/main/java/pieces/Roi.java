@@ -4,7 +4,7 @@ public class Roi extends Piece {
 
 	private boolean Echec;
 	private boolean DejaDeplace;
-	private Position positionDuMechant;
+	
 
 	public Roi(Position position,String couleur) {
 		super(position,couleur);
@@ -107,21 +107,10 @@ public class Roi extends Piece {
 	}
 
 
-	public Position getPositionDuMechant() {
-		return positionDuMechant;
+	
 	}
 
 
-	public void setPositionDuMechant(Position positionDuMechant) {
-		this.positionDuMechant = positionDuMechant;
-	}
-
-
-	/*public boolean estEchec() {
-		for (Piece : tableau)
-			if(Piece)
-	return true;
-*/
 	
 	
 	

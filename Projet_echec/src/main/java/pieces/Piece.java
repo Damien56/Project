@@ -7,6 +7,7 @@ public class Piece {
 	protected String Couleur;
 	protected String Image;
 	protected int[][] PositionPossible = new int[8][8];
+	private Position positionDuMechant;
 
 	
 	public Piece(Position position, String couleur) {
@@ -14,6 +15,7 @@ public class Piece {
 		this.position = position;
 		this.Couleur = couleur;
 		this.Image = " ";
+		this.positionDuMechant=null;
 		
 		 for (int i = 0 ; i<8 ; i++){ for(int j = 0 ; j<8 ; j++){
 			 this.PositionPossible[i][j]= 0; } }
@@ -52,7 +54,13 @@ public class Piece {
 	public int[][] getPositionPossible() {
 		return PositionPossible;
 	}
+	public Position getPositionDuMechant() {
+		return positionDuMechant;
+	}
 
+
+	public void setPositionDuMechant(Position positionDuMechant) {
+		this.positionDuMechant = positionDuMechant;
 	
 	public boolean estbloquer() {
 
