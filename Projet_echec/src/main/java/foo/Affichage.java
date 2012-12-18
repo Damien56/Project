@@ -17,7 +17,8 @@ import javax.swing.JTextArea;
 
 public class Affichage {
 	//Interface Affichage
-	private static JButton tab[][] = new JButton[8][8];
+	private static JButton tabBoutton[][] = new JButton[8][8];
+	private static Ecouteur tabEcouteur[][] = new Ecouteur[8][8];
 	private static JFrame fen = new JFrame("Jeu D'échec");
 	
 	public Affichage(){
@@ -188,7 +189,7 @@ public class Affichage {
 	}
 	
 	
-	}
+	
 	public void afficherPosition(){
 		
 	}
@@ -227,13 +228,15 @@ public class Affichage {
 		 
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
-				tab[i][j] = new JButton();
+				tabBoutton[i][j] = new JButton();
 				if((i%2==0 && j%2 == 0) || (i%2==1 && j%2 == 1))
-					tab[i][j].setBackground(Color.gray);
+					tabBoutton[i][j].setBackground(Color.gray);
 				else
-					tab[i][j].setBackground(Color.white);
-				tab[i][j].addActionListener(new Ecouteur());
-				pan.add(tab[i][j]);
+					tabBoutton[i][j].setBackground(Color.white);
+				
+				tabEcouteur[i][j] = new Ecouteur();
+				tabBoutton[i][j].addActionListener(tabEcouteur[i][j]);
+				pan.add(tabBoutton[i][j]);
 			}
 		}
 		cont.add(pan);
@@ -249,10 +252,11 @@ public class Affichage {
 		public void actionPerformed(ActionEvent e){ 
 			for(int i=0; i<8; i++){
 				for(int j=0; j<8 ; j++){
-					if (e.getSource() == tab[i][j]){
+					if (e.getSource() == tabBoutton[i][j]){
 						System.out.println("proute"); 
 					}
 				}
+				
 			}
 		}
 	}
