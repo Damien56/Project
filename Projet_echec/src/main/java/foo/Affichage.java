@@ -139,34 +139,32 @@ public class Affichage {
 		JPanel panel2 = new JPanel();
 		panel2.setSize(400, 100);
 	
-		
-		
 		panel2.setLayout(new GridLayout(6,2));
 		
 		JButton cavaliern = new JButton("Cavalier Noir");
-		cavaliern.setSize(200, 8);
+		cavaliern.setSize(200, 16);
 		JButton cavalierb = new JButton("Cavalier Blanc ");
-		cavalierb.setSize(200, 8);
+		cavalierb.setSize(200, 16);
 		JButton damen = new JButton("Dame Noire");
-		damen.setSize(200, 8);
+		damen.setSize(200, 16);
 		JButton dameb = new JButton("Dame Blanche");
-		dameb.setSize(200, 8);
+		dameb.setSize(200, 16);
 		JButton foun = new JButton("Fou Noir");
-		foun.setSize(200, 8);
+		foun.setSize(200, 16);
 		JButton foub = new JButton("Fou Blanc");
-		foub.setSize(200, 8);
+		foub.setSize(200, 16);
 		JButton pionn = new JButton("Pion Noir");
-		pionn.setSize(200, 8);
+		pionn.setSize(200, 16);
 		JButton pionb = new JButton("Pion Blanc");
-		pionb.setSize(200, 8);
+		pionb.setSize(200, 16);
 		JButton roin = new JButton("Roi Noir");
-		roin.setSize(200, 8);
+		roin.setSize(200, 16);
 		JButton roib = new JButton("Roi Blanc");
-		roib.setSize(200, 8);
+		roib.setSize(200, 16);
 		JButton tourn = new JButton("Tour Noire");
-		tourn.setSize(200, 8);
+		tourn.setSize(200, 16);
 		JButton tourb = new JButton("Tour Blanche");
-		tourb.setSize(200, 8);
+		tourb.setSize(200, 16);
 		
 		panel2.add(cavaliern);
 		panel2.add(cavalierb);
