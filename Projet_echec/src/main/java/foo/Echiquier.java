@@ -90,7 +90,7 @@ public class Echiquier
 				{
 					this.tableau[i][j] = tab[i][j];
 					
-					if(this.getTableau()[i][j] != tab[i][j])
+					if(this.tableau[i][j] != tab[i][j])
 					{
 						isOk = false;
 					}
