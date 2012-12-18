@@ -16,16 +16,26 @@ public class Pion extends Piece{
 	
 		
 		if (this.NombreDeDeplacement == 0){
-			PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
-			PositionPossible[this.position.getI()+2][this.position.getJ()] = 1 ;}
-		else
-			if(this.position.getI()!=7)
+			if(this.getCouleur()=="noir"){//positions pour un pion noir
 				PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
-			else
-				System.out.println("changement de piece");
+				PositionPossible[this.position.getI()+2][this.position.getJ()] = 1 ;
+			}
+			else if(this.getCouleur()=="blanc"){
+				PositionPossible[this.position.getI()-1][this.position.getJ()] = 1 ;
+				PositionPossible[this.position.getI()-2][this.position.getJ()] = 1 ;
+			}
+		}
+		else if(this.getCouleur()=="noir" && this.position.getI()!=7){
+			PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
+		}
+		else if(this.getCouleur()=="blanc" && this.position.getI()!=0){
+			PositionPossible[this.position.getI()-1][this.position.getJ()] = 1 ;
+		}
+				
+		System.out.println("changement de piece");
 		return true;
 		
-		}
+	}
 
 	
 	public void toStringPion() {// affiche les caracteristique du Pion
