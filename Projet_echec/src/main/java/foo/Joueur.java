@@ -14,16 +14,42 @@ public class Joueur {
 	public Joueur() // Constructeur de la classe Joueur
 	{ 
 		
-		Nom="Joueurdéfaut";
-		Couleur="Couleurdéfaut";
-		Score=0;
+		this.Nom = "Joueurdéfaut";
+		this.Couleur = "Couleurdéfaut";
+		this.Score=0;
 	}
 	
-	public boolean AjouterJoueur(String Nom, String Couleur) // Méthode pour ajouter un Joueur avec son nom et sa couleur
-	
+	public Joueur(String nom, String couleur)
 	{
-		return true;
-	
+		this.Nom = nom;
+		this.Couleur = couleur;
+		this.Score=0;
 	}
+
+	public String getNom() {
+		return Nom;
+	}
+
+	public void setNom(String nom) {
+		Nom = nom;
+	}
+
+	public String getCouleur() {
+		return Couleur;
+	}
+
+	public void setCouleur(String couleur) {
+		Couleur = couleur;
+	}
+
+	public int getScore() {
+		return Score;
+	}
+
+	public void setScore(int score) {
+		Score = score;
+	}
+	
+	
 
 }
