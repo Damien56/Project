@@ -149,6 +149,22 @@ public class Echiquier
 		Vector<Position> dest = new Vector<Position>();
 		return dest;
 	}
+	
+	public String toString()
+	{
+		StringBuffer res = "";
+		
+		for(int j = 0; j < 8; j++)
+		{
+			for(int i = 0; i < 8; i++)
+			{
+				
+			}
+			res+= "\n";
+		}
+		
+		return res;		
+	}
 
 	
 	
