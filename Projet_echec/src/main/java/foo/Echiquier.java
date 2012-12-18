@@ -181,7 +181,7 @@ public class Echiquier
 		boolean bool = false;
 		
 		supprimerPiece(p.getPosition());
-		if (estEchec(new Piece(new Position(5,5),p.getCouleur())))/*roi de la meme couleur est en echec*/
+		if (estEchec(new Roi(new Position(5,5),p.getCouleur())))/*roi de la meme couleur est en echec*/
 			bool=true;
 		
 		ajouterPiece(sauv); 
@@ -234,7 +234,7 @@ public class Echiquier
 			couleurDuMechant="blanc";
 		}
 		
-		Piece mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant)
+		Piece mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
 		
 		if(estPrenable(mechant)){
 			mat = false;
