@@ -61,14 +61,14 @@ public class Echiquier
 		tabStd[7][7] = new Tour(new Position(7, 7), couleur);
 		
 		// Deuxieme ligne des pieces blanches - Septieme ligne echiquier
-		tabStd[6][0] = new Pion(new Position(6, 0), couleur);
+		/*tabStd[6][0] = new Pion(new Position(6, 0), couleur);
 		tabStd[6][1] = new Pion(new Position(6, 1), couleur);
 		tabStd[6][2] = new Pion(new Position(6, 2), couleur);
 		tabStd[6][3] = new Pion(new Position(6, 3), couleur);
 		tabStd[6][4] = new Pion(new Position(6, 4), couleur);
 		tabStd[6][5] = new Pion(new Position(6, 5), couleur);
 		tabStd[6][6] = new Pion(new Position(6, 6), couleur);
-		tabStd[6][7] = new Pion(new Position(6, 7), couleur);
+		tabStd[6][7] = new Pion(new Position(6, 7), couleur);*/
 		
 		return this.setTableau(tabStd);		
 	}
@@ -152,32 +152,21 @@ public class Echiquier
 	
 	public String toString()
 	{
-		StringBuffer res = new StringBuffer();
+		String res = "";
 		
 		for(int j = 0; j < 8; j++)
 		{
 			for(int i = 0; i < 8; i++)
 			{
-				
-				res.append(" [ " + this.tableau[i][j].getClass().getName() + " " + this.tableau[i][j].getCouleur() + " ] ");
+				System.out.print(" [ ");
+				System.out.print(this.tableau[i][j].getClass());
+				System.out.print(" ");
+				System.out.print(this.tableau[i][j].getCouleur());
+				System.out.print(" ] ");
 			}
-			res.append("\n");
-		}
-		
-		return res.toString();		
-	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+			System.out.println();
+		}		
+		return res;
+	}	
 
 }
