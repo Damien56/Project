@@ -96,12 +96,50 @@ public class Affichage {
 	
 	public void optionFinDePartie(){
 		
+		
+		 JFrame fenetre = new JFrame("Fin de partie");
+		 fenetre.setLocationRelativeTo(null);
+		 
+		 JPanel panel = new JPanel();
+		 panel.setSize(400, 100);
+		 panel.setLayout( new BoxLayout(panel,3));
+		 
+		 JButton revoir = new JButton("Revoir une partie");
+		 revoir.setSize(400, 50);
+		 JButton rejouer = new JButton("Rejouer une partie ");
+		 rejouer.setSize(400, 50);
+		 JButton quitter = new JButton("Quitter");
+		 quitter.setSize(400, 50);
+		 
+		 panel.add(revoir);
+		 panel.add(rejouer);
+		 panel.add(quitter);
+		 
+		 fenetre.getContentPane().add(panel);
+		 fenetre.pack();
+		 fenetre.setVisible(true);
+			
+		
 	}
-	
 	
 	
 	public void confirmExit(){
 		
+		JFrame fenetre1 = new JFrame("Fin de partie");
+		JPanel panel1 =new JPanel();
+		panel1.setSize(400, 100);
+		panel1.setLayout( new BoxLayout(panel1,1));
+		
+		JButton confirmer = new JButton("Confirmer sortie de la partie");
+		confirmer.setSize(200,50);
+		
+		panel1.add(confirmer);
+		
+		fenetre1.getContentPane().add(panel1);
+		fenetre1.pack();
+		fenetre1.setVisible(true);
+			
+			
 	}
 	
 	public static void afficherEchiquier()
