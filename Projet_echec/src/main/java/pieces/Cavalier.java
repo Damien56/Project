@@ -1,5 +1,5 @@
 package pieces;
-
+//coucou
 public class Cavalier extends Piece{
 
 	public Cavalier(Position position, String couleur){

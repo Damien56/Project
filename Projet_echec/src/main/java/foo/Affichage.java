@@ -1,11 +1,13 @@
 package foo;
 
+import java.awt.Container;
 import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class Affichage {
 	//Interface Affichage
@@ -63,7 +65,31 @@ public class Affichage {
 		
 	}
 	
-	public void optionCreerPartie(){
+	public static void optionChoixJoueur(){
+		
+		JFrame fen = new JFrame("Jeu d'échec - Créer Partie");
+		Container cont = fen.getContentPane();
+		JTextField j1 = new JTextField("Joueur 1");
+		JTextField j2 = new JTextField("Joueur 2");
+		
+		j1.setColumns(10);
+		j2.setColumns(10);
+		JPanel pan1 = new JPanel();
+		pan1.setLayout(new GridLayout(2,1));
+		pan1.add(new JButton("Blanc"));
+		pan1.add(j1);
+		JPanel pan2 = new JPanel();
+		pan2.setLayout(new GridLayout(2,1));
+		pan2.add(new JButton("Noir"));
+		pan2.add(j2);
+	    JPanel pan3 = new JPanel();
+	    pan3.add(pan1);
+		pan3.add(pan2);
+		cont.add(pan3);
+		
+		fen.setSize(400,200);
+		fen.setVisible(true);
+		fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
 	}
 	
@@ -79,7 +105,8 @@ public class Affichage {
 	
 	public static void afficherEchiquier()
 	{
-		 JButton tab[][];
+		 
+		 JButton tab[][] = new JButton[8][8];
 		 JFrame fen = new JFrame("Jeu D'échec");
 		 fen.setLocationRelativeTo(null);
 		 
@@ -88,11 +115,13 @@ public class Affichage {
 		 pan.setLayout(new GridLayout(8,8));
 		 
 		for(int i=0; i<8; i++){
-			for(int j=0; j<8 ; j++)
+			for(int j=0; j<8 ; j++){
 				tab[i][j] = new JButton();
+				pan.add(tab[i][j]);
+			}
 		}
-			pan.add();
-		}
+			
+		
 		fen.getContentPane().add(pan);
 		fen.pack();
 		fen.setVisible(true); 
@@ -102,12 +131,17 @@ public class Affichage {
 	
 	public void afficherPosition(){
 		
-	}*/
+	}
+	
+	public static void affichageTotal(){
+		
+	}
 	
 	public static void main(String[] args) {
 		
 		menuPrincipal();
 		choixDeLaPartie();
-		//afficherEchiquier();
+		optionChoixJoueur();
+		afficherEchiquier();
 	}
 }
