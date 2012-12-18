@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 
 
@@ -130,6 +131,65 @@ public class Affichage {
 		 fenetre.setVisible(true);
 			
 		
+	}
+	
+	public void ListePieces(){
+		
+		JFrame fenetre2 = new JFrame("Pieces disponibles");
+		JPanel panel2 = new JPanel();
+		panel2.setSize(400, 100);
+	
+		
+		
+		panel2.setLayout(new GridLayout(6,2));
+		
+		JButton cavaliern = new JButton("Cavalier Noir");
+		cavaliern.setSize(200, 8);
+		JButton cavalierb = new JButton("Cavalier Blanc ");
+		cavalierb.setSize(200, 8);
+		JButton damen = new JButton("Dame Noire");
+		damen.setSize(200, 8);
+		JButton dameb = new JButton("Dame Blanche");
+		dameb.setSize(200, 8);
+		JButton foun = new JButton("Fou Noir");
+		foun.setSize(200, 8);
+		JButton foub = new JButton("Fou Blanc");
+		foub.setSize(200, 8);
+		JButton pionn = new JButton("Pion Noir");
+		pionn.setSize(200, 8);
+		JButton pionb = new JButton("Pion Blanc");
+		pionb.setSize(200, 8);
+		JButton roin = new JButton("Roi Noir");
+		roin.setSize(200, 8);
+		JButton roib = new JButton("Roi Blanc");
+		roib.setSize(200, 8);
+		JButton tourn = new JButton("Tour Noire");
+		tourn.setSize(200, 8);
+		JButton tourb = new JButton("Tour Blanche");
+		tourb.setSize(200, 8);
+		
+		panel2.add(cavaliern);
+		panel2.add(cavalierb);
+		panel2.add(tourn);
+		panel2.add(tourb);
+		panel2.add(roin);
+		panel2.add(roib);
+		panel2.add(damen);
+		panel2.add(dameb);
+		panel2.add(foun);
+		panel2.add(foub);
+		panel2.add(pionn);
+		panel2.add(pionb);
+		
+		
+		 fenetre2.getContentPane().add(panel2);
+		 fenetre2.pack();
+		 fenetre2.setVisible(true);
+		
+			
+	}
+	
+	
 	}
 	public void afficherPosition(){
 		
