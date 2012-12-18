@@ -3,13 +3,15 @@ package foo;
 
 public class Partie implements java.io.Serializable {
 	
-	Joueur J1=new Joueur("");
-	Joueur J2=new Joueur("");
-	Echiquier E=new Echiquier();
+	public Joueur J1;
+	public Joueur J2 ;
+	public Echiquier E;
 	
 	
 	public Partie(){
-		//le constructeur de la classe Partie
+		this.J1 = new Joueur();
+		this.J2 = new Joueur();
+		this.E = new Echiquier();
 	}
 	
 	
