@@ -161,23 +161,161 @@ public class Echiquier
 	
 	
 	public Vector<Position> destinationPossible(Piece piece){
-		
+
 		Vector<Position> dest = new Vector<Position>();
 		int[][] tabposition = piece.getPositionPossible();
-		
-		for(int i=0; i<8; i++){
-			for(int j=0; j<8; j++){
+
+		int i=0, j=0;
+
+		i=piece.getPosition().getI();
+		j=piece.getPosition().getJ();
+
+		//deplacements pour le cavalier
+		if(piece.getClass().getName()=="Cavalier"){
+			for(i=0; a<8; a++){//parcourir les lignes
+				for(j=0; b<8; b++){//parcourir les colonnes
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
+					}
+				}
+			}			
+		}
+		else{
+		//deplacements pour toutes les pièces sauf le cavalier
+			//deplacement vers le bas
+			do{
+				i++;
 				if(tabposition[i][j]==1){
 					if(this.tableau[i][j]==null){
 						dest.add(new Position(i,j));
 					}
-					else if((this.tableau[i][j]!=null) && this.tableau[i][j].getCouleur()!=piece.getCouleur()){
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
 						dest.add(new Position(i,j));
 					}
 				}
-			}
+
+			}while(this.tableau[i][j]==null && i<8);
+
+			//deplacement vers le haut
+			i=piece.getPosition().getI();//reinitialisation a la position de la piece a verifier
+			do{
+				i--;
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && i>=0);
+
+
+			//deplacement vers la droite
+			i=piece.getPosition().getI();//reinit
+			do{
+				j++;
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && j<8);
+
+			//deplacement vers la gauche
+			j=piece.getPosition().getJ();//reinit
+			do{
+				j--;
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && j>=0);
+
+			//deplacement diagonale gauche et haut
+			i=piece.getPosition().getI();//reinit ligne
+			j=piece.getPosition().getJ();//reinit colonne
+			do{
+				i--;//deplace ligne vers le haut
+				j--;//deplace colonne vers la gauche
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && j>=0 && i>=0);
+
+			//deplacement diagonale gauche basse
+			i=piece.getPosition().getI();//reinit ligne
+			j=piece.getPosition().getJ();//reinit colonne
+			do{
+				i++;//deplace ligne vers le bas
+				j--;//deplace colonne vers la gauche
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && j>=0 && i<8);
+
+			//deplacement diagonale droite basse
+			i=piece.getPosition().getI();//reinit ligne
+			j=piece.getPosition().getJ();//reinit colonne
+			do{
+				i++;//deplace ligne vers le bas
+				j++;//deplace colonne vers la droite
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && j<8 && i<8);
+
+			//deplacement diagonale droite haute
+			i=piece.getPosition().getI();//reinit ligne
+			j=piece.getPosition().getJ();//reinit colonne
+			do{
+				i--;//deplace ligne vers le haut
+				j++;//deplace colonne vers la droite
+				if(tabposition[i][j]==1){
+					if(this.tableau[i][j]==null){
+						dest.add(new Position(i,j));
+					}
+					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+						dest.add(new Position(i,j));
+					}
+				}
+
+			}while(this.tableau[i][j]==null && j<8 && i>=0);
 		}
-		
+
 		return dest;
 	}
 		
