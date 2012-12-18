@@ -118,7 +118,7 @@ public class Echiquier
 	
 	
 	
-	public boolean ajouterPiece(String nom, Position p, String couleur)
+	/*public boolean ajouterPiece(String nom, Position p, String couleur)
 	{
 		boolean isOk = false;
 		
@@ -128,7 +128,7 @@ public class Echiquier
 			isOk = true;
 		
 		return isOk;
-	}
+	}*/
 	
 	public boolean supprimerPiece(int i, int j)
 	{
@@ -152,18 +152,19 @@ public class Echiquier
 	
 	public String toString()
 	{
-		StringBuffer res = "";
+		StringBuffer res = new StringBuffer();
 		
 		for(int j = 0; j < 8; j++)
 		{
 			for(int i = 0; i < 8; i++)
 			{
 				
+				res.append(" [ " + this.tableau[i][j].getClass().getName() + " " + this.tableau[i][j].getCouleur() + " ] ");
 			}
-			res+= "\n";
+			res.append("\n");
 		}
 		
-		return res;		
+		return res.toString();		
 	}
 
 	
