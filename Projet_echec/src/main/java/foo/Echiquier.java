@@ -75,8 +75,17 @@ public class Echiquier
 	
 	public boolean deplacerPiece(Piece piece, Position destination)
 	{
+		boolean isOk = false;
 		
 		piece.setPosition(destination);
+		
+		if(piece.getPosition() == destination)
+		{
+			isOk = true;
+		}
+		
+		return isOk;
+		
 	}
 	
 	
