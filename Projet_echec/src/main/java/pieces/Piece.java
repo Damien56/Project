@@ -62,9 +62,6 @@ public class Piece {
 	public void setPositionDuMechant(Position positionDuMechant) {
 		this.positionDuMechant = positionDuMechant;}
 	
-	public boolean estbloquer() {
-
-		return true;
-	}
+	
 
 }
