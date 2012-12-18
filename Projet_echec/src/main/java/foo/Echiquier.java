@@ -201,13 +201,25 @@ public class Echiquier
 	
 	public boolean estBloquee(Piece p)
 	{
-
 		Piece sauv = p;
+		Piece monRoi = null;
 		boolean isOk = false;
 		
-		supprimerPiece(p.getPosition());
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				if (this.tableau[i][j].getCouleur() == p.getCouleur() &&
+						this.tableau[i][j].getClass().getName() == "pieces.Roi")
+				{
+					monRoi = this.tableau[i][j];
+				}
+			}
+		}
+
+		supprimerPiece(p.getPosition());	
 		
-		if (estPrenable(new Piece(new Position(5, 5), p.getCouleur())))	/*roi de la meme couleur*/
+		if (estEchec(monRoi))	/* Roi de la meme couleur que la piece */
 		{
 			isOk = true;
 		}
@@ -215,7 +227,7 @@ public class Echiquier
 		ajouterPiece(sauv); 
 		return isOk;
 	}
-
+	
 	public boolean estPrenable(Piece r)
 	{
 		boolean bool = false;
@@ -243,7 +255,7 @@ public class Echiquier
 		return bool;			
 	}
 	
-	public boolean estEchec(Roi roi){
+	public boolean estEchec(Piece roi){
 		return estPrenable(roi);
 	}
 	
