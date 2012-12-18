@@ -180,8 +180,8 @@ public class Echiquier
 
 		//deplacements pour le cavalier
 		if(piece.getClass().getName()=="Cavalier"){
-			for(i=0; a<8; a++){//parcourir les lignes
-				for(j=0; b<8; b++){//parcourir les colonnes
+			for(i=0; i<8; i++){//parcourir les lignes
+				for(j=0; j<8; j++){//parcourir les colonnes
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -401,7 +401,7 @@ public class Echiquier
 			}
 		}
 		
-		String couleurDuMechant;
+		String couleurDuMechant="";
 		if(roi.getCouleur()=="blanc"){
 			couleurDuMechant="noir";
 		}
