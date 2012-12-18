@@ -19,6 +19,8 @@ public class Affichage {
 	//Interface Affichage
 	private static JButton tab[][] = new JButton[8][8];
 	private static JFrame fen = new JFrame("Jeu D'échec");
+	private static JPanel pan = new JPanel();
+	private static JButton cavaliern = new JButton("Cavalier Noir");
 	
 	public Affichage(){
 	}
@@ -135,14 +137,15 @@ public class Affichage {
 	
 	public void ListePieces(){
 		
-		JFrame fenetre2 = new JFrame("Pieces disponibles");
-		JPanel panel2 = new JPanel();
-		panel2.setSize(400, 100);
+		//JFrame fen = new JFrame("Pieces disponibles");
+		//JPanel pan = new JPanel();
+		pan.setSize(400, 100);
 	
-		panel2.setLayout(new GridLayout(6,2));
+		pan.setLayout(new GridLayout(6,2));
 		
-		JButton cavaliern = new JButton("Cavalier Noir");
+		//JButton cavaliern = new JButton("Cavalier Noir");
 		cavaliern.setSize(200, 16);
+		cavaliern.addActionListener(new Ecouteur2());
 		JButton cavalierb = new JButton("Cavalier Blanc ");
 		cavalierb.setSize(200, 16);
 		JButton damen = new JButton("Dame Noire");
@@ -166,29 +169,41 @@ public class Affichage {
 		JButton tourb = new JButton("Tour Blanche");
 		tourb.setSize(200, 16);
 		
-		panel2.add(cavaliern);
-		panel2.add(cavalierb);
-		panel2.add(tourn);
-		panel2.add(tourb);
-		panel2.add(roin);
-		panel2.add(roib);
-		panel2.add(damen);
-		panel2.add(dameb);
-		panel2.add(foun);
-		panel2.add(foub);
-		panel2.add(pionn);
-		panel2.add(pionb);
+		pan.add(cavaliern);
+		pan.add(cavalierb);
+		pan.add(tourn);
+		pan.add(tourb);
+		pan.add(roin);
+		pan.add(roib);
+		pan.add(damen);
+		pan.add(dameb);
+		pan.add(foun);
+		pan.add(foub);
+		pan.add(pionn);
+		pan.add(pionb);
 		
 		
-		 fenetre2.getContentPane().add(panel2);
-		 fenetre2.pack();
-		 fenetre2.setVisible(true);
+		 fen.getContentPane().add(pan);
+		 fen.pack();
+		 fen.setVisible(true);
 		
 			
 	}
 	
-	
+	public  static class Ecouteur2 implements ActionListener{
+		public void actionPerformed(ActionEvent e){ 
+				if (e.getSource() == cavaliern){
+						System.out.println("proute"); 
+					}
+				}
 	}
+			
+		
+	
+	
+	/* A modifier */
+	
+	
 	public void afficherPosition(){
 		
 	}
@@ -262,7 +277,8 @@ public class Affichage {
 		//choixDeLaPartie();
 		//optionChoixJoueur();
 		Affichage a = new Affichage();
-		a.afficherEchiquier();
+		
+		a.ListePieces();
 	}
 
 }
