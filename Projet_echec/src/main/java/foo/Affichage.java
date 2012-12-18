@@ -16,6 +16,7 @@ public class Affichage {
 	 JFrame fen = new JFrame("Jeu D'échec");
 	 fen.setLocationRelativeTo(null);
 	 
+	 
 	 JPanel pan =new JPanel();
 	 pan.setSize(400, 100);
 	 pan.setLayout( new BoxLayout(pan,3));
@@ -87,7 +88,7 @@ public class Affichage {
 		pan3.add(pan2);
 		cont.add(pan3);
 		
-		fen.setSize(400,200);
+		fen.setSize(400,400);
 		fen.setVisible(true);
 		fen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 		
@@ -109,6 +110,7 @@ public class Affichage {
 		 JButton tab[][] = new JButton[8][8];
 		 JFrame fen = new JFrame("Jeu D'échec");
 		 fen.setLocationRelativeTo(null);
+		 Container cont = fen.getContentPane();
 		 
 		 JPanel pan =new JPanel();
 		 pan.setSize(400, 100);
@@ -120,10 +122,11 @@ public class Affichage {
 				pan.add(tab[i][j]);
 			}
 		}
-			
 		
+		cont.add(pan);
+		fen.setSize(400,400);
 		fen.getContentPane().add(pan);
-		fen.pack();
+		//fen.pack();
 		fen.setVisible(true); 
 			
 			
@@ -139,9 +142,9 @@ public class Affichage {
 	
 	public static void main(String[] args) {
 		
-		menuPrincipal();
-		choixDeLaPartie();
-		optionChoixJoueur();
+		//menuPrincipal();
+		//choixDeLaPartie();
+		//optionChoixJoueur();
 		afficherEchiquier();
 	}
 }
