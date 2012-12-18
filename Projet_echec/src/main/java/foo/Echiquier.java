@@ -110,7 +110,6 @@ public class Echiquier
 		{
 			isOk = true;
 		}
-		
 		return isOk;
 		
 	}
@@ -175,7 +174,8 @@ public class Echiquier
 	}
 	
 	
-	public boolean estbloquer(Piece p) {
+	public boolean estbloquer(Piece p)
+	{
 		Piece sauv = p;
 		boolean bool = false;
 		
@@ -184,11 +184,9 @@ public class Echiquier
 			bool=true;
 		
 		ajouterPiece(sauv); 
-		return bool;
-		
-
-		
+		return bool;		
 	}
+	
 	public boolean estPrenable(Piece r){
 		boolean bool = false;
 		Vector <Position> destinationPossibleAdverse;
