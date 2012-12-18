@@ -4,8 +4,8 @@ public class Pion extends Piece{
 
 	private int NombreDeDeplacement ;
 	
-	public Pion(Position position,String couleur) {
-		super(position,couleur);
+	public Pion(Position position, String couleur) {
+		super(position, couleur);
 		this.setPositionPossible();
 		this.Image="image dame de cette couleur";
 		this.NombreDeDeplacement = 0;
