@@ -1,7 +1,10 @@
 package foo;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -9,8 +12,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+
+
 public class Affichage {
 	//Interface Affichage
+	private static JButton tab[][] = new JButton[8][8];
+	private static JFrame fen = new JFrame("Jeu D'échec");
+	
+	public Affichage(){
+	}
 	
 	public static void menuPrincipal(){
 	 JFrame fen = new JFrame("Jeu D'échec");
@@ -121,7 +131,12 @@ public class Affichage {
 			
 		
 	}
+	public void afficherPosition(){
+		
+	}
 	
+	public void affichageTotal(){	
+	}
 	
 	public void confirmExit(){
 		
@@ -144,9 +159,6 @@ public class Affichage {
 	
 	public static void afficherEchiquier()
 	{
-		 
-		 JButton tab[][] = new JButton[8][8];
-		 JFrame fen = new JFrame("Jeu D'échec");
 		 fen.setLocationRelativeTo(null);
 		 Container cont = fen.getContentPane();
 		 
@@ -154,35 +166,40 @@ public class Affichage {
 		 pan.setSize(400, 100);
 		 pan.setLayout(new GridLayout(8,8));
 		 
+		 
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
 				tab[i][j] = new JButton();
+				if((i%2==0 && j%2 == 0) || (i%2==1 && j%2 == 1))
+					tab[i][j].setBackground(Color.gray);
+				else
+					tab[i][j].setBackground(Color.white);
+				tab[i][j].addActionListener(new Ecouteur());
 				pan.add(tab[i][j]);
 			}
 		}
-		
 		cont.add(pan);
 		fen.setSize(400,400);
 		fen.getContentPane().add(pan);
 		//fen.pack();
-		fen.setVisible(true); 
+		fen.setVisible(true); 	
 			
-			
+	}
+		
+
+	public  static class Ecouteur implements ActionListener{
+		public void actionPerformed(ActionEvent e){ 
+		if (e.getSource() == tab[1][1]) 
+		System.out.println("jaune"); 
 		}
-	
-	public void afficherPosition(){
-		
 	}
 	
-	public static void affichageTotal(){
-		
-	}
-	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) {		
 		//menuPrincipal();
 		//choixDeLaPartie();
 		//optionChoixJoueur();
-		afficherEchiquier();
+		Affichage a = new Affichage();
+		a.afficherEchiquier();
 	}
+
 }
