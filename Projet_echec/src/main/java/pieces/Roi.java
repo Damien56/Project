@@ -12,7 +12,7 @@ public class Roi extends Piece {
 		this.Image="image dame de cette couleur";
 		this.Echec =false;
 		this.DejaDeplace =false;
-		this.positionDuMechant = null;
+		
 	}
 	
 	
@@ -81,7 +81,7 @@ public class Roi extends Piece {
 	public void toStringRoi() {// affiche les caracteristique de la Tour
 		System.out.println("Roi [position=" + position.getI()
 				+ position.getJ() + ", Couleur=" + Couleur + "]"
-				+ "Deja Deplace= " + this.DejaDeplace + "Echec= " + this.Echec + "Position du mechant= " + this.positionDuMechant + " PositionPossible= ");
+				+ "Deja Deplace= " + this.DejaDeplace + "Echec= " + this.Echec + " PositionPossible= ");
 		this.toStringPositionPossible();
 	}
 	
@@ -108,7 +108,7 @@ public class Roi extends Piece {
 
 
 	
-	}
+	
 
 
 	
