@@ -77,33 +77,25 @@ public class Echiquier
 		return this.tableau;
 	}
 	
-	public boolean setTableau(Piece p)
+	public boolean deplacerPiece(Piece p, Position pos)
 	{
+		//for(Position c : this.destinationPossible(p)){
+			//if (c.isEqual(p.getPosition())){
+			p.setPosition(pos);
 			for(int i = 0; i < 8; i++)
 			{
 				for(int j = 0; j < 8; j++)
 				{
 					this.tableau[p.getPosition().getI()][p.getPosition().getJ()] = p;
 					this.tableau[p.getPositionOld().getI()][p.getPositionOld().getJ()]=null;
+					}
 				}
-			}
-		
+			//}
+		//}
 		return true;
 	}
 	
-	public boolean deplacerPiece(Piece piece, Position destination)
-	{
-		boolean isOk = false;
-		
-		piece.setPosition(destination);
-		
-		if(piece.getPosition() == destination)
-		{
-			isOk = true;
-		}
-		return isOk;
-		
-	}
+	
 	
 	/*public boolean ajouterPiece(String nom, Position p, String couleur)
 	{
