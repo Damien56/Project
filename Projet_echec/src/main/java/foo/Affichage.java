@@ -155,8 +155,8 @@ public class Affichage extends JFrame{
 	public  static class EcouteurChoixJoueur implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == ok){
-				J1 = j1.getText();
-				J2 = j2.getText();
+				p.setJ1(j1.getText());
+				p.setJ2(j2.getText());
 				fenMenuJoueur.dispose();
 				menuPartie();  
 			}
@@ -200,13 +200,13 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == partieS ){
 				fenMenuPartie.dispose();
-				ech.echiquierStandard();
-				afficherEchiquier(ech); 
+				p.getEchiquier.echiquierStandard();
+				afficherEchiquier(p.getEchiquier.echiquier); 
 				
 			}
 			if (e.getSource() == partieP){
 				fenMenuPartie.dispose();
-				afficherEchiquier(ech);  
+				afficherEchiquier(p.getEchiquier.echiquier);  
 			}
 			if (e.getSource() == revenir){
 				fenMenuPartie.dispose(); 
@@ -326,64 +326,64 @@ public class Affichage extends JFrame{
 	public  static class EcouteurPiece implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
 				if (e.getSource() == tabPiece[0][0]){
-						setNom("pieces.Roi");
-						setCouleur("noir");
-						System.out.println(Nom + " "+ Couleur);
+						p.setNomPiece("pieces.Roi");
+						p.setCouleurPiecePiece("noir");
+						System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 					}
 				if (e.getSource() == tabPiece[0][1]){
-					setNom("pieces.Roi");
-					setCouleur("blanc");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Roi");
+					p.setCouleurPiece("blanc");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[1][0]){
-					setNom("pieces.Dame");
-					setCouleur("noir");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Dame");
+					p.setCouleurPiece("noir");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[1][1]){
-					setNom("pieces.Dame");
-					setCouleur("blanc");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Dame");
+					P.setCouleurPiece("blanc");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[2][0]){
-					setNom("pieces.Tour");
-					setCouleur("noir");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Tour");
+					p.setCouleurPiece("noir");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[2][1]){
-					setNom("pieces.Tour");
-					setCouleur("blanc");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Tour");
+					p.setCouleurPiece("blanc");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[3][0]){
-					setNom("pieces.Fou");
-					setCouleur("noir");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Fou");
+					p.setCouleurPiece("noir");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[3][1]){
-					setNom("pieces.Fou");
-					setCouleur("blanc");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Fou");
+					p.setCouleurPiece("blanc");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[4][0]){
-					setNom("pieces.Cavalier");
-					setCouleur("noir");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Cavalier");
+					p.setCouleurPiece("noir");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[4][1]){
-					setNom("pieces.Cavalier");
-					setCouleur("blanc");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Cavalier");
+					p.setCouleurPiece("blanc");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[5][0]){
-					setNom("pieces.Pion");
-					setCouleur("noir");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Pion");
+					p.setCouleurPiece("noir");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 				if (e.getSource() == tabPiece[5][1]){
-					setNom("pieces.Pion");
-					setCouleur("blanc");
-					System.out.println(Nom + " "+ Couleur);
+					p.setNomPiece("pieces.Pion");
+					p.setCouleurPiece("blanc");
+					System.out.println(p.getNomPiece() + " "+ p.getCouleur);
 				}
 			}
 		}
@@ -425,8 +425,8 @@ public class Affichage extends JFrame{
 	}
 	
 	public static void afficherAide(){
-		if (ech.getTableau()[CaseCliquee.getI()][CaseCliquee.getJ()] != null){
-		Vector<Position> dest = ech.destinationPossible(ech.getTableau()[CaseCliquee.getI()][CaseCliquee.getJ()]);
+		if (p.getEchiquie().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()] != null){
+		Vector<Position> dest = p.getEchiquier().destinationPossible(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.CaseCliquee().getJ()]);
 		
 		for (Position pos : dest){
 				 tabBoutton[pos.getI()][pos.getJ()].setBackground(Color.green);
@@ -524,9 +524,9 @@ public class Affichage extends JFrame{
 			for(int i=0; i<8; i++){
 				for(int j=0; j<8 ; j++){
 					if (e.getSource() == tabBoutton[i][j]){
-						setCaseCliquee(new Position(i,j));
+						p.setCaseCliquee(new Position(i,j));
 						
-						System.out.println(CaseCliquee.getI()+ " "+CaseCliquee.getJ());
+						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
 						if (aide==true){
 							afficherAide();
 							
@@ -572,7 +572,7 @@ public class Affichage extends JFrame{
 		
 		JFrame fenstand = new JFrame("Jeu d'échac - Partie Standard");
 		JPanel panelstand = new JPanel();
-		Container cont = afficherEchiquier(ech);
+		Container cont = afficherEchiquier(p.getEchiquier());
 		panelstand.setSize(400,400);
 		panelstand.setLayout(new GridLayout(2,2));
 		JButton bouton1 = new JButton ("Revenir au menu Principal");
