@@ -79,6 +79,7 @@ public class Dialogue {
 		try {
 			fis = new FileInputStream("partiesauvegardee.csv");
 			} 
+		
 		catch (FileNotFoundException e2) {
 			System.out.println("Le fichier que vous voulez charger n'existe pas !");
 			e2.printStackTrace();
