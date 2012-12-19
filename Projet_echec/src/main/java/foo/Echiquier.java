@@ -79,8 +79,8 @@ public class Echiquier
 	
 	public boolean deplacerPiece(Piece p, Position pos)
 	{
-		//for(Position c : this.destinationPossible(p)){
-			//if (c.isEqual(p.getPosition())){
+		for(Position c : this.destinationPossible(p)){
+			if (c.isEqual(p.getPosition())){
 			p.setPosition(pos);
 			for(int i = 0; i < 8; i++)
 			{
@@ -90,8 +90,8 @@ public class Echiquier
 					this.tableau[p.getPositionOld().getI()][p.getPositionOld().getJ()]=null;
 					}
 				}
-			//}
-		//}
+			}
+		}
 		return true;
 	}
 	
