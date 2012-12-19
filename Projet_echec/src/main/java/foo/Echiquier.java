@@ -188,8 +188,9 @@ public class Echiquier
 		else{//deplacements pour toutes les pièces sauf le cavalier
 			//deplacement vers le bas
 			do{
-				i++;
-				if(i<8){
+				
+				if(i<7){
+					i++;
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -200,13 +201,14 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && i<8);
+			}while(this.tableau[i][j]==null && i<7);
 
 			//deplacement vers le haut
 			i=piece.getPosition().getI();//reinitialisation a la position de la piece a verifier
 			do{
-				i--;
-				if(i>=0){
+				
+				if(i>0){
+					i--;
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -223,8 +225,9 @@ public class Echiquier
 			//deplacement vers la droite
 			i=piece.getPosition().getI();//reinit
 			do{
-				j++;
-				if(j<8){
+				
+				if(j<7){
+					j++;
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -235,13 +238,14 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j<8);
+			}while(this.tableau[i][j]==null && j<7);
 
 			//deplacement vers la gauche
 			j=piece.getPosition().getJ();//reinit
 			do{
-				j--;
-				if(j>=0){
+				
+				if(j>0){
+					j--;
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -258,9 +262,10 @@ public class Echiquier
 			i=piece.getPosition().getI();//reinit ligne
 			j=piece.getPosition().getJ();//reinit colonne
 			do{
-				i--;//deplace ligne vers le haut
-				j--;//deplace colonne vers la gauche
-				if(j>=0 && i>=0){
+				
+				if(j>0 && i>0){
+					i--;//deplace ligne vers le haut
+					j--;//deplace colonne vers la gauche
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -277,9 +282,10 @@ public class Echiquier
 			i=piece.getPosition().getI();//reinit ligne
 			j=piece.getPosition().getJ();//reinit colonne
 			do{
-				i++;//deplace ligne vers le bas
-				j--;//deplace colonne vers la gauche
-				if(j>=0 && i<8){
+				
+				if(j>0 && i<7){
+					i++;//deplace ligne vers le bas
+					j--;//deplace colonne vers la gauche
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -290,15 +296,16 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j>0 && i<8);
+			}while(this.tableau[i][j]==null && j>0 && i<7);
 
 			//deplacement diagonale droite basse
 			i=piece.getPosition().getI();//reinit ligne
 			j=piece.getPosition().getJ();//reinit colonne
 			do{
-				i++;//deplace ligne vers le bas
-				j++;//deplace colonne vers la droite
-				if(j<8 && i<8){
+				
+				if(j<7 && i<7){
+					i++;//deplace ligne vers le bas
+					j++;//deplace colonne vers la droite
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -309,15 +316,16 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j<8 && i<8);
+			}while(this.tableau[i][j]==null && j<7 && i<7);
 
 			//deplacement diagonale droite haute
 			i=piece.getPosition().getI();//reinit ligne
 			j=piece.getPosition().getJ();//reinit colonne
 			do{
-				i--;//deplace ligne vers le haut
-				j++;//deplace colonne vers la droite
-				if(j<8 && i>=0){
+				
+				if(j<7 && i>0){
+					i--;//deplace ligne vers le haut
+					j++;//deplace colonne vers la droite
 					if(tabposition[i][j]==1){
 						if(this.tableau[i][j]==null){
 							dest.add(new Position(i,j));
@@ -328,7 +336,7 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j<8 && i>0);
+			}while(this.tableau[i][j]==null && j<7 && i>0);
 		}
 
 		return dest;

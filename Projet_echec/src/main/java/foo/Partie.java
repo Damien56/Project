@@ -9,6 +9,7 @@ public class Partie implements java.io.Serializable
 	public Joueur J1;
 	public Joueur J2 ;
 	public Echiquier E;
+	
 	public Affichage A;
 	
 	public Vector<Position> mesPositions, mesDestinations;
