@@ -1,24 +1,22 @@
 package pieces;
 
-
-
-
-public class Fou extends Piece{
-
-	public Fou(Position position,String couleur) {
-		super(position,couleur);
+public class Fou extends Piece
+{
+	public Fou(Position position, String couleur)
+	{
+		super(position, couleur);
 		this.setPositionPossible();
-		this.Image="image dame de cette couleur";
+		this.Image = "Image d'un fou de cette couleur";
 	}
 
-	public boolean setPositionPossible() {
+	public void setPositionPossible()
+	{
 		int i = this.position.getI();
 		int j = this.position.getJ();
-
 		
-		
-		while (i<8 && j<8){
-			PositionPossible[i][j]=1;
+		while (i < 8 && j < 8)
+		{
+			PositionPossible[i][j] = 1;
 			i++;
 			j++;
 		}
@@ -27,8 +25,9 @@ public class Fou extends Piece{
 		 j = this.position.getJ();
 		 
 		 
-		while (i>=0 && j<8){
-			PositionPossible[i][j]=1;
+		while (i >= 0 && j < 8)
+		{
+			PositionPossible[i][j] = 1;
 			i--;
 			j++;
 		}
@@ -36,8 +35,9 @@ public class Fou extends Piece{
 		 i = this.position.getI();
 		 j = this.position.getJ();
 		 
-		while (i<8 && j>=0){
-			PositionPossible[i][j]=1;
+		while (i < 8 && j >= 0)
+		{
+			PositionPossible[i][j] = 1;
 			i++;
 			j--;
 		}
@@ -45,8 +45,9 @@ public class Fou extends Piece{
 		 i = this.position.getI();
 		 j = this.position.getJ();
 		
-		while (i>=0 && j>=0){
-			PositionPossible[i][j]=1;
+		while (i >= 0 && j >= 0)
+		{
+			PositionPossible[i][j] = 1;
 			i--;
 			j--;
 		}
@@ -54,20 +55,22 @@ public class Fou extends Piece{
 		i = this.position.getI();
 		j = this.position.getJ();
 		 
-	PositionPossible[i][j]=0;		
-			
-	return true;		
-	
+		PositionPossible[i][j] = 0;		
 	}
 
-	
-	public void toStringFou() {
-		this.setPosition(position);
-		System.out.println("Fou [position=" + position.getI()+ " " + position.getJ() + ", Couleur=" + Couleur
-				+ ", Image=" + Image + ", PositionPossible=");
-				 this.toStringPositionPossible();
+	public String toString()
+	{
+		StringBuffer res = new StringBuffer("");
+		
+		res.append("Fou [ Position = ");
+		res.append(position.getI());
+		res.append(position.getJ());
+		res.append(", Couleur = ");
+		res.append(this.Couleur);
+		res.append(" PositionPossible = ");
+		res.append(this.toStringPositionPossible());
+		
+		return res.toString();
 	}
-
-	
 }	
 	

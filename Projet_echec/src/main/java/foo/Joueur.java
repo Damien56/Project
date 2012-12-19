@@ -2,7 +2,8 @@ package foo;
 
 import java.io.Serializable;
 
-public class Joueur implements Serializable {
+public class Joueur
+{
 	
 	// Attributs de la classe
 	

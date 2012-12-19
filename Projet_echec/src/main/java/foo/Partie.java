@@ -9,8 +9,11 @@ public class Partie implements java.io.Serializable
 	public Joueur J1;
 	public Joueur J2 ;
 	public Echiquier E;
+<<<<<<< HEAD
 	
 	public Affichage A;
+=======
+>>>>>>> Vieille
 	
 	public Vector<Position> mesPositions, mesDestinations;
 	public Echiquier eDepart;
@@ -22,9 +25,9 @@ public class Partie implements java.io.Serializable
 		this.J2 = j2;
 		this.E = e;
 		this.eDepart = e;
-		this.A = a;
 		this.mesPositions = new Vector<Position>();
 		this.mesDestinations = new Vector<Position>();
+	
 	}
 	
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
@@ -53,7 +56,7 @@ public class Partie implements java.io.Serializable
 				// pas conforme aux destinations possibles pour cette pièce.
 				do
 				{
-					pos = this.A.getCaseCliquee();	
+					pos = this.caseCliquee();	
 					this.E.deplacerPiece(pieceSelected, pos);
 				}
 				while(!this.E.deplacerPiece(pieceSelected, pos));
@@ -75,7 +78,7 @@ public class Partie implements java.io.Serializable
 		
 		do
 		{
-			pos = this.A.getCaseCliquee();
+			pos = this.caseCliquee();
 			pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
 		}
 		
@@ -113,7 +116,7 @@ public class Partie implements java.io.Serializable
 			do
 			{
 			}
-			while(!this.A.getSuivant());
+			while(!this.suivant());
 		}
 	}
 
