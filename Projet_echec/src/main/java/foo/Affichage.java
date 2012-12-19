@@ -91,8 +91,6 @@ public class Affichage extends JFrame{
 	}
 
 	
-
-	
 	public static void menuPrincipal(){
 		
 	 fenMenu.setLocationRelativeTo(null);	
@@ -541,8 +539,8 @@ public class Affichage extends JFrame{
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-		tabPieces();
-		//afficherEchiquier();
+		//tabPieces();
+		afficherEchiquier();
 		
 		
 	}
