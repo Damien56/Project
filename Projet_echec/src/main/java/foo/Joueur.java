@@ -13,11 +13,21 @@ public class Joueur
 	
 	
 	// Constructeur de la classe Joueur
-	public Joueur(String nom, String couleur)
+	public Joueur(String nom, String couleur, int s)
 	{
 		this.Nom = nom;
 		this.Couleur = couleur;
-		this.Score = 0;
+		this.Score = s;
+	}
+	
+	public Joueur(String nom, String couleur)
+	{
+		this(nom, couleur, 0);
+	}
+	
+	public Joueur()
+	{
+		this("Nompardefaut", "Couleurpardefaut", 0);
 	}
 	
 

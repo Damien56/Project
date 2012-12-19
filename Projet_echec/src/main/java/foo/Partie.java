@@ -6,25 +6,115 @@ import pieces.*;
 
 public class Partie implements java.io.Serializable
 {
-	public Joueur J1;
-	public Joueur J2 ;
+	public Joueur J1, J2 ;
 	public Echiquier E;
+<<<<<<< HEAD
 
 	
+=======
+	public boolean isStd;
+>>>>>>> master
 	public Vector<Position> mesPositions, mesDestinations;
 	public Echiquier eDepart;
+	public Position caseCliquee, caseCliqueeMenu;
+	public String nomPiece, couleurPiece;
+	public boolean suivant;
+	
 	
 	// Le constructeur
-	public Partie(Joueur j1, Joueur j2, Echiquier e, Affichage a)
+	public Partie(Joueur j1, Joueur j2, Echiquier e, boolean isStd)
 	{
 		this.J1 = j1;
 		this.J2 = j2;
 		this.E = e;
 		this.eDepart = e;
+		this.isStd = isStd; 
 		this.mesPositions = new Vector<Position>();
 		this.mesDestinations = new Vector<Position>();
-	
+		this.caseCliquee = null;
+		this.caseCliqueeMenu = null;
+		this.nomPiece = "";
+		this.couleurPiece = "";
+		this.suivant = false;
+		
+		if(isStd)
+		{
+			this.E.echiquierStandard();
+			this.eDepart.echiquierStandard();
+		}
 	}
+	
+	public Partie()
+	{
+		this(new Joueur(), new Joueur(), new Echiquier(), true);		
+	}	
+	
+	
+	public Joueur getJ1() {
+		return this.J1;
+	}
+
+	public Joueur getJ2() {
+		return this.J2;
+	}
+
+	public boolean isStd() {
+		return this.isStd;
+	}
+
+	public Position getCaseCliquee() {
+		return this.caseCliquee;
+	}
+
+	public Position getCaseCliqueeMenu() {
+		return this.caseCliqueeMenu;
+	}
+
+	public String getNomPiece() {
+		return this.nomPiece;
+	}
+
+	public String getCouleurPiece() {
+		return this.couleurPiece;
+	}
+
+	public boolean isSuivant() {
+		return this.suivant;
+	}
+
+	public void setJ1(Joueur j1) {
+		this.J1 = j1;
+	}
+
+	public void setJ2(Joueur j2) {
+		this.J2 = j2;
+	}
+
+	public void setStd(boolean isStd) {
+		this.isStd = isStd;
+	}
+
+	public void setCaseCliquee(Position caseCliquee) {
+		this.caseCliquee = caseCliquee;
+	}
+
+	public void setCaseCliqueeMenu(Position caseCliqueeMenu) {
+		this.caseCliqueeMenu = caseCliqueeMenu;
+	}
+
+	public void setNomPiece(String nomPiece) {
+		this.nomPiece = nomPiece;
+	}
+
+	public void setCouleurPiece(String couleurPiece) {
+		this.couleurPiece = couleurPiece;
+	}
+
+	public void setSuivant(boolean suivant) {
+		this.suivant = suivant;
+	}
+
+	
 	
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
 	public void jouerPartie()
