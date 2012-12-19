@@ -42,7 +42,7 @@ public class Affichage extends JFrame{
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static EcouteurEchiquier tabEcouteur[][] = new EcouteurEchiquier[8][8];
-	
+	private  Echiquier e = new Echiquier();
 	
 	private static String J1;
 	private static String J2;
@@ -203,14 +203,12 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == partieS ){
 				fenChoixPartie.dispose();
-				Echiquier esh = new Echiquier();
-				esh.echiquierStandard();
-				afficherEchiquier(esh); 
+				afficherEchiquier(this); 
 				
 			}
 			if (e.getSource() == partieP){
 				fenChoixPartie.dispose();
-				afficherEchiquier(new Echiquier());  
+				afficherEchiquier(this.e);  
 			}
 			if (e.getSource() == revenir){
 				fenChoixPartie.dispose(); 
@@ -339,7 +337,7 @@ public class Affichage extends JFrame{
 			
 	}
 	
-	public static void  afficherEchiquier(Echiquier ech)
+	public void static afficherEchiquier(Echiquier ech)
 	{
 
 		fenEchiquier.setLocationRelativeTo(null);
@@ -353,7 +351,7 @@ public class Affichage extends JFrame{
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
 System.out.println(i +""+j);
-				if(ech.getTableau()[i][j] != null){
+				if(ech.getTableau()[i][j]!=null){
 					
 					String type = ech.getTableau()[i][j].getClass().getName();
 					String color = ech.getTableau()[i][j].getCouleur();
@@ -387,12 +385,14 @@ System.out.println(i +""+j);
 					else if((type=="pieces.Roi")&&(color=="noir")){
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
 					}
-					
+					else{
+						System.out.println("erreur");
+					}
 				}
 				else{
 					tabBoutton[i][j] = new JButton();
 				}
-System.out.println("coucou");
+
 				if((i%2==0 && j%2 == 0) || (i%2==1 && j%2 == 1)){
 					tabBoutton[i][j].setBackground(Color.darkGray);
 				}					
@@ -433,7 +433,7 @@ System.out.println("coucou");
 
 	public static void main(String[] args) {
 		
-		
+		e.echiquierStandard();
 		
 		menuPrincipal();
 		//choixDeLaPartie();
