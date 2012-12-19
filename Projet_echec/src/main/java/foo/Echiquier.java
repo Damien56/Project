@@ -171,7 +171,7 @@ public class Echiquier
 		j=piece.getPosition().getJ();
 
 		//deplacements pour le cavalier
-		if(piece.getClass().getName()=="Cavalier"){
+		if(piece.getClass().getName()=="piece.Cavalier"){
 			for(i=0; i<8; i++){//parcourir les lignes
 				for(j=0; j<8; j++){//parcourir les colonnes
 					if(tabposition[i][j]==1){
@@ -217,7 +217,7 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && i>=0);
+			}while(this.tableau[i][j]==null && i>0);
 
 
 			//deplacement vers la droite
@@ -252,7 +252,7 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j>=0);
+			}while(this.tableau[i][j]==null && j>0);
 
 			//deplacement diagonale gauche et haut
 			i=piece.getPosition().getI();//reinit ligne
@@ -271,7 +271,7 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j>=0 && i>=0);
+			}while(this.tableau[i][j]==null && j>0 && i>0);
 
 			//deplacement diagonale gauche basse
 			i=piece.getPosition().getI();//reinit ligne
@@ -290,7 +290,7 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j>=0 && i<8);
+			}while(this.tableau[i][j]==null && j>0 && i<8);
 
 			//deplacement diagonale droite basse
 			i=piece.getPosition().getI();//reinit ligne
@@ -328,7 +328,7 @@ public class Echiquier
 					}
 				}
 
-			}while(this.tableau[i][j]==null && j<8 && i>=0);
+			}while(this.tableau[i][j]==null && j<8 && i>0);
 		}
 
 		return dest;
