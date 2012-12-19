@@ -159,6 +159,8 @@ public class Affichage extends JFrame{
 				afficherEchiquier(); 
 			}*/
 			if (e.getSource() == ok){
+				J1 = j1.getText();
+				J2 = j2.getText();
 				fenChoixJoueur.dispose();
 				choixDeLaPartie();  
 			}
