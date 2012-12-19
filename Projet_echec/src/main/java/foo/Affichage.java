@@ -275,7 +275,7 @@ public class Affichage extends JFrame{
 		
 	}
 	
-	public static void tabPieces(){
+	public static JPanel tabPieces(){
 		
 		JFrame fen = new JFrame("Pieces disponibles");
 		JPanel pan = new JPanel();
@@ -348,6 +348,7 @@ public class Affichage extends JFrame{
 		 fen.pack();
 		 fen.setVisible(true);
 		
+		 return pan;
 			
 	}
 	
@@ -420,9 +421,19 @@ public class Affichage extends JFrame{
 		
 	}
 	
-	public void affichageTotal(){	
+	/*public void afficherPartieStandard(){	
+	}
+	*/
+	
+	/* public void afficherPartiePersonnalisée()
+	{
+		JFrame fenperso = new JFrame("Jeu D'échec - Partie Personnalisée");
+		JFrame.add(cont);
+		
+		
 	}
 	
+	*/
 	public void confirmExit(){
 		
 		JFrame fenetre1 = new JFrame("Fin de partie");
@@ -442,7 +453,7 @@ public class Affichage extends JFrame{
 
 	}
 
-	public static void afficherEchiquier(Echiquier ech)
+	public static Container afficherEchiquier(Echiquier ech)
 	{
 		fenEchiquier.setLocationRelativeTo(null);
 		Container cont = fenEchiquier.getContentPane();
@@ -511,14 +522,56 @@ public class Affichage extends JFrame{
 				tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
 				pan.add(tabBoutton[i][j]);
 			}
+			
 		}
 		cont.add(pan);
 		fenEchiquier.setSize(400,400);
 		fenEchiquier.getContentPane().add(pan);
 		//fen.pack();
 		fenEchiquier.setVisible(true);
+		
+		return cont;
 	}
 		
+	public void afficherPartiePersonnalisee(Container cont, JPanel pan)
+	{
+		JFrame fenperso = new JFrame("Jeu d'échec - Partie Personnalisée");
+		//fenperso.add(cont);
+		JPanel panelperso = new JPanel();
+		panelperso.setSize(400,100);
+		panelperso.setLayout(new GridLayout(8,8));
+		JButton bouton1 = new JButton("Menu Principal");
+		JButton bouton2 = new JButton("Démarrer la partie");
+		JButton aideBouton = new JButton("Aide Bouton");
+		panelperso.add(bouton1);
+		panelperso.add(bouton2);
+		panelperso.add(aideBouton);
+		panelperso.add(fenperso.add(cont));
+		panelperso.add(fenperso.add(pan));
+		
+
+		fenperso.add(panelperso);
+		fenperso.pack();
+		fenperso.setVisible(true);
+		
+	}
+	
+	public void afficherPartieStandard(){
+		
+		JFrame fenstand = new JFrame("Jeu d'échac - Partie Standard");
+		JPanel panelstand = new JPanel();
+		panelstand.setSize(400,100);
+		panelstand.setLayout(new GridLayout(2,2));
+		JButton bouton1 = new JButton ("Revenir au menu Principal");
+		JButton bouton2 = new JButton ("Démmarrer la partie");
+		JButton aideBouton = new JButton ("Aide Bouton");
+		panelstand.add(bouton1);
+		panelstand.add(bouton2);
+		panelstand.add(aideBouton);
+		
+		
+	}
+	
 
 	public  static class EcouteurEchiquier implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
@@ -541,8 +594,11 @@ public class Affichage extends JFrame{
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-		tabPieces();
 		//afficherEchiquier();
+		afficherPartiePersonnalisee();
+		afficherPartieStandard();
+		
+		
 		
 		
 	}
