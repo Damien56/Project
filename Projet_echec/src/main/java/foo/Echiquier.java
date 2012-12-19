@@ -171,7 +171,7 @@ public class Echiquier
 		j=piece.getPosition().getJ();
 
 		//deplacements pour le cavalier
-		if(piece.getClass().getName()=="piece.Cavalier"){
+		if(piece.getClass().getName()=="pieces.Cavalier"){
 			for(i=0; i<8; i++){//parcourir les lignes
 				for(j=0; j<8; j++){//parcourir les colonnes
 					if(tabposition[i][j]==1){
