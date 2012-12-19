@@ -4,10 +4,18 @@ package pieces;
 public class Piece {
 
 	protected Position position = new Position();
+	protected Position positionOld = new Position();
+	public Position getPositionOld() {
+		return positionOld;
+	}
+
+
+
 	protected String Couleur;
 	protected String Image;
 	protected int[][] PositionPossible = new int[8][8];
 	private Position positionDuMechant;
+	
 
 	
 	public Piece(Position position, String couleur) {
@@ -33,7 +41,10 @@ public class Piece {
 	}
 
 	public void setPosition(Position position) {
+		this.positionOld=this.position;
 		this.position = position;
+		
+		
 	}
 
 	public void toStringPositionPossible() {//affiche le tableau des position possible les & represente les cases possibles
