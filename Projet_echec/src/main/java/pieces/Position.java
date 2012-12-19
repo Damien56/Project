@@ -7,7 +7,7 @@ public class Position {
 	
 	public Position()
 	{
-		
+
 	}
 	public Position(int i,int j)
 	{

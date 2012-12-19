@@ -8,12 +8,9 @@ public class Partie implements java.io.Serializable
 {
 	public Joueur J1, J2 ;
 	public Echiquier E;
-<<<<<<< HEAD
 
-	
-=======
 	public boolean isStd;
->>>>>>> master
+
 	public Vector<Position> mesPositions, mesDestinations;
 	public Echiquier eDepart;
 	public Position caseCliquee, caseCliqueeMenu;
@@ -119,7 +116,7 @@ public class Partie implements java.io.Serializable
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
 	public void jouerPartie()
 	{
-		boolean fini = false, estMat = false;
+		boolean fini = false, estMat = false, loop=false;
 		int tour = 1;
 		Piece pieceSelected = null;
 		Piece monRoi;
@@ -130,9 +127,10 @@ public class Partie implements java.io.Serializable
 			monRoi = selectMonRoi(tour);
 					
 			// Test si le roi de ma couleur est mat
-			if(this.E.estMat((Roi)monRoi))
-				estMat = true;
-			
+			if(monRoi!=null)
+				if(this.E.estMat((Roi)monRoi))
+					estMat = true;
+
 			else
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
@@ -140,15 +138,25 @@ public class Partie implements java.io.Serializable
 				
 				// Demande une position de destination tant qu'elle n'est
 				// pas conforme aux destinations possibles pour cette pièce.
-				do
-				{
-					pos = this.caseCliquee();	
-					this.E.deplacerPiece(pieceSelected, pos);
-				}
-				while(!this.E.deplacerPiece(pieceSelected, pos));
 				
-				this.mesPositions.add(pieceSelected.getPosition());
-				this.mesDestinations.add(pos);
+			while(loop==false){
+				pos=this.getCaseCliquee();
+				if(pos!=null)
+					if(pieceSelected!=null)
+						for(int i=0;i<this.E.destinationPossible(pieceSelected).size();i++){
+							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
+								this.E.deplacerPiece(pieceSelected, pos);
+								System.out.println(this.E.toString());
+								loop=true;
+							}
+						}
+				}
+				
+				loop=false;
+				if(pos!=null && pieceSelected!=null){
+					this.mesPositions.add(pieceSelected.getPosition());
+					this.mesDestinations.add(pos);
+				}
 			
 			tour++;
 		}		
@@ -159,17 +167,21 @@ public class Partie implements java.io.Serializable
 	// (INIT : les blancs commencent, tour = 1)
 	public Piece selectPieceJouable(int tour)
 	{
-		Position pos;
-		Piece pieceSelected;
+		Position pos=null;
+		Piece pieceSelected=null;
+		boolean stop=false;
 		
 		do
 		{
-			pos = this.caseCliquee();
-			pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
+			pos = this.getCaseCliquee();
+			if(pos!=null)
+				if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null)
+					if(((tour%2 != 0) && (pieceSelected.getCouleur() == "blanc")) || ((tour%2 == 0) && (pieceSelected.getCouleur() == "noir"))){
+						pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
+						stop=true;
+					}
 		}
-		
-		while(((tour%2 != 0) && (pieceSelected.getCouleur() == "blanc")) ||
-				((tour%2 == 0) && (pieceSelected.getCouleur() == "noir")));
+		while(stop==false);
 		
 		return pieceSelected;
 	}
@@ -182,11 +194,12 @@ public class Partie implements java.io.Serializable
 		
 		for(int i = 0; i < 8; i++)
 			for(int j = 0; j < 8; j++)
-				if(this.E.getTableau()[i][j].getClass().getName() == "Roi")
-					if((this.E.getTableau()[i][j].getCouleur() == "blanc") && ((tour%2 != 0)) ||
-							(this.E.getTableau()[i][j].getCouleur() == "noir") && ((tour%2 == 0)))
-						monRoi = this.E.getTableau()[i][j];	
-		
+				if(this.E.getTableau()[i][j]!=null)
+					if(this.E.getTableau()[i][j].getClass().getName() == "pieces.Roi")
+						if((this.E.getTableau()[i][j].getCouleur() == "blanc") && ((tour%2 != 0)) ||
+								(this.E.getTableau()[i][j].getCouleur() == "noir") && ((tour%2 == 0)))
+							monRoi = this.E.getTableau()[i][j];	
+
 		return monRoi;
 	}
 	
@@ -202,7 +215,7 @@ public class Partie implements java.io.Serializable
 			do
 			{
 			}
-			while(!this.suivant());
+			while(!this.isSuivant());
 		}
 	}
 
