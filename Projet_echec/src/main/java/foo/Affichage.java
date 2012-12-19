@@ -72,8 +72,6 @@ public class Affichage extends JFrame{
 	 fenMenu.setLocationRelativeTo(null);	
 	 JPanel pan = new JPanel();
 	 
-	 
-	 
 	 creer.setSize(200,60);
 	 creer.addActionListener(new EcouteurMenu());
 	 	 
@@ -203,12 +201,15 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == partieS ){
 				fenChoixPartie.dispose();
-				afficherEchiquier(this); 
+				Echiquier esh = new Echiquier();
+				esh.echiquierStandard();
+				afficherEchiquier(esh); 
 				
 			}
 			if (e.getSource() == partieP){
 				fenChoixPartie.dispose();
-				afficherEchiquier(this.e);  
+				Echiquier esh = new Echiquier();
+				afficherEchiquier(esh);  
 			}
 			if (e.getSource() == revenir){
 				fenChoixPartie.dispose(); 
@@ -324,35 +325,31 @@ public class Affichage extends JFrame{
 		JPanel panel1 =new JPanel();
 		panel1.setSize(400, 100);
 		panel1.setLayout( new BoxLayout(panel1,1));
-		
+
 		JButton confirmer = new JButton("Confirmer sortie de la partie");
 		confirmer.setSize(200,50);
-		
+
 		panel1.add(confirmer);
-		
+
 		fenetre1.getContentPane().add(panel1);
 		fenetre1.pack();
 		fenetre1.setVisible(true);
-			
-			
-	}
-	
-	public void static afficherEchiquier(Echiquier ech)
-	{
 
+
+	}
+
+	public static void afficherEchiquier(Echiquier ech)
+	{
 		fenEchiquier.setLocationRelativeTo(null);
 		Container cont = fenEchiquier.getContentPane();
-
 		JPanel pan =new JPanel();
 		pan.setSize(400, 100);
 		pan.setLayout(new GridLayout(8,8));
-
-
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
-System.out.println(i +""+j);
+				
 				if(ech.getTableau()[i][j]!=null){
-					
+
 					String type = ech.getTableau()[i][j].getClass().getName();
 					String color = ech.getTableau()[i][j].getCouleur();
 					if((type=="pieces.Pion")&&(color=="blanc")){
@@ -363,6 +360,9 @@ System.out.println(i +""+j);
 					}
 					else if((type=="pieces.Fou")&&(color=="blanc")){
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foub.gif"));
+					}
+					else if((type=="pieces.Cavalier")&&(color=="blanc")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/cavalierb.gif"));
 					}
 					else if((type=="pieces.Dame")&&(color=="blanc")){
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/dameb.gif"));
@@ -379,6 +379,9 @@ System.out.println(i +""+j);
 					else if((type=="pieces.Fou")&&(color=="noir")){
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foun.gif"));
 					}
+					else if((type=="pieces.Cavalier")&&(color=="noir")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/cavaliern.gif"));
+					}
 					else if((type=="pieces.Dame")&&(color=="noir")){
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/damen.gif"));
 					}
@@ -386,34 +389,30 @@ System.out.println(i +""+j);
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
 					}
 					else{
-						System.out.println("erreur");
+						System.out.println("erreur : "+type +color);
 					}
 				}
-				else{
+				else if(ech.getTableau()[i][j]==null){
 					tabBoutton[i][j] = new JButton();
 				}
 
+
 				if((i%2==0 && j%2 == 0) || (i%2==1 && j%2 == 1)){
 					tabBoutton[i][j].setBackground(Color.darkGray);
-				}					
+				}	
 				else{
 					tabBoutton[i][j].setBackground(Color.lightGray);
 				}
-
-
 				tabEcouteur[i][j] = new EcouteurEchiquier();
 				tabBoutton[i][j].addActionListener(tabEcouteur[i][j]);
 				pan.add(tabBoutton[i][j]);
 			}
 		}
-
-
 		cont.add(pan);
 		fenEchiquier.setSize(400,400);
 		fenEchiquier.getContentPane().add(pan);
 		//fen.pack();
-		fenEchiquier.setVisible(true); 	
-
+		fenEchiquier.setVisible(true);
 	}
 		
 
@@ -433,7 +432,6 @@ System.out.println(i +""+j);
 
 	public static void main(String[] args) {
 		
-		e.echiquierStandard();
 		
 		menuPrincipal();
 		//choixDeLaPartie();
