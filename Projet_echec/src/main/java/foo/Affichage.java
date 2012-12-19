@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -20,24 +21,40 @@ import pieces.Position;
 public class Affichage extends JFrame{
 	
 	private static JFrame fenMenu = new JFrame("Jeu D'échec - Menu");
-	private static JFrame fenChoixPartie = new JFrame("Jeu D'échec - Création de la Partie");
+	private static JButton creer =new JButton("Créer Partie");
+	private static JButton revoir =new JButton("Revoir la Partie");
+	private static JButton exit =new JButton("Quitter la partie");
+	
+	
+	
 	private static JFrame fenChoixJoueur = new JFrame("Jeu D'échec - Création des joueurs");
+	private static JTextField j1 = new JTextField("Joueur 1");
+	private static JTextField j2 = new JTextField("Joueur 2");
+	private static JButton ok =new JButton("Confirmer");
+	
+	
+	private static JFrame fenChoixPartie = new JFrame("Jeu D'échec - Création de la Partie");
+	private static JButton partieS =new JButton("Partie Standard");
+	private static JButton partieP =new JButton("Partie Personnalisée");
+	private static JButton revenir =new JButton("Revenir au menu principale");
 	
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static EcouteurEchiquier tabEcouteur[][] = new EcouteurEchiquier[8][8];
 	
-	static JButton creer =new JButton("Créer Partie");
-	static JButton revoir =new JButton("Revoir la Partie");
-	static JButton exit =new JButton("Quitter la partie");
 	
-	static JButton partieS =new JButton("Partie Standard");
-	static JButton partieP =new JButton("Partie Personnalisée");
-	static JButton revenir =new JButton("Revenir au menu principale");
 	
+	private static String J1;
+	private static String J2;
 	private static Position CaseCliquee = new Position();
 	private static Position CaseCliqueeMenu = new Position(); 
 	
 	public Affichage(){
+	}
+	public static String getJ2() {
+		return J2;
+	}
+	public static void setJ2(String j2) {
+		J2 = j2;
 	}
 	public Position getCaseCliquee() {
 		return CaseCliquee;
@@ -85,7 +102,7 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == creer){
 				fenMenu.dispose();
-				choixDeLaPartie();
+				choixDesJoueur();
 			}
 			if (e.getSource() == revoir){
 				System.out.println("revoir"); 
@@ -95,6 +112,61 @@ public class Affichage extends JFrame{
 			}
 		}
 		
+	}
+	
+	
+	public static void choixDesJoueur(){
+	
+		//j1.setColumns(10);
+		//j2.setColumns(10);
+		JPanel pan1 = new JPanel();
+		pan1.setLayout(new GridLayout(1,2));
+		pan1.add(new JLabel("Blanc"));
+		pan1.add(new JLabel("Noir"));
+		
+		
+		JPanel pan2 = new JPanel();
+		pan2.setLayout(new GridLayout(1,2));
+		pan2.add(j1);
+		pan2.add(j2);
+		
+		JPanel pan3 = new JPanel();
+		pan3.setLayout(new GridLayout(1,2));
+		ok.addActionListener(new EcouteurChoixJoueur());
+		revenir.addActionListener(new EcouteurChoixJoueur());
+		pan3.add(ok);
+		pan3.add(revenir);
+		
+	    JPanel pan = new JPanel();
+	    pan.setLayout(new GridLayout(3,1));
+	    pan.add(pan1);
+		pan.add(pan2);
+		pan.add(pan3);
+		
+		
+		fenChoixJoueur.getContentPane().add(pan);
+		fenChoixJoueur.pack();
+		fenChoixJoueur.setSize(400,400);
+		fenChoixJoueur.setVisible(true);
+		
+		
+	}
+	
+	
+	public  static class EcouteurChoixJoueur implements ActionListener{
+		public void actionPerformed(ActionEvent e){ 
+			/*if (e.getSource() == j1){
+				afficherEchiquier(); 
+			}*/
+			if (e.getSource() == ok){
+				fenChoixJoueur.dispose();
+				choixDeLaPartie();  
+			}
+			if (e.getSource() == revenir){
+				fenChoixJoueur.dispose(); 
+				menuPrincipal();
+			}
+		}
 	}
 	
 	
@@ -130,11 +202,13 @@ public class Affichage extends JFrame{
 	public  static class EcouteurChoixPartie implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e){ 
-			if (e.getSource() == partieS){
+			if (e.getSource() == partieS ){
+				fenChoixPartie.dispose();
 				afficherEchiquier(); 
 				
 			}
 			if (e.getSource() == partieP){
+				fenChoixPartie.dispose();
 				afficherEchiquier();  
 			}
 			if (e.getSource() == revenir){
@@ -145,51 +219,7 @@ public class Affichage extends JFrame{
 		
 	}
 	
-	public static void choixDesJoueur(){
-		
-		
-		Container cont = fenChoixJoueur.getContentPane();
-		JTextField j1 = new JTextField("Joueur 1");
-		JTextField j2 = new JTextField("Joueur 2");
-		
-		j1.setColumns(10);
-		j2.setColumns(10);
-		JPanel pan1 = new JPanel();
-		pan1.setLayout(new GridLayout(2,1));
-		pan1.add(new JButton("Blanc"));
-		pan1.add(j1);
-		JPanel pan2 = new JPanel();
-		pan2.setLayout(new GridLayout(2,1));
-		pan2.add(new JButton("Noir"));
-		pan2.add(j2);
-	    JPanel pan3 = new JPanel();
-	    pan3.add(pan1);
-		pan3.add(pan2);
-		cont.add(pan3);
-		
-		fenChoixJoueur.setSize(400,400);
-		fenChoixJoueur.setVisible(true);
-		fenChoixJoueur.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
-		
-	}
-	
-	
-	public  static class EcouteurChoixJoueur implements ActionListener{
-		public void actionPerformed(ActionEvent e){ 
-			if (e.getSource() == partieS){
-				afficherEchiquier(); 
-				
-			}
-			if (e.getSource() == partieP){
-				afficherEchiquier();  
-			}
-			if (e.getSource() == revenir){
-				fenChoixPartie.dispose(); 
-				menuPrincipal();
-			}
-		
-	}
-	
+
 	public static void optionFinDePartie(){
 		
 		
@@ -359,7 +389,7 @@ public class Affichage extends JFrame{
 		menuPrincipal();
 		//choixDeLaPartie();
 		//optionFinDePartie();
-		//optionChoixJoueur();
+		//choixDesJoueur();
 		//ListePieces();
 		//afficherEchiquier();
 	}
