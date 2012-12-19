@@ -115,11 +115,7 @@ public class Partie implements java.io.Serializable
 			while(!this.A.getSuivant());
 		}
 	}
-	
-	public void reglerTimer()
-	{
-		
-	}
+
 	
 	public String toString()
 	{
