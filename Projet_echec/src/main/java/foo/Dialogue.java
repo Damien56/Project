@@ -14,12 +14,15 @@ import java.io.ObjectOutputStream;
 import java.io.ObjectInputStream;
 
 
+//Interface Dialogue
 
 public class Dialogue {
 	
-	//Interface Dialogue
-	
-	
+	public Dialogue() {
+		
+		Partie p = new Partie();
+			
+	}
 		/* Enregistrement d'une partie dans un fichier */
 	
 	public void SerialisePartie (Partie pa){
@@ -125,4 +128,11 @@ public class Dialogue {
 		
 	}
 
+}
+
+public static void main(String[] args) {	
+	
+	Partie p = new Partie();
+	p.SerialisePartie();
+	p.DeserialisePartie();
 }
