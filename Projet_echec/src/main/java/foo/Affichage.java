@@ -42,7 +42,7 @@ public class Affichage extends JFrame{
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static EcouteurEchiquier tabEcouteur[][] = new EcouteurEchiquier[8][8];
-	private static Echiquier e = new Echiquier();
+	private  Echiquier e = new Echiquier();
 	
 	private static String J1;
 	private static String J2;
@@ -203,7 +203,7 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == partieS ){
 				fenChoixPartie.dispose();
-				afficherEchiquier(this.e); 
+				afficherEchiquier(this); 
 				
 			}
 			if (e.getSource() == partieP){
@@ -337,7 +337,7 @@ public class Affichage extends JFrame{
 			
 	}
 	
-	public void afficherEchiquier(Echiquier ech)
+	public void static afficherEchiquier(Echiquier ech)
 	{
 
 		fenEchiquier.setLocationRelativeTo(null);
