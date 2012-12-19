@@ -100,7 +100,7 @@ public class Affichage extends JFrame{
 	
 	public static void menuPrincipal(){
 		
-	 fenMenu.setLocationRelativeTo(null);	
+		
 	 JPanel pan = new JPanel();
 	 
 	 creer.setSize(200,60);
@@ -203,7 +203,6 @@ public class Affichage extends JFrame{
 			
 		 fenMenuPartie.setTitle("Jeu D'échec-Création de partie");
 		 JPanel pan = new JPanel();
-		 fenMenuPartie.setLocationRelativeTo(null);
 		 
 		 
 		 partieS.setSize(200,60);
@@ -254,7 +253,7 @@ public class Affichage extends JFrame{
 		
 		JFrame fen = new JFrame("Jeu D'échec-Partie Terminée");
 		 JPanel pan = new JPanel();
-		 fen.setLocationRelativeTo(null);
+		
 		 
 		 JButton creer =new JButton("Revoir Partie");
 		 creer.setSize(200,60);
@@ -471,7 +470,7 @@ public class Affichage extends JFrame{
 
 	public static Container afficherEchiquier(Echiquier ech)
 	{
-		//fenEchiquier.setLocationRelativeTo(null);
+		
 		Container cont = fenEchiquier.getContentPane();
 		JPanel pan =new JPanel();
 		pan.setSize(400, 100);
@@ -632,18 +631,17 @@ public class Affichage extends JFrame{
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-<<<<<<< HEAD
+
 		//tabPieces();
 		//afficherEchiquier();
-=======
-		ech.echiquierStandard();
-		afficherEchiquier(ech);
+
+		//ech.echiquierStandard();
+		//afficherEchiquier(ech);
 		//afficherPartiePersonnalisee();
 		//afficherPartieStandard();
 		
 		
 
->>>>>>> damien
 		
 		
 	}
