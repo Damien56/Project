@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -43,8 +44,14 @@ public class Affichage extends JFrame{
 	//attribut afficherEchiquier()
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	
+	//attribut afficherAide()
+	private static boolean aide = false;
+	private static JButton aideBoutton = new JButton();
+	private static Echiquier ech = new Echiquier();
+	
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static JButton tabPiece[][] = new JButton[6][2];
+	
 	
 	// attribut utilisé par partie
 	private static String J1;
@@ -225,15 +232,13 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == partieS ){
 				fenMenuPartie.dispose();
-				Echiquier esh = new Echiquier();
-				esh.echiquierStandard();
-				afficherEchiquier(esh); 
+				ech.echiquierStandard();
+				afficherEchiquier(ech); 
 				
 			}
 			if (e.getSource() == partieP){
 				fenMenuPartie.dispose();
-				Echiquier esh = new Echiquier();
-				afficherEchiquier(esh);  
+				afficherEchiquier(ech);  
 			}
 			if (e.getSource() == revenir){
 				fenMenuPartie.dispose(); 
@@ -450,6 +455,19 @@ public class Affichage extends JFrame{
 
 
 	}
+	
+	public static void afficherAide(){
+		if (ech.getTableau()[CaseCliquee.getI()][CaseCliquee.getJ()] != null){
+		Vector<Position> dest = ech.destinationPossible(ech.getTableau()[CaseCliquee.getI()][CaseCliquee.getJ()]);
+		
+		for (Position pos : dest){
+				 tabBoutton[pos.getI()][pos.getJ()].setBackground(Color.green);
+			}
+		}
+		else 
+				 System.out.println("error");
+		 
+	}
 
 	public static Container afficherEchiquier(Echiquier ech)
 	{
@@ -457,7 +475,7 @@ public class Affichage extends JFrame{
 		Container cont = fenEchiquier.getContentPane();
 		JPanel pan =new JPanel();
 		pan.setSize(400, 100);
-		pan.setLayout(new GridLayout(8,8));
+		pan.setLayout(new GridLayout(9,8));
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
 				
@@ -522,6 +540,8 @@ public class Affichage extends JFrame{
 			}
 			
 		}
+		pan.add(aideBoutton);
+		aideBoutton.addActionListener(new EcouteurAide());
 		cont.add(pan);
 		fenEchiquier.setSize(400,400);
 		fenEchiquier.getContentPane().add(pan);
@@ -530,7 +550,33 @@ public class Affichage extends JFrame{
 		
 		return cont;
 	}
-		
+	
+	public  static class EcouteurEchiquier implements ActionListener{
+		public void actionPerformed(ActionEvent e){ 
+			for(int i=0; i<8; i++){
+				for(int j=0; j<8 ; j++){
+					if (e.getSource() == tabBoutton[i][j]){
+						setCaseCliquee(new Position(i,j));
+						
+						System.out.println(CaseCliquee.getI()+ " "+CaseCliquee.getJ());
+						if (aide==true){
+							afficherAide();
+							
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	public  static class EcouteurAide implements ActionListener{
+		public void actionPerformed(ActionEvent e){ 
+			if (e.getSource() == aideBoutton){
+				aide =! aide;
+				System.out.println(aide);
+			}
+		}
+	}
 	public void afficherPartiePersonnalisee(Container cont, JPanel pan)
 	{
 		JFrame fenperso = new JFrame("Jeu d'échec - Partie Personnalisée");
@@ -554,11 +600,12 @@ public class Affichage extends JFrame{
 		
 	}
 	
-	public void afficherPartieStandard(){
+	public static void afficherPartieStandard(){
 		
 		JFrame fenstand = new JFrame("Jeu d'échac - Partie Standard");
 		JPanel panelstand = new JPanel();
-		panelstand.setSize(400,100);
+		Container cont = afficherEchiquier(ech);
+		panelstand.setSize(400,400);
 		panelstand.setLayout(new GridLayout(2,2));
 		JButton bouton1 = new JButton ("Revenir au menu Principal");
 		JButton bouton2 = new JButton ("Démmarrer la partie");
@@ -568,21 +615,13 @@ public class Affichage extends JFrame{
 		panelstand.add(aideBouton);
 		
 		
+		fenstand.getContentPane().add(panelstand);
+		fenstand.pack();
+		fenstand.setVisible(true);
 	}
 	
 
-	public  static class EcouteurEchiquier implements ActionListener{
-		public void actionPerformed(ActionEvent e){ 
-			for(int i=0; i<8; i++){
-				for(int j=0; j<8 ; j++){
-					if (e.getSource() == tabBoutton[i][j]){
-						setCaseCliquee(new Position(i,j));
-						System.out.println(CaseCliquee.getI()+ " "+CaseCliquee.getJ());
-					}
-				}
-			}
-		}
-	}
+	
 	
 
 	public static void main(String[] args) {
@@ -592,16 +631,13 @@ public class Affichage extends JFrame{
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-<<<<<<< HEAD
-		//tabPieces();
-		afficherEchiquier();
-=======
-		//afficherEchiquier();
-		afficherPartiePersonnalisee();
-		afficherPartieStandard();
+		ech.echiquierStandard();
+		afficherEchiquier(ech);
+		//afficherPartiePersonnalisee();
+		//afficherPartieStandard();
 		
 		
->>>>>>> cougar
+
 		
 		
 	}

@@ -32,7 +32,7 @@ public class Pion extends Piece{
 			PositionPossible[this.position.getI()-1][this.position.getJ()] = 1 ;
 		}
 				
-		System.out.println("changement de piece");
+		
 		return true;
 		
 	}
