@@ -11,7 +11,7 @@ public class Echiquier
 {
 	/* Declaration des attributs de la classe */
 	private Piece tableau[][];
-	private boolean aide;
+	
 	
 	/* Declaration du constructeur de la classe */
 	
@@ -24,7 +24,7 @@ public class Echiquier
 	
 	public boolean echiquierStandard()
 	{
-		boolean isOk = false;
+		
 		String couleur = "noir";
 		
 		// Premiere ligne des pieces noires - Premiere ligne echiquier

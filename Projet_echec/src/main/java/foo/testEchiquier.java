@@ -1,6 +1,6 @@
 package foo;
 
-import pieces.Position;
+
 
 public class testEchiquier {
 

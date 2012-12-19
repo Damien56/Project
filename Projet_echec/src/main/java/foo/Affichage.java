@@ -47,56 +47,25 @@ public class Affichage extends JFrame{
 	//attribut afficherAide()
 	private static boolean aide = false;
 	private static JButton aideBoutton = new JButton();
-	private static Echiquier ech = new Echiquier();
+	
 	
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static JButton tabPiece[][] = new JButton[6][2];
 	
-	
+	Partie p = new Partie();
 	// attribut utilisé par partie
+	/*private static Echiquier ech = new Echiquier();
 	private static String J1;
 	private static String J2;
 	private static Position CaseCliquee = new Position();
 	private static Position CaseCliqueeMenu = new Position(); 
 	private static String Nom = "";
 	private static String Couleur = "";
-	private static boolean Suivant = false ;
+	private static boolean Suivant = false ;*/
 	
 	
 	public Affichage(){
 	}
-	public static String getNom() {
-		return Nom;
-	}
-	public static void setNom(String nom) {
-		Nom = nom;
-	}
-	public static String getCouleur() {
-		return Couleur;
-	}
-	public static void setCouleur(String couleur) {
-		Couleur = couleur;
-	}
-	public static boolean isSuivant() {
-		return Suivant;
-	}
-	public static void setSuivant(boolean suivant) {
-		Suivant = suivant;
-	}
-	public static void setCaseCliquee(Position caseCliquee) {
-		CaseCliquee = caseCliquee;
-	}
-	public static String getJ1() {
-		return J1;
-	}
-	public static String getJ2() {
-		return J2;
-	}
-	
-	public Position getCaseCliquee() {
-		return CaseCliquee;
-	}
-
 	
 	public static void menuPrincipal(){
 		
