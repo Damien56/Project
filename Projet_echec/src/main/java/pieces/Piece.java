@@ -1,78 +1,80 @@
 package pieces;
 
 
-public class Piece {
-
+public class Piece
+{
 	protected Position position = new Position();
 	protected Position positionOld = new Position();
-	public Position getPositionOld() {
-		return positionOld;
-	}
-
-
-
 	protected String Couleur;
 	protected String Image;
 	protected int[][] PositionPossible = new int[8][8];
 	private Position positionDuMechant;
 	
-
-	
-	public Piece(Position position, String couleur) {
-
+	public Piece(Position position, String couleur)
+	{
 		this.position = position;
 		this.Couleur = couleur;
-		this.Image = " ";
-		this.positionDuMechant=null;
+		this.Image = "";
+		this.positionDuMechant = null;
 		
-		 for (int i = 0 ; i<8 ; i++){ for(int j = 0 ; j<8 ; j++){
-			 this.PositionPossible[i][j]= 0; } }
-		
+		 for (int i = 0 ; i < 8 ; i++)
+			 for(int j = 0 ; j < 8 ; j++)
+				 this.PositionPossible[i][j] = 0;	
 	}
 
+	public Position getPositionOld()
+	{
+		return this.positionOld;
+	}
 	
-	public String getCouleur() {
-		return Couleur;
+	public String getCouleur()
+	{
+		return this.Couleur;
 	}
 
 
-	public Position getPosition() {
-		return position;
+	public Position getPosition()
+	{
+		return this.position;
 	}
 
-	public void setPosition(Position position) {
-		this.positionOld=this.position;
+	public void setPosition(Position position)
+	{
+		this.positionOld = this.position;
 		this.position = position;
-		
-		
 	}
 
-	public void toStringPositionPossible() {//affiche le tableau des position possible les & represente les cases possibles
+	public String toStringPositionPossible()
+	{
+		// affiche le tableau des positions possible les & represente les cases possibles
+		
 		int cpt = 0;
-		for (int i = 0; i < 8; i++) {
-			for (int j = 0; j < 8; j++) {
-				if (cpt == 8) {
-					System.out.println();
+		StringBuffer res = new StringBuffer("");
+		
+		for (int i = 0; i < 8; i++)
+			for (int j = 0; j < 8; j++)
+			{
+				if (cpt == 8)
 					cpt = 0;
-				}
 				cpt++;
-				System.out.print(PositionPossible[i][j]);
+				res.append(PositionPossible[i][j]);
 			}
-		}
-
+		
+		return res.toString();
 	}
 
-	public int[][] getPositionPossible() {
-		return PositionPossible;
+	public int[][] getPositionPossible()
+	{
+		return this.PositionPossible;
 	}
-	public Position getPositionDuMechant() {
-		return positionDuMechant;
-	}
-
-
-	public void setPositionDuMechant(Position positionDuMechant) {
-		this.positionDuMechant = positionDuMechant;}
 	
-	
+	public Position getPositionDuMechant()
+	{
+		return this.positionDuMechant;
+	}
 
+	public void setPositionDuMechant(Position positionDuMechant)
+	{
+		this.positionDuMechant = positionDuMechant;
+	}
 }

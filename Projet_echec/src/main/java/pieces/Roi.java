@@ -16,106 +16,124 @@ public class Roi extends Piece {
 	}
 	
 	
-	public boolean setPositionPossible() {//à modifier pour les bords
+	public void setPositionPossible() {//à modifier pour les bords
 		int i = this.position.getI();
 		int j = this.position.getJ();
 		
-		if ((i<7 && i>1) && (j<7 && j>1) ){
-			PositionPossible[i+1][j+1] = 1 ;
-			PositionPossible[i+1][j] = 1 ;
-			PositionPossible[i+1][j-1] = 1 ;
-			PositionPossible[i][j+1] = 1 ;
-			PositionPossible[i][j-1] = 1 ;
-			PositionPossible[i-1][j+1] = 1 ;
-			PositionPossible[i-1][j] = 1 ;
-			PositionPossible[i-1][j-1] = 1 ;
+		if ((i < 7 && i > 1) && (j < 7 && j > 1) )
+		{
+			this.PositionPossible[i + 1][j + 1] = 1 ;
+			this.PositionPossible[i + 1][j] = 1 ;
+			this.PositionPossible[i + 1][j-1] = 1 ;
+			this.PositionPossible[i][j + 1] = 1 ;
+			this.PositionPossible[i][j - 1] = 1 ;
+			this.PositionPossible[i - 1][j + 1] = 1 ;
+			this.PositionPossible[i - 1][j] = 1 ;
+			this.PositionPossible[i - 1][j - 1] = 1 ;
 		}
 		
-		if (i==0 && (j<8 && j>=0)){
-			if(j!=0){
-				PositionPossible[i][j-1] = 1 ;
-				PositionPossible[i+1][j-1] = 1 ;
+		if (i == 0 && j < 8 && j >= 0)
+		{
+			if(j != 0)
+			{
+				this.PositionPossible[i][j-1] = 1 ;
+				this.PositionPossible[i+1][j-1] = 1 ;
 			}
-			if(j!=7){
-				PositionPossible[i][j+1] = 1 ;
-				PositionPossible[i+1][j+1] = 1 ;
+			
+			if(j != 7)
+			{
+				this.PositionPossible[i][j + 1] = 1 ;
+				this.PositionPossible[i + 1][j + 1] = 1 ;
 			}
-			PositionPossible[i+1][j] = 1 ;
+			this.PositionPossible[i + 1][j] = 1 ;		
+		}
+		
+		if (i == 7 && j < 8 && j >= 0)
+		{			
+			if (j != 0)
+			{
+				this.PositionPossible[i][j - 1] = 1 ;
+				this.PositionPossible[i - 1][j - 1] = 1 ;
+			}
+			
+			if (j != 7)
+			{
+				this.PositionPossible[i - 1][j + 1] = 1 ;
+				this.PositionPossible[i][j + 1] = 1 ;
+			}
+			this.PositionPossible[i - 1][j] = 1 ;
+		}
+		
+		if (j == 0 && j < 7 && j > 0)
+		{
+			this.PositionPossible[i - 1][j] = 1 ;
+			this.PositionPossible[i + 1][j] = 1 ;
+			this.PositionPossible[i][j + 1] = 1 ;
+			this.PositionPossible[i + 1][j + 1] = 1 ;
+			this.PositionPossible[i - 1][j + 1] = 1 ;
+		}
+		
+		
+		if (j == 7 && i < 7 && i > 0)
+		{
+			this.PositionPossible[i - 1][j] = 1 ;
+			this.PositionPossible[i + 1][j] = 1 ;
+			this.PositionPossible[i][j - 1] = 1 ;
+			this.PositionPossible[i + 1][j - 1] = 1 ;
+			this.PositionPossible[i - 1][j - 1] = 1 ;
 			
 		}
+		this.PositionPossible[i][j] = 0 ;
+	}
+
+	// affiche les caracteristiques du Roi
+	public String toString()
+	{
+		StringBuffer res = new StringBuffer("");
 		
-		if (i==7 &&(j<8 && j>=0)){			
-			if (j != 0){
-				PositionPossible[i][j-1] = 1 ;
-				PositionPossible[i-1][j-1] = 1 ;
-			}
-			if (j != 7){
-				PositionPossible[i-1][j+1] = 1 ;
-				PositionPossible[i][j+1] = 1 ;
-			}
-			PositionPossible[i-1][j] = 1 ;
-		}
+		res.append("Roi [ Position = ");
+		res.append(position.getI());
+		res.append(position.getJ());
+		res.append(", Couleur = ");
+		res.append(this.Couleur);
+		res.append(" ], Deja Deplace = ");
+		res.append(this.DejaDeplace);
+		res.append(" Echec = ");
+		res.append(this.Echec);
+		res.append(" PositionPossible = ");
+		res.append(this.toStringPositionPossible());
 		
-		if (j==0 && (j<7 && j>0)){
-				PositionPossible[i-1][j] = 1 ;
-				PositionPossible[i+1][j] = 1 ;
-				PositionPossible[i][j+1] = 1 ;
-				PositionPossible[i+1][j+1] = 1 ;
-				PositionPossible[i-1][j+1] = 1 ;
-		}
-		
-		
-		if (j==7 &&(i<7 && i>0)){
-			PositionPossible[i-1][j] = 1 ;
-			PositionPossible[i+1][j] = 1 ;
-			PositionPossible[i][j-1] = 1 ;
-			PositionPossible[i+1][j-1] = 1 ;
-			PositionPossible[i-1][j-1] = 1 ;
-			
-		}
-		PositionPossible[i][j] = 0 ;
+		return res.toString();
+	}
+	
+	
+	
+	public boolean isEchec()
+	{
+		return this.Echec;
+	}
+
+
+	public void setEchec(boolean echec)
+	{
+		this.Echec = echec;
+	}
+
+
+	public boolean isDejaDeplace()
+	{
+		return this.DejaDeplace;
+	}
+
+
+	public void setDejaDeplace(boolean dejaDeplace)
+	{
+		this.DejaDeplace = dejaDeplace;
+	}
+	
+	
+	public boolean estMat()
+	{
 		return true;
-}
-
-	
-	public void toStringRoi() {// affiche les caracteristique de la Tour
-		System.out.println("Roi [position=" + position.getI()
-				+ position.getJ() + ", Couleur=" + Couleur + "]"
-				+ "Deja Deplace= " + this.DejaDeplace + "Echec= " + this.Echec + " PositionPossible= ");
-		this.toStringPositionPossible();
-	}
-	
-	
-	
-	public boolean isEchec() {
-		return Echec;
-	}
-
-
-	public void setEchec(boolean echec) {
-		Echec = echec;
-	}
-
-
-	public boolean isDejaDeplace() {
-		return DejaDeplace;
-	}
-
-
-	public void setDejaDeplace(boolean dejaDeplace) {
-		DejaDeplace = dejaDeplace;
-	}
-
-
-	
-	
-
-
-	
-	
-	
-	public boolean estMat() {
-		return true;
-
 	}
 }
