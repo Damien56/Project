@@ -537,11 +537,12 @@ public class Affichage extends JFrame{
 	public static void main(String[] args) {
 		
 		
-		//menuPrincipal();
+		
+		menuPrincipal();
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-		tabPieces();
+		//tabPieces();
 		//afficherEchiquier();
 		
 		
