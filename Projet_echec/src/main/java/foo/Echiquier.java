@@ -22,7 +22,7 @@ public class Echiquier
 	
 	/* Declaration des methodes de la classe */
 	
-	public void echiquierStandard()
+	public boolean echiquierStandard()
 	{
 		
 		String couleur = "noir";
@@ -67,7 +67,9 @@ public class Echiquier
 		this.tableau[6][4] = new Pion(new Position(6, 4), couleur);
 		this.tableau[6][5] = new Pion(new Position(6, 5), couleur);
 		this.tableau[6][6] = new Pion(new Position(6, 6), couleur);
-		this.tableau[6][7] = new Pion(new Position(6, 7), couleur);		
+		this.tableau[6][7] = new Pion(new Position(6, 7), couleur);
+		
+		return true;		
 	}
 	
 	public Piece[][] getTableau()
