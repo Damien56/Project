@@ -1,6 +1,8 @@
 package foo;
 
-public class Joueur {
+import java.io.Serializable;
+
+public class Joueur implements Serializable {
 	
 	// Attributs de la classe
 	
@@ -9,23 +11,16 @@ public class Joueur {
 	private int Score;
 	
 	
-	// Méthodes de la classe 
-	
-	public Joueur() // Constructeur de la classe Joueur
-	{ 
-		
-		this.Nom = "Joueurdéfaut";
-		this.Couleur = "Couleurdéfaut";
-		this.Score=0;
-	}
-	
+	// Constructeur de la classe Joueur
 	public Joueur(String nom, String couleur)
 	{
 		this.Nom = nom;
 		this.Couleur = couleur;
-		this.Score=0;
+		this.Score = 0;
 	}
+	
 
+	// Méthodes de la classe 
 	public String getNom() {
 		return Nom;
 	}
@@ -50,6 +45,17 @@ public class Joueur {
 		Score = score;
 	}
 	
-	
+	public String toString()
+	{
+		StringBuffer res = new StringBuffer("");
+		res.append("Le joueur ");
+		res.append(this.getNom());
+		res.append(" joue avec les pieces ");
+		res.append(this.getCouleur());
+		res.append(" et a actuellement ");
+		res.append(this.getScore());
+		res.append(" point(s).");
+		return res.toString();
+	}
 
 }
