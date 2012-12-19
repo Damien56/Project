@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ public class Affichage {
 	private static JFrame fen = new JFrame("Jeu D'échec");
 	private static JPanel pan = new JPanel();
 	private static JButton cavaliern = new JButton("Cavalier Noir");
+	
 	
 	public Affichage(){
 	}
@@ -201,13 +203,7 @@ public class Affichage {
 			
 	
 	
-	/* A modifier */
-	
-	
-<<<<<<< HEAD
-=======
-	
->>>>>>> master
+
 	public void afficherPosition(){
 		
 	}
@@ -234,35 +230,82 @@ public class Affichage {
 			
 	}
 	
-	public static void afficherEchiquier()
+	public void afficherEchiquier(Echiquier ech)
 	{
-		 fen.setLocationRelativeTo(null);
-		 Container cont = fen.getContentPane();
-		 
-		 JPanel pan =new JPanel();
-		 pan.setSize(400, 100);
-		 pan.setLayout(new GridLayout(8,8));
-		 
-		 
+		fen.setLocationRelativeTo(null);
+		Container cont = fen.getContentPane();
+
+		JPanel pan =new JPanel();
+		pan.setSize(400, 100);
+		pan.setLayout(new GridLayout(8,8));
+
+
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
-				tabBoutton[i][j] = new JButton();
-				if((i%2==0 && j%2 == 0) || (i%2==1 && j%2 == 1))
-					tabBoutton[i][j].setBackground(Color.gray);
-				else
-					tabBoutton[i][j].setBackground(Color.white);
-				
+System.out.println(i +""+j);
+				if(ech.getTableau()[i][j]!=null){
+					
+					String type = ech.getTableau()[i][j].getClass().getName();
+					String color = ech.getTableau()[i][j].getCouleur();
+					if((type=="pieces.Pion")&&(color=="blanc")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionb.gif"));
+					}
+					else if((type=="pieces.Tour") && (color=="blanc")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourb.gif"));
+					}
+					else if((type=="pieces.Fou")&&(color=="blanc")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foub.gif"));
+					}
+					else if((type=="pieces.Dame")&&(color=="blanc")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/dameb.gif"));
+					}
+					else if((type=="pieces.Roi")&&(color=="blanc")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roib.gif"));
+					}
+					else if((type=="pieces.Pion")&&(color=="noir")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionn.gif"));
+					}
+					else if((type=="pieces.Tour") && (color=="noir")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourn.gif"));
+					}
+					else if((type=="pieces.Fou")&&(color=="noir")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foun.gif"));
+					}
+					else if((type=="pieces.Dame")&&(color=="noir")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/damen.gif"));
+					}
+					else if((type=="pieces.Roi")&&(color=="noir")){
+						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
+					}
+					else{
+						System.out.println("erreur");
+					}
+				}
+				else{
+					tabBoutton[i][j] = new JButton();
+				}
+
+				if((i%2==0 && j%2 == 0) || (i%2==1 && j%2 == 1)){
+					tabBoutton[i][j].setBackground(Color.darkGray);
+				}					
+				else{
+					tabBoutton[i][j].setBackground(Color.lightGray);
+				}
+
+
 				tabEcouteur[i][j] = new Ecouteur();
 				tabBoutton[i][j].addActionListener(tabEcouteur[i][j]);
 				pan.add(tabBoutton[i][j]);
 			}
 		}
+
+
 		cont.add(pan);
 		fen.setSize(400,400);
 		fen.getContentPane().add(pan);
 		//fen.pack();
 		fen.setVisible(true); 	
-			
+
 	}
 		
 
@@ -274,18 +317,16 @@ public class Affichage {
 						System.out.println("proute"); 
 					}
 				}
-				
 			}
 		}
 	}
 	
-	public static void main(String[] args) {		
-		//menuPrincipal();
-		//choixDeLaPartie();
-		//optionChoixJoueur();
-		Affichage a = new Affichage();
+	/*public static void main(String[] args) {
+		Echiquier e = new Echiquier();
+		e.echiquierStandard();
+		Affichage aff = new Affichage();
 		
-		a.ListePieces();
-	}
+		aff.afficherEchiquier(e);
+	}*/
 
 }

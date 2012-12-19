@@ -8,9 +8,10 @@ public class testEchiquier {
 	{
 		Echiquier e = new Echiquier();
 		e.echiquierStandard();
-		System.out.println(e.toString());
-		e.deplacerPiece(e.getTableau()[1][1], new Position(2,1));
-		System.out.println(e.toString());
+		Affichage aff = new Affichage();
+		
+		aff.afficherEchiquier(e);
+		
 	}
 	
 }

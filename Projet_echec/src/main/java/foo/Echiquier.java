@@ -60,14 +60,14 @@ public class Echiquier
 		this.tableau[7][7] = new Tour(new Position(7, 7), couleur);
 		
 		// Deuxieme ligne des pieces blanches - Septieme ligne echiquier
-		/*this.tableau[6][0] = new Pion(new Position(6, 0), couleur);
+		this.tableau[6][0] = new Pion(new Position(6, 0), couleur);
 		this.tableau[6][1] = new Pion(new Position(6, 1), couleur);
 		this.tableau[6][2] = new Pion(new Position(6, 2), couleur);
 		this.tableau[6][3] = new Pion(new Position(6, 3), couleur);
 		this.tableau[6][4] = new Pion(new Position(6, 4), couleur);
 		this.tableau[6][5] = new Pion(new Position(6, 5), couleur);
 		this.tableau[6][6] = new Pion(new Position(6, 6), couleur);
-		this.tableau[6][7] = new Pion(new Position(6, 7), couleur);*/
+		this.tableau[6][7] = new Pion(new Position(6, 7), couleur);
 		
 		return true;		
 	}
@@ -171,7 +171,7 @@ public class Echiquier
 		j=piece.getPosition().getJ();
 
 		//deplacements pour le cavalier
-		if(piece.getClass().getName()=="piece.Cavalier"){
+		if(piece.getClass().getName()=="pieces.Cavalier"){
 			for(i=0; i<8; i++){//parcourir les lignes
 				for(j=0; j<8; j++){//parcourir les colonnes
 					if(tabposition[i][j]==1){
