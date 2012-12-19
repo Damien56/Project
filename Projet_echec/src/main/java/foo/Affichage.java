@@ -21,50 +21,76 @@ import pieces.Position;
 
 public class Affichage extends JFrame{
 	
+	//attributs de menuPricipal()
 	private static JFrame fenMenu = new JFrame("Jeu D'échec - Menu");
 	private static JButton creer =new JButton("Créer Partie");
 	private static JButton revoir =new JButton("Revoir la Partie");
 	private static JButton exit =new JButton("Quitter la partie");
 	
 	
-	
-	private static JFrame fenChoixJoueur = new JFrame("Jeu D'échec - Création des joueurs");
+	//attributs de menuJoueurs()
+	private static JFrame fenMenuJoueur = new JFrame("Jeu D'échec - Création des joueurs");
 	private static JTextField j1 = new JTextField("Joueur 1");
 	private static JTextField j2 = new JTextField("Joueur 2");
 	private static JButton ok =new JButton("Confirmer");
 	
-	
-	private static JFrame fenChoixPartie = new JFrame("Jeu D'échec - Création de la Partie");
+	//attributs de menuPartie()
+	private static JFrame fenMenuPartie = new JFrame("Jeu D'échec - Création de la Partie");
 	private static JButton partieS =new JButton("Partie Standard");
 	private static JButton partieP =new JButton("Partie Personnalisée");
 	private static JButton revenir =new JButton("Revenir au menu principale");
 	
+	//attribut afficherEchiquier()
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
-	private static JButton tabBoutton[][] = new JButton[8][8];
-	private static EcouteurEchiquier tabEcouteur[][] = new EcouteurEchiquier[8][8];
-	private  Echiquier e = new Echiquier();
 	
+	private static JButton tabBoutton[][] = new JButton[8][8];
+	private static JButton tabPiece[][] = new JButton[6][2];
+	
+	// attribut utilisé par partie
 	private static String J1;
 	private static String J2;
 	private static Position CaseCliquee = new Position();
 	private static Position CaseCliqueeMenu = new Position(); 
+	private static String Nom = "";
+	private static String Couleur = "";
+	private static boolean Suivant = false ;
 	
 	
 	public Affichage(){
 	}
+	public static String getNom() {
+		return Nom;
+	}
+	public static void setNom(String nom) {
+		Nom = nom;
+	}
+	public static String getCouleur() {
+		return Couleur;
+	}
+	public static void setCouleur(String couleur) {
+		Couleur = couleur;
+	}
+	public static boolean isSuivant() {
+		return Suivant;
+	}
+	public static void setSuivant(boolean suivant) {
+		Suivant = suivant;
+	}
+	public static void setCaseCliquee(Position caseCliquee) {
+		CaseCliquee = caseCliquee;
+	}
+	public static String getJ1() {
+		return J1;
+	}
 	public static String getJ2() {
 		return J2;
 	}
-	public static void setJ2(String j2) {
-		J2 = j2;
-	}
+	
 	public Position getCaseCliquee() {
 		return CaseCliquee;
 	}
 
-	public static void setCaseCliquee(Position caseCliquee) {
-		CaseCliquee = caseCliquee;
-	}
+	
 
 	
 	public static void menuPrincipal(){
@@ -101,7 +127,7 @@ public class Affichage extends JFrame{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == creer){
 				fenMenu.dispose();
-				choixDesJoueur();
+				menuJoueurs();
 			}
 			if (e.getSource() == revoir){
 				System.out.println("revoir"); 
@@ -114,7 +140,7 @@ public class Affichage extends JFrame{
 	}
 	
 	
-	public static void choixDesJoueur(){
+	public static void menuJoueurs(){
 	
 		//j1.setColumns(10);
 		//j2.setColumns(10);
@@ -143,10 +169,10 @@ public class Affichage extends JFrame{
 		pan.add(pan3);
 		
 		
-		fenChoixJoueur.getContentPane().add(pan);
-		fenChoixJoueur.pack();
-		fenChoixJoueur.setSize(400,400);
-		fenChoixJoueur.setVisible(true);
+		fenMenuJoueur.getContentPane().add(pan);
+		fenMenuJoueur.pack();
+		fenMenuJoueur.setSize(400,400);
+		fenMenuJoueur.setVisible(true);
 		
 		
 	}
@@ -157,22 +183,22 @@ public class Affichage extends JFrame{
 			if (e.getSource() == ok){
 				J1 = j1.getText();
 				J2 = j2.getText();
-				fenChoixJoueur.dispose();
-				choixDeLaPartie();  
+				fenMenuJoueur.dispose();
+				menuPartie();  
 			}
 			if (e.getSource() == revenir){
-				fenChoixJoueur.dispose(); 
+				fenMenuJoueur.dispose(); 
 				menuPrincipal();
 			}
 		}
 	}
 	
 
-	public static void choixDeLaPartie(){
+	public static void menuPartie(){
 			
-		 fenChoixPartie.setTitle("Jeu D'échec-Création de partie");
+		 fenMenuPartie.setTitle("Jeu D'échec-Création de partie");
 		 JPanel pan = new JPanel();
-		 fenChoixPartie.setLocationRelativeTo(null);
+		 fenMenuPartie.setLocationRelativeTo(null);
 		 
 		 
 		 partieS.setSize(200,60);
@@ -190,29 +216,29 @@ public class Affichage extends JFrame{
 		 pan.add(revenir);
 		 
 		 
-		 fenChoixPartie.getContentPane().add(pan);
-		 fenChoixPartie.pack();
-		 fenChoixPartie.setSize(400,400);
-		 fenChoixPartie.setVisible(true);
+		 fenMenuPartie.getContentPane().add(pan);
+		 fenMenuPartie.pack();
+		 fenMenuPartie.setSize(400,400);
+		 fenMenuPartie.setVisible(true);
 	}
 
 	public  static class EcouteurChoixPartie implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == partieS ){
-				fenChoixPartie.dispose();
+				fenMenuPartie.dispose();
 				Echiquier esh = new Echiquier();
 				esh.echiquierStandard();
 				afficherEchiquier(esh); 
 				
 			}
 			if (e.getSource() == partieP){
-				fenChoixPartie.dispose();
+				fenMenuPartie.dispose();
 				Echiquier esh = new Echiquier();
 				afficherEchiquier(esh);  
 			}
 			if (e.getSource() == revenir){
-				fenChoixPartie.dispose(); 
+				fenMenuPartie.dispose(); 
 				menuPrincipal();
 			}
 		}
@@ -249,7 +275,7 @@ public class Affichage extends JFrame{
 		
 	}
 	
-	public static void ListePieces(){
+	public static void tabPieces(){
 		
 		JFrame fen = new JFrame("Pieces disponibles");
 		JPanel pan = new JPanel();
@@ -257,42 +283,63 @@ public class Affichage extends JFrame{
 	
 		pan.setLayout(new GridLayout(6,2));
 		
-		JButton cavaliern = new JButton("Cavalier Noir");
-		cavaliern.setSize(200, 16);
-		cavaliern.addActionListener(new EcouteurListe());
-		JButton cavalierb = new JButton("Cavalier Blanc ");
-		cavalierb.setSize(200, 16);
-		JButton damen = new JButton("Dame Noire");
-		damen.setSize(200, 16);
-		JButton dameb = new JButton("Dame Blanche");
-		dameb.setSize(200, 16);
-		JButton foun = new JButton("Fou Noir");
-		foun.setSize(200, 16);
-		JButton foub = new JButton("Fou Blanc");
-		foub.setSize(200, 16);
-		JButton pionn = new JButton("Pion Noir");
-		pionn.setSize(200, 16);
-		JButton pionb = new JButton("Pion Blanc");
-		pionb.setSize(200, 16);
-		JButton roin = new JButton("Roi Noir");
+		JButton roin = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
 		roin.setSize(200, 16);
-		JButton roib = new JButton("Roi Blanc");
+		tabPiece[0][0] = roin;
+		JButton roib = new JButton(new ImageIcon("src//main/java/images/roib.gif"));
 		roib.setSize(200, 16);
-		JButton tourn = new JButton("Tour Noire");
-		tourn.setSize(200, 16);
-		JButton tourb = new JButton("Tour Blanche");
-		tourb.setSize(200, 16);
+		tabPiece[0][1] = roib;
 		
-		pan.add(cavaliern);
-		pan.add(cavalierb);
-		pan.add(tourn);
-		pan.add(tourb);
+		JButton damen = new JButton(new ImageIcon("src//main/java/images/damen.gif"));
+		damen.setSize(200, 16);
+		tabPiece[1][0] = damen;
+		JButton dameb = new JButton(new ImageIcon("src//main/java/images/dameb.gif"));
+		dameb.setSize(200, 16);
+		tabPiece[1][1] = dameb;
+		
+		JButton tourn = new JButton(new ImageIcon("src//main/java/images/tourn.gif"));
+		tourn.setSize(200, 16);
+		tabPiece[2][0] = tourn;
+		JButton tourb = new JButton(new ImageIcon("src//main/java/images/tourb.gif"));
+		tourb.setSize(200, 16);
+		tabPiece[2][1] = tourb;
+		
+		JButton foun = new JButton(new ImageIcon("src//main/java/images/foun.gif"));
+		foun.setSize(200, 16);
+		tabPiece[3][0] = foun;
+		JButton foub = new JButton(new ImageIcon("src//main/java/images/foub.gif"));
+		foub.setSize(200, 16);
+		tabPiece[3][1] = foub;
+		
+		JButton cavaliern = new JButton(new ImageIcon("src//main/java/images/cavaliern.gif"));
+		cavaliern.setSize(200, 16);
+		tabPiece[4][0] = cavaliern;
+		JButton cavalierb = new JButton(new ImageIcon("src//main/java/images/cavalierb.gif"));
+		cavalierb.setSize(200, 16);
+		tabPiece[4][1] = cavalierb;
+		
+		JButton pionn = new JButton(new ImageIcon("src//main/java/images/pionn.gif"));
+		pionn.setSize(200, 16);
+		tabPiece[5][0] = pionn;
+		JButton pionb = new JButton(new ImageIcon("src//main/java/images/pionb.gif"));
+		pionb.setSize(200, 16);
+		tabPiece[5][1] = pionb;
+		
+		for (int i=0 ; i<6 ; i++){
+			for(int j = 0 ; j<2 ; j++){
+				tabPiece[i][j].addActionListener(new EcouteurPiece());
+			}
+		}
 		pan.add(roin);
 		pan.add(roib);
 		pan.add(damen);
 		pan.add(dameb);
+		pan.add(tourn);
+		pan.add(tourb);
 		pan.add(foun);
 		pan.add(foub);
+		pan.add(cavaliern);
+		pan.add(cavalierb);
 		pan.add(pionn);
 		pan.add(pionb);
 		
@@ -304,12 +351,69 @@ public class Affichage extends JFrame{
 			
 	}
 	
-	public  static class EcouteurListe implements ActionListener{
+	public  static class EcouteurPiece implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
-				if (e.getSource() == cavaliern){
-						System.out.println("proute"); 
+				if (e.getSource() == tabPiece[0][0]){
+						setNom("pieces.Roi");
+						setCouleur("noir");
+						System.out.println(Nom + " "+ Couleur);
 					}
+				if (e.getSource() == tabPiece[0][1]){
+					setNom("pieces.Roi");
+					setCouleur("blanc");
+					System.out.println(Nom + " "+ Couleur);
 				}
+				if (e.getSource() == tabPiece[1][0]){
+					setNom("pieces.Dame");
+					setCouleur("noir");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[1][1]){
+					setNom("pieces.Dame");
+					setCouleur("blanc");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[2][0]){
+					setNom("pieces.Tour");
+					setCouleur("noir");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[2][1]){
+					setNom("pieces.Tour");
+					setCouleur("blanc");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[3][0]){
+					setNom("pieces.Fou");
+					setCouleur("noir");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[3][1]){
+					setNom("pieces.Fou");
+					setCouleur("blanc");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[4][0]){
+					setNom("pieces.Cavalier");
+					setCouleur("noir");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[4][1]){
+					setNom("pieces.Cavalier");
+					setCouleur("blanc");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[5][0]){
+					setNom("pieces.Pion");
+					setCouleur("noir");
+					System.out.println(Nom + " "+ Couleur);
+				}
+				if (e.getSource() == tabPiece[5][1]){
+					setNom("pieces.Pion");
+					setCouleur("blanc");
+					System.out.println(Nom + " "+ Couleur);
+				}
+			}
 		}
 
 	public void afficherPosition(){
@@ -403,8 +507,8 @@ public class Affichage extends JFrame{
 				else{
 					tabBoutton[i][j].setBackground(Color.lightGray);
 				}
-				tabEcouteur[i][j] = new EcouteurEchiquier();
-				tabBoutton[i][j].addActionListener(tabEcouteur[i][j]);
+				//tabEcouteur[i][j] = new EcouteurEchiquier();
+				tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
 				pan.add(tabBoutton[i][j]);
 			}
 		}
@@ -433,12 +537,13 @@ public class Affichage extends JFrame{
 	public static void main(String[] args) {
 		
 		
-		menuPrincipal();
+		//menuPrincipal();
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-		//ListePieces();
+		tabPieces();
 		//afficherEchiquier();
+		
 		
 	}
 
