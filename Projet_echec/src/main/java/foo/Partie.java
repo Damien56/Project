@@ -10,7 +10,9 @@ public class Partie implements java.io.Serializable
 	public Joueur J2 ;
 	public Echiquier E;
 	public Affichage A;
+	
 	public Vector<Position> mesPositions, mesDestinations;
+	public Echiquier eDepart;
 	
 	// Le constructeur
 	public Partie(Joueur j1, Joueur j2, Echiquier e, Affichage a)
@@ -18,6 +20,7 @@ public class Partie implements java.io.Serializable
 		this.J1 = j1;
 		this.J2 = j2;
 		this.E = e;
+		this.eDepart = e;
 		this.A = a;
 		this.mesPositions = new Vector<Position>();
 		this.mesDestinations = new Vector<Position>();
@@ -52,7 +55,10 @@ public class Partie implements java.io.Serializable
 					pos = this.A.getCaseCliquee();	
 					this.E.deplacerPiece(pieceSelected, pos);
 				}
-				while(!this.E.deplacerPiece(pieceSelected, pos));		
+				while(!this.E.deplacerPiece(pieceSelected, pos));
+				
+				this.mesPositions.add(pieceSelected.getPosition());
+				this.mesDestinations.add(pos);
 			
 			tour++;
 		}		
@@ -77,7 +83,6 @@ public class Partie implements java.io.Serializable
 		
 		return pieceSelected;
 	}
-
 	
 	// Recherche le roi de ma couleur en fonction du tour
 	// (INIT : les blancs commencent, tour = 1)
@@ -97,7 +102,18 @@ public class Partie implements java.io.Serializable
 	
 	public void rejeuPartie()
 	{
+		this.E = this.eDepart;
 		
+		for(int i = 0; i < this.mesPositions.size(); i++)
+		{
+			this.E.deplacerPiece(this.E.getTableau()[this.mesPositions.elementAt(i).getI()][this.mesPositions.elementAt(i).getJ()], this.mesDestinations.elementAt(i));
+			
+			// A chaque clic sur le bouton suivant
+			do
+			{
+			}
+			while(!this.A.getSuivant());
+		}
 	}
 	
 	public void reglerTimer()
@@ -108,7 +124,6 @@ public class Partie implements java.io.Serializable
 	public String toString()
 	{
 		StringBuffer res = new StringBuffer("");
-		
 		return res.toString();
 	}
 }
