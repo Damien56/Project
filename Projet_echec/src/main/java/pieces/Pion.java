@@ -30,18 +30,6 @@ public class Pion extends Piece
 				this.PositionPossible[this.position.getI() - 2][this.position.getJ()] = 1 ;
 			}
 		}
-<<<<<<< HEAD
-		else if(this.getCouleur()=="noir" && this.position.getI()!=7){
-			PositionPossible[this.position.getI()+1][this.position.getJ()] = 1 ;
-		}
-		else if(this.getCouleur()=="blanc" && this.position.getI()!=0){
-			PositionPossible[this.position.getI()-1][this.position.getJ()] = 1 ;
-		}
-				
-		
-		return true;
-=======
->>>>>>> Vieille
 		
 		else if(this.getCouleur() == "noir" && this.position.getI() != 7)
 			this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
