@@ -125,17 +125,27 @@ public class Partie implements java.io.Serializable
 		Piece pieceSelected = null;
 		Piece monRoi;
 		Position pos = null;
+			
+		System.out.println(this.E.toString());
+		
+		pieceSelected=this.E.getTableau()[1][1];
+		pos=new Position(3,1);
+		
+		this.E.deplacerPiece(pieceSelected, pos);
+		System.out.println(this.E.toString());
+		
+		//aff.afficherEchiquier(this.E);
 		
 		while(!fini && !estMat)
 		{			
 			monRoi = selectMonRoi(tour);
 					
 			// Test si le roi de ma couleur est mat
-			if(monRoi!=null)
+			/*if(monRoi!=null)
 				if(this.E.estMat((Roi)monRoi))
 					estMat = true;
 
-			else
+			else*/
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
 				pieceSelected = selectPieceJouable(tour);
@@ -180,13 +190,13 @@ public class Partie implements java.io.Serializable
 			pos = this.getCaseCliquee();
 			if(pos!=null)
 				if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null)
-					if(((tour%2 != 0) && (pieceSelected.getCouleur() == "blanc")) || ((tour%2 == 0) && (pieceSelected.getCouleur() == "noir"))){
+					if(((tour%2 != 0) && (this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur() == "blanc")) || ((tour%2 == 0) && (this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur() == "noir"))){
 						pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
 						stop=true;
 					}
 		}
 		while(stop==false);
-		
+		System.out.println(this.E.toString());
 		return pieceSelected;
 	}
 	

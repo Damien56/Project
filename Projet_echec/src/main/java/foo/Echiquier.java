@@ -79,8 +79,9 @@ public class Echiquier
 	
 	public boolean deplacerPiece(Piece p, Position pos)
 	{
-		for(Position c : this.destinationPossible(p)){
-			if (c.isEqual(p.getPosition())){
+		//for(Position c : this.destinationPossible(p)){
+		for(int z=0; z<this.destinationPossible(p).size();z++){
+			if(this.destinationPossible(p).elementAt(z).isEqual(pos)){
 			p.setPosition(pos);
 			this.ajouterPiece(p);
 			this.supprimerPiece(p.getPositionOld());

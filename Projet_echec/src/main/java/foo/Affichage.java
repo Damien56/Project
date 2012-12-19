@@ -593,9 +593,11 @@ public class Affichage extends JFrame{
 
 		//ech.echiquierStandard();
 		//afficherEchiquier(ech);
-		afficherPartiePersonnalisee();
+		//afficherPartiePersonnalisee();
 		//afficherPartieStandard();
 		
+		menuPrincipal();
+		p.jouerPartie();
 		
 
 		
