@@ -8,12 +8,9 @@ public class Partie implements java.io.Serializable
 {
 	public Joueur J1, J2 ;
 	public Echiquier E;
-<<<<<<< HEAD
 
-	
-=======
 	public boolean isStd;
->>>>>>> master
+
 	public Vector<Position> mesPositions, mesDestinations;
 	public Echiquier eDepart;
 	public Position caseCliquee, caseCliqueeMenu;
@@ -50,6 +47,10 @@ public class Partie implements java.io.Serializable
 	}	
 	
 	
+	public Echiquier getE() {
+		return E;
+	}
+
 	public Joueur getJ1() {
 		return this.J1;
 	}
