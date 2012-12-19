@@ -9,7 +9,7 @@ public class testEchiquier {
 		Echiquier e = new Echiquier();
 		e.echiquierStandard();
 		//Affichage aff =new Affichage();
-		Affichage.menuPrincipal();
+		Affichage.afficherEchiquier(e);
 	}
 	
 }

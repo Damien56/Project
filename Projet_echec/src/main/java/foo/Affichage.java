@@ -444,7 +444,7 @@ public class Affichage extends JFrame{
 
 	public static void afficherEchiquier(Echiquier ech)
 	{
-		fenEchiquier.setLocationRelativeTo(null);
+		//fenEchiquier.setLocationRelativeTo(null);
 		Container cont = fenEchiquier.getContentPane();
 		JPanel pan =new JPanel();
 		pan.setSize(400, 100);
