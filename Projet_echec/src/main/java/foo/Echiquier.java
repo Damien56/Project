@@ -185,17 +185,18 @@ public class Echiquier
 				}
 			}			
 		}
-		else{
-		//deplacements pour toutes les pièces sauf le cavalier
+		else{//deplacements pour toutes les pièces sauf le cavalier
 			//deplacement vers le bas
 			do{
 				i++;
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(i<8){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -205,12 +206,14 @@ public class Echiquier
 			i=piece.getPosition().getI();//reinitialisation a la position de la piece a verifier
 			do{
 				i--;
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(i>=0){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -221,12 +224,14 @@ public class Echiquier
 			i=piece.getPosition().getI();//reinit
 			do{
 				j++;
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(j<8){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -236,12 +241,14 @@ public class Echiquier
 			j=piece.getPosition().getJ();//reinit
 			do{
 				j--;
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(j>=0){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -253,12 +260,14 @@ public class Echiquier
 			do{
 				i--;//deplace ligne vers le haut
 				j--;//deplace colonne vers la gauche
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(j>=0 && i>=0){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -270,12 +279,14 @@ public class Echiquier
 			do{
 				i++;//deplace ligne vers le bas
 				j--;//deplace colonne vers la gauche
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(j>=0 && i<8){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -287,12 +298,14 @@ public class Echiquier
 			do{
 				i++;//deplace ligne vers le bas
 				j++;//deplace colonne vers la droite
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(j<8 && i<8){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
@@ -304,12 +317,14 @@ public class Echiquier
 			do{
 				i--;//deplace ligne vers le haut
 				j++;//deplace colonne vers la droite
-				if(tabposition[i][j]==1){
-					if(this.tableau[i][j]==null){
-						dest.add(new Position(i,j));
-					}
-					else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-						dest.add(new Position(i,j));
+				if(j<8 && i>=0){
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
 				}
 
