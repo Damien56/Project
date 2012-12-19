@@ -28,7 +28,7 @@ public class Echiquier
 		String couleur = "noir";
 		
 		// Premiere ligne des pieces noires - Premiere ligne echiquier
-		this.tableau[0][0] = new Tour(new Position(4,5), couleur); 
+		this.tableau[0][0] = new Tour(new Position(0,0), couleur); 
 		this.tableau[0][1] = new Cavalier(new Position(0,1), couleur);
 		this.tableau[0][2] = new Fou(new Position(0,2), couleur);
 		this.tableau[0][3] = new Dame(new Position(0,3), couleur);

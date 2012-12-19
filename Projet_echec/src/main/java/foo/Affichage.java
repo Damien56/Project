@@ -541,10 +541,8 @@ public class Affichage extends JFrame{
 		//choixDeLaPartie();
 		//optionFinDePartie();
 		//choixDesJoueur();
-		//tabPieces();
-		Echiquier esh = new Echiquier();
-		esh.echiquierStandard();
-		afficherEchiquier(esh);
+		tabPieces();
+		//afficherEchiquier();
 		
 		
 	}

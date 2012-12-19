@@ -1,4 +1,4 @@
-/*package foo;
+package foo;
 
 import pieces.Position;
 
@@ -12,4 +12,4 @@ public class testEchiquier {
 		Affichage.menuPrincipal();
 	}
 	
-}*/
+}
