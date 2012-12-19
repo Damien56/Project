@@ -126,16 +126,8 @@ public class Partie implements java.io.Serializable
 		Piece monRoi;
 		Position pos = null;
 			
-		System.out.println(this.E.toString());
-		
-		pieceSelected=this.E.getTableau()[1][1];
-		pos=new Position(3,1);
-		
-		this.E.deplacerPiece(pieceSelected, pos);
-		System.out.println(this.E.toString());
-		
-		//aff.afficherEchiquier(this.E);
-		
+		System.out.println(this.E.toString());//Affichage Echiquier de depart
+			
 		while(!fini && !estMat)
 		{			
 			monRoi = selectMonRoi(tour);
@@ -160,7 +152,7 @@ public class Partie implements java.io.Serializable
 						for(int i=0;i<this.E.destinationPossible(pieceSelected).size();i++){
 							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
 								this.E.deplacerPiece(pieceSelected, pos);
-								System.out.println(this.E.toString());
+								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop=true;
 							}
 						}
@@ -196,7 +188,7 @@ public class Partie implements java.io.Serializable
 					}
 		}
 		while(stop==false);
-		System.out.println(this.E.toString());
+
 		return pieceSelected;
 	}
 	

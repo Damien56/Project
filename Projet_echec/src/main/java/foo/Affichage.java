@@ -416,7 +416,38 @@ public class Affichage extends JFrame{
 
 	}
 
-	
+	public static void afficherPartie(){
+
+
+		Container cont = fenEchiquierStand.getContentPane();
+		
+		cont.removeAll();
+
+		JPanel pan = afficherEchiquier(p.getE());
+		pan.setLayout(new GridLayout(9,8));
+
+		JPanel pan2 = new JPanel();
+		pan2.setLayout(new GridLayout(1,4));
+		revenir.addActionListener(new EcouteurChoixPartie());
+		aideBoutton.addActionListener(new EcouteurAide());
+		creer.addActionListener(new EcouteurMenu());
+		pan2.add(revenir);
+		pan2.add(aideBoutton);
+		pan2.add(creer);
+		pan2.add(timer);
+		pan2.setSize(50,20);
+
+		cont.setLayout(new GridLayout(2,1));
+		cont.add(pan);
+		cont.add(pan2);
+
+
+		fenEchiquierStand.setSize(400,400);
+
+		fenEchiquierStand.pack();
+		fenEchiquierStand.setVisible(true);
+	}
+
 	
 	
 	public static class EcouteurMenu implements ActionListener{
@@ -510,6 +541,7 @@ public class Affichage extends JFrame{
 					}
 				}
 			}
+			afficherPartie();
 		}
 	}
 	
@@ -614,19 +646,13 @@ public class Affichage extends JFrame{
 		//ech.echiquierStandard();
 		//afficherEchiquier(ech);
 		//afficherPartiePersonnalisee();
-<<<<<<< HEAD
 		//afficherPartieStandard();
 		
 		menuPrincipal();
 		p.jouerPartie();
 		
-=======
-		afficherPartieStandard();
+		//afficherPartieStandard();
 
-
-
-
->>>>>>> master
 
 	}
 

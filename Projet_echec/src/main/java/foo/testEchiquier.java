@@ -7,7 +7,7 @@ public class testEchiquier {
 	public static void main(String args[])
 	{
 		//tests de Quentin
-		Joueur j1 = new Joueur("Georges","blanc");
+		/*Joueur j1 = new Joueur("Georges","blanc");
 		Joueur j2 = new Joueur("Gaspard","noir");
 		Echiquier ech = new Echiquier();
 		ech.echiquierStandard();
@@ -16,7 +16,7 @@ public class testEchiquier {
 		
 		Affichage aff = new Affichage();
 		
-		aff.menuPartie();
+		aff.menuPartie();*/
 		
 		/*System.out.println(ech.toString());
 		ech.ajouterPiece(new Pion(new Position(4,4),"blanc"));
