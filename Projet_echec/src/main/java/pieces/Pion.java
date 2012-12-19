@@ -30,10 +30,7 @@ public class Pion extends Piece
 				this.PositionPossible[this.position.getI() - 2][this.position.getJ()] = 1 ;
 			}
 		}
-<<<<<<< HEAD
-=======
 
->>>>>>> master
 		
 		else if(this.getCouleur() == "noir" && this.position.getI() != 7)
 			this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
