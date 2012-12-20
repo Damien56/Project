@@ -416,9 +416,9 @@ public class Affichage extends JFrame{
 
 	}
 
-	
-	
-	
+
+
+
 	public static class EcouteurMenu implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){ 
@@ -435,7 +435,7 @@ public class Affichage extends JFrame{
 		}
 
 	}
-		
+
 	public  static class EcouteurChoixJoueur implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == ok){
@@ -475,7 +475,7 @@ public class Affichage extends JFrame{
 		}
 
 	}
-	
+
 	public  static class EcouteurEchiquier implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 
@@ -490,7 +490,7 @@ public class Affichage extends JFrame{
 					if (e.getSource() == tabBoutton[i][j]){
 						p.setCaseCliquee(new Position(i,j));
 						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
-						
+
 						for(int i1=0; i1<8; i1++){
 							for(int j1=0; j1<8 ; j1++){
 								if((i1%2==0 && j1%2 == 0) || (i1%2==1 && j1%2 == 1)){
@@ -501,18 +501,18 @@ public class Affichage extends JFrame{
 								}	
 							}
 						}
-						
+
 						if (aide==true){
 							afficherAide();
 						}
-						
-						
+
+
 					}
 				}
 			}
 		}
 	}
-	
+
 	public  static class EcouteurPiece implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == tabPiece[0][0]){
