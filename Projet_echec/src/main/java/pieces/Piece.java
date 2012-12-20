@@ -76,10 +76,10 @@ public class Piece
 		return this.PositionPossible;
 	}
 	
-	public void setPositionPossible(int[][] PosPossible)
+	/*public void setPositionPossible(int[][] PosPossible)
 	{
 		this.PositionPossible=PosPossible;
-	}
+	}*/
 	
 	public Position getPositionDuMechant()
 	{
