@@ -7,7 +7,12 @@ public class Pion extends Piece
 	public Pion(Position position, String couleur)
 	{
 		super(position, couleur);
+		if(this.position.getI()==6 || this.position.getI()==1)
+			NombreDeDeplacement=0;
+		else 
+			NombreDeDeplacement=1;
 		this.setPositionPossible();
+		
 		this.Image = "Image d'une dame de cette couleur";
 		
 	}
@@ -22,7 +27,7 @@ public class Pion extends Piece
 			{
 				if (this.position.getI()<7)
 					this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
-				if (this.position.getI()<6)
+				if (this.position.getI()<6 )
 					this.PositionPossible[this.position.getI() + 2][this.position.getJ()] = 1 ;
 				if(this.position.getJ()<7)
 					this.PositionPossible[this.position.getI() + 1][this.position.getJ()+1]=1;
@@ -45,11 +50,20 @@ public class Pion extends Piece
 		}
 
 		
-		else if(this.getCouleur() == "noir" && this.position.getI() != 7)
+		else if(this.getCouleur() == "noir" && this.position.getI() != 7){
 			this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
-		
-		else if(this.getCouleur() == "blanc" && this.position.getI() != 0)
-			this.PositionPossible[this.position.getI() - 1][this.position.getJ()] = 1 ;		
+				if(this.position.getJ()<7)
+					this.PositionPossible[this.position.getI() + 1][this.position.getJ()+1]=1;
+				if (this.position.getJ()>0)
+					this.PositionPossible[this.position.getI() + 1][this.position.getJ()-1]=1;
+		}
+		else if(this.getCouleur() == "blanc" && this.position.getI() != 0){
+				this.PositionPossible[this.position.getI() - 1][this.position.getJ()] = 1 ;
+				if(this.position.getJ()<7)
+					this.PositionPossible[this.position.getI() - 1][this.position.getJ()+1]=1;
+				if (this.position.getJ()>0)
+					this.PositionPossible[this.position.getI() - 1][this.position.getJ()-1]=1;
+		}
 	}
 
 	public String toString()
