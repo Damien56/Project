@@ -175,30 +175,31 @@ public class Echiquier
 		return res.toString();
 	}	
 		
-	public Vector<Position> destinationPossible(Piece piece){
-
+	public Vector<Position> destinationPossible(Piece piece)
+	{
 		Vector<Position> dest = new Vector<Position>();
 		int[][] tabposition = piece.getPositionPossible();
 
-		int i=0, j=0;
+		int i = 0, j = 0;
 		
 		//deplacements pour le cavalier
-		if(piece.getClass().getName()=="pieces.Cavalier"){
-			for(i=0; i<8; i++){//parcourir les lignes
-				for(j=0; j<8; j++){//parcourir les colonnes
-					if(tabposition[i][j]==1){
-						if(this.tableau[i][j]==null){
-							dest.add(new Position(i,j));
-						}
-						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-							dest.add(new Position(i,j));
-						}
+		if(piece.getClass().getName() == "pieces.Cavalier")
+			for(i = 0; i < 8; i++) //parcourir les lignes
+				for(j = 0; j < 8; j++) //parcourir les colonnes
+					if(tabposition[i][j] == 1)
+					{
+						if(this.tableau[i][j] == null)
+							dest.add(new Position(i, j));
+						
+						else
+							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+								dest.add(new Position(i, j));
 					}
-				}
-			}			
-		}
-		else{//deplacements pour toutes les pièces sauf le cavalier
-			//deplacement vers le bas
+
+		// deplacement pour toutes les pièces sauf le cavalier
+		// deplacement vers le bas
+		else
+		{
 			i=piece.getPosition().getI();//initialisation de la position de recherche
 			j=piece.getPosition().getJ();
 			do{
