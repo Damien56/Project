@@ -35,7 +35,7 @@ public class Affichage extends JFrame{
 	private static JFrame fenMenu = new JFrame("Jeu D'échec - Menu");
 	private static JButton creer =new JButton("Créer Partie");
 	private static JButton revoir =new JButton("Revoir la Partie");
-	private static JButton exit =new JButton("Quitter la partie");
+	private static JButton exit1 =new JButton("Quitter la partie");
 
 
 	//attributs de menuJoueurs()
@@ -115,22 +115,61 @@ public class Affichage extends JFrame{
 		revoir.addActionListener(new EcouteurMenu());
 
 
-		exit.setSize(200,60);
-		exit.addActionListener(new EcouteurMenu());
+		exit1.setSize(200,60);
+		exit1.addActionListener(new EcouteurMenu());
 
 		pan.setLayout(new GridLayout(3,1));
 		pan.add(creer);
 		pan.add(revoir);
-		pan.add(exit);
+		pan.add(exit1);
 
 
 		fenMenu.getContentPane().add(pan);
 		confirmExit(fenMenu);
 		fenMenu.pack();
 		fenMenu.setSize(400,400);
+
+
+		//confirmExit(fenMenu);
+
 		fenMenu.setVisible(true);
 
+
 	}
+
+
+	/*public static void confirmExit (final JFrame fen){
+
+	public static void confirmExit (final JFrame fen){
+
+		
+		fen.addWindowListener(new WindowAdapter(){
+            public void windowClosing(WindowEvent e){
+                  int reponse = JOptionPane.showConfirmDialog(fen,
+                                       "Voulez-vous quitter l'application",
+                                       "Confirmation",
+                                       JOptionPane.YES_NO_OPTION,
+                                       JOptionPane.QUESTION_MESSAGE);
+                  if (reponse==JOptionPane.YES_OPTION){
+                      Dialogue.serialiserPartie(p, "proute.txt");    
+                	  fen.dispose();
+                	  fen.setDefaultCloseOperation(EXIT_ON_CLOSE);
+                  }
+                  if (reponse==JOptionPane.YES_OPTION){
+                	  fen.setVisible(true);
+                  }
+                  
+            }
+		});	
+		
+
+}*/
+	
+
+
+
+		
+
 
 	public static void menuJoueurs(){
 
@@ -161,6 +200,10 @@ public class Affichage extends JFrame{
 		pan.add(pan3);
 
 
+
+		//confirmExit(fenMenuJoueur);
+
+
 		fenMenuJoueur.getContentPane().add(pan);
 		confirmExit(fenMenuJoueur);
 		fenMenuJoueur.pack();
@@ -189,6 +232,10 @@ public class Affichage extends JFrame{
 		pan.add(partieS);
 		pan.add(partieP);
 		pan.add(revenir);
+
+
+
+		//confirmExit(fenMenuPartie);
 
 
 		fenMenuPartie.getContentPane().add(pan);
@@ -276,6 +323,7 @@ public class Affichage extends JFrame{
 
 	}
 
+<<<<<<< HEAD
 	public static void confirmExit (final JFrame fen){
 
 		fen.addWindowListener(new WindowAdapter(){
@@ -295,6 +343,25 @@ public class Affichage extends JFrame{
 				}
 			}
 		});	
+=======
+
+	public void confirmExit(){
+
+		JFrame fenetre1 = new JFrame("Fin de partie");
+		JPanel panel1 =new JPanel();
+		panel1.setSize(400, 100);
+		panel1.setLayout( new BoxLayout(panel1,1));
+
+		JButton confirmer = new JButton("Confirmer sortie de la partie");
+		confirmer.setSize(200,50);
+
+		panel1.add(confirmer);
+
+		fenetre1.getContentPane().add(panel1);
+		fenetre1.pack();
+		fenetre1.setVisible(true);
+
+>>>>>>> master
 
 	}
 	
@@ -443,6 +510,11 @@ public class Affichage extends JFrame{
 
 		fenEchiquier.setSize(400,400);
 
+
+
+		//confirmExit(fenEchiquier);
+
+
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
@@ -469,6 +541,9 @@ public class Affichage extends JFrame{
 		confirmExit(fenEchiquier);
 		fenEchiquier.setSize(400,400);
 
+
+		//confirmExit(fenEchiquier);
+
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 
@@ -484,7 +559,7 @@ public class Affichage extends JFrame{
 			if (e.getSource() == revoir){
 				System.out.println("revoir"); 
 			}
-			if (e.getSource() == exit){
+			if (e.getSource() == exit1){
 				System.exit(0); 
 			}
 		}
@@ -654,24 +729,52 @@ public class Affichage extends JFrame{
 		}
 	}
 
+<<<<<<< HEAD
 	public static class EcouteurExit implements ActionListener{
+=======
+
+
+/*	public static class EcouteurExit implements ActionListener{
+>>>>>>> master
 
 		public void actionPerformed(ActionEvent e){
 			if (e.getSource() == oui ){
 				Dialogue.serialiserPartie(p, "proute.txt");
 				System.exit(0);
 			}
+<<<<<<< HEAD
 			else if (e.getSource() == non ){
 				fenExit.dispose();				
 			}
 		}
 	}
 	
+=======
+			if (e.getSource() == non ){
+				fenExit.dispose();
+				
+			}
+				
+			}
+		}
+		*/
+
+>>>>>>> master
 	public static void main(String[] args) {
+		
+
 
 		menuPrincipal();
 		p.jouerPartie();
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> master
 	}
 
+
 }
+
