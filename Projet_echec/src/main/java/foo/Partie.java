@@ -149,6 +149,7 @@ public class Partie implements java.io.Serializable
 							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i)))
 							{
 								this.E.deplacerPiece(pieceSelected, pos);
+								//pieceSelected.setPositionPossible();
 								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop = true;
 							}
