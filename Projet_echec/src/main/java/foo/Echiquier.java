@@ -198,76 +198,92 @@ public class Echiquier
 
 		// deplacement pour toutes les pièces sauf le cavalier
 		// deplacement vers le bas
+		
 		else
 		{
-			i=piece.getPosition().getI();//initialisation de la position de recherche
-			j=piece.getPosition().getJ();
-			do{
-
-				if(i<7){
+			i = piece.getPosition().getI(); //initialisation de la position de recherche
+			j = piece.getPosition().getJ();
+			
+			do
+			{
+				if(i < 7)
+				{
 					i++;
-					if(tabposition[i][j]==1){
-						if(this.tableau[i][j]==null){
-							dest.add(new Position(i,j));
-						}
-						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-							dest.add(new Position(i,j));
-						}
+					if(tabposition[i][j] == 1)
+					{
+						if(this.tableau[i][j] == null)
+							dest.add(new Position(i, j));
+						
+						else
+							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+								dest.add(new Position(i, j));
 					}
-				}
-			}while(this.tableau[i][j]==null && i<7);
+				}	
+			}
+			
+			while(this.tableau[i][j] == null && i < 7);
 
 			//deplacement vers le haut
-			i=piece.getPosition().getI();//reinitialisation a la position de la piece a verifier
+			i = piece.getPosition().getI();//reinitialisation a la position de la piece a verifier
 			do{
-
-				if(i>0){
+				if(i > 0)
+				{
 					i--;
-					if(tabposition[i][j]==1){
-						if(this.tableau[i][j]==null){
+					if(tabposition[i][j] == 1)
+					{
+						if(this.tableau[i][j] == null)
 							dest.add(new Position(i,j));
-						}
-						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-							dest.add(new Position(i,j));
-						}
+						
+						else
+							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+								dest.add(new Position(i, j));
 					}
 				}
-			}while(this.tableau[i][j]==null && i>0);
+			}
+			
+			while(this.tableau[i][j] == null && i > 0);
 
 
 			//deplacement vers la droite
-			i=piece.getPosition().getI();//reinit
-			do{
-
-				if(j<7){
+			i = piece.getPosition().getI();//reinit
+			
+			do
+			{
+				if(j < 7)
+				{
 					j++;
-					if(tabposition[i][j]==1){
-						if(this.tableau[i][j]==null){
-							dest.add(new Position(i,j));
-						}
-						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-							dest.add(new Position(i,j));
-						}
+					if(tabposition[i][j] == 1)
+					{
+						if(this.tableau[i][j] == null)
+							dest.add(new Position(i, j));
+						
+						else
+							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+								dest.add(new Position(i, j));
 					}
 				}
-			}while(this.tableau[i][j]==null && j<7);
+			}
+			while(this.tableau[i][j] == null && j < 7);
 
 			//deplacement vers la gauche
-			j=piece.getPosition().getJ();//reinit
-			do{
-
-				if(j>0){
+			j = piece.getPosition().getJ();//reinit
+			do
+			{
+				if(j > 0)
+				{
 					j--;
-					if(tabposition[i][j]==1){
-						if(this.tableau[i][j]==null){
+					if(tabposition[i][j] == 1)
+					{
+						if(this.tableau[i][j] == null)
 							dest.add(new Position(i,j));
-						}
-						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-							dest.add(new Position(i,j));
-						}
+						
+						else
+							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+								dest.add(new Position(i, j));
+
 					}
 				}
-			}while(this.tableau[i][j]==null && j>0);
+			}while(this.tableau[i][j] == null && j>0);
 
 			//deplacement diagonale gauche et haut
 			i=piece.getPosition().getI();//reinit ligne
