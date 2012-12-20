@@ -239,6 +239,7 @@ public class Partie implements java.io.Serializable
 	}
 	
 	public boolean defilerTemps(Joueur j)
+	
 	{	
 		/* Methode qui compare le temps du systeme au temp de jeu d'un joueur.
 		 * Met fin à la partie si le temps de jeu est ecoule. */
@@ -258,22 +259,29 @@ public class Partie implements java.io.Serializable
 			{
 				j.setTempsEcoule(j.getTempsEcoule() - tempsEcoule);
 				tempsSystemDebut = System.currentTimeMillis();
+				if(j.getTempsEcoule() <= 0)
+					fini = true;
 			}
 		}
 		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
-				&& j.getTempsEcoule() > 0);
+				&& !fini);
 		
-		
-		
-		
-		fini = true;
 		
 		return fini;
-	}	
-	
-	
 		
+		}	
+	
+	
+		public void GérerTour()
+		
+		{
+			// Temps max pour test
+			this.J1.setTempsEcoule(30);
+			this.J2.setTempsEcoule(30);
+			
+			
+		}		
 	}
 	
 
