@@ -247,14 +247,14 @@ public class Affichage extends JFrame{
 
 	}
 
-	public static void confirmExit(){
+	public void confirmExit(){
 
 		JFrame fenetre1 = new JFrame("Fin de partie");
 		JPanel panel1 =new JPanel();
 		panel1.setSize(400, 100);
 		panel1.setLayout( new BoxLayout(panel1,1));
 
-		JTextField confirmer = new JTextField("Voulez-vous vraiment quitter??");
+		JButton confirmer = new JButton("Confirmer sortie de la partie");
 		confirmer.setSize(200,50);
 
 		panel1.add(confirmer);
@@ -280,12 +280,12 @@ public class Affichage extends JFrame{
 		
 	}
 
-	public static void afficherEchiquier(Echiquier ech)
+	public static JPanel afficherEchiquier(Echiquier ech)
 	{
 				
-		//JPanel pan =new JPanel();
-		panEchiquier.setSize(400, 100);
-		panEchiquier.setLayout(new GridLayout(9,8));
+		JPanel pan =new JPanel();
+		pan.setSize(400, 100);
+		pan.setLayout(new GridLayout(8,8));
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
 
@@ -344,17 +344,16 @@ public class Affichage extends JFrame{
 				else{
 					tabBoutton[i][j].setBackground(Color.lightGray);
 				}
-				tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
-				panEchiquier.add(tabBoutton[i][j]);
-				/*if(panEchiquier==null){
+
+				if(panEchiquier==null){
 					tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
 					pan.add(tabBoutton[i][j]);
-				}*/
+				}
 			}
 
 		}
 
-		//return pan;
+		return pan;
 	}
 
 	public static void afficherPartieStandard(){
@@ -364,28 +363,25 @@ public class Affichage extends JFrame{
 		
 		cont = fenEchiquierStand.getContentPane();*/
 		
-		//panEchiquier = 
-				afficherEchiquier(p.getEchiquier());
-		//panEchiquier.setLayout(new GridLayout(9,8));
+		panEchiquier = afficherEchiquier(p.getEchiquier());
+		panEchiquier.setLayout(new GridLayout(9,8));
 
-		//JPanel pan2 = new JPanel();
-		//pan2.setLayout(new GridLayout(1,4));
-		
+		JPanel pan2 = new JPanel();
+		pan2.setLayout(new GridLayout(1,4));
 		revenir.addActionListener(new EcouteurChoixPartie());
 		aideBoutton.addActionListener(new EcouteurAide());
 		creer.addActionListener(new EcouteurMenu());
-		panEchiquier.add(revenir);
-		panEchiquier.add(aideBoutton);
-		panEchiquier.add(creer);
-		panEchiquier.add(timer);
-		
-		//panEchiquier.setSize(50,20);
+		pan2.add(revenir);
+		pan2.add(aideBoutton);
+		pan2.add(creer);
+		pan2.add(timer);
+		pan2.setSize(50,20);
 
-		//monPanel.setLayout(new GridLayout(2,1));
-		//monPanel.add(panEchiquier);
-		//monPanel.add(pan2);
+		monPanel.setLayout(new GridLayout(2,1));
+		monPanel.add(panEchiquier);
+		monPanel.add(pan2);
 
-		fenEchiquier.getContentPane().add(panEchiquier);
+		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
 
@@ -399,9 +395,8 @@ public class Affichage extends JFrame{
 			cont.removeAll();
 		
 		cont = fenEchiquierPerso.getContentPane();*/
-		/*
+		
 		JPanel panPiece = tabPieces();
-
 		panEchiquier = afficherEchiquier(p.getEchiquier());
 
 		JPanel pan2 = new JPanel();
@@ -423,7 +418,7 @@ public class Affichage extends JFrame{
 
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
-*/
+
 	}	
 	
 	public static class EcouteurMenu implements ActionListener{
@@ -494,8 +489,6 @@ public class Affichage extends JFrame{
 			for(int i=0; i<8; i++){
 				for(int j=0; j<8 ; j++){
 					if (e.getSource() == tabBoutton[i][j]){
-						panEchiquier.removeAll();
-						afficherPartieStandard();
 						p.setCaseCliquee(new Position(i,j));
 						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
 
@@ -515,8 +508,7 @@ public class Affichage extends JFrame{
 						}
 
 						//panEchiquier=afficherEchiquier(p.getEchiquier());
-						//monPanel.updateUI();
-						panEchiquier.updateUI();
+						monPanel.updateUI();
 						//monPanel.revalidate();
 						//monPanel.repaint();
 						//fenEchiquierStand.repaint();
@@ -612,13 +604,12 @@ public class Affichage extends JFrame{
 				System.out.println(aide);
 			}
 		}
-	
 	}
 
 	public static void main(String[] args) {
 		
-		//menuPrincipal();
-		//p.jouerPartie();
+		menuPrincipal();
+		p.jouerPartie();
 		
 		//menuPrincipal();
 		//choixDeLaPartie();
@@ -633,7 +624,7 @@ public class Affichage extends JFrame{
 		//afficherPartiePersonnalisee();
 		//afficherPartieStandard();
 		//afficherPartieStandard();
-		confirmExit();
+
 
 	}
 
