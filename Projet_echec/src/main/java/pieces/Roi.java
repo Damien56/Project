@@ -83,6 +83,14 @@ public class Roi extends Piece {
 			
 		}
 		this.PositionPossible[i][j] = 0 ;
+		
+		if(DejaDeplace==false){
+				this.PositionPossible[i][j+2]=1;
+				this.PositionPossible[i][j-2]=1;
+			}
+			
+			
+		
 	}
 
 	// affiche les caracteristiques du Roi
