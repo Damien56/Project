@@ -1,6 +1,7 @@
 package foo;
 
 import java.util.Vector;
+import javax.swing.Timer;
 
 import pieces.*;
 
@@ -16,6 +17,7 @@ public class Partie implements java.io.Serializable
 	public Position caseCliquee, caseCliqueeMenu;
 	public String nomPiece, couleurPiece;
 	public boolean suivant;
+	public int tour;
 	
 	
 	// Le constructeur
@@ -33,6 +35,7 @@ public class Partie implements java.io.Serializable
 		this.nomPiece = "";
 		this.couleurPiece = "";
 		this.suivant = false;
+		this.tour = 1;
 		
 		if(isStd)
 		{
@@ -121,7 +124,6 @@ public class Partie implements java.io.Serializable
 	public void jouerPartie()
 	{
 		boolean fini = false, estMat = false, loop=false;
-		int tour = 1;
 		Piece pieceSelected = null;
 		Roi monRoi=null;
 		Position pos = null;
@@ -130,7 +132,7 @@ public class Partie implements java.io.Serializable
 			
 		while(!fini && !estMat)
 		{			
-			monRoi = selectMonRoi(tour);
+			monRoi = selectMonRoi(this.tour);
 					
 			// Test si le roi de ma couleur est mat
 			/*if(monRoi!=null)
@@ -140,7 +142,7 @@ public class Partie implements java.io.Serializable
 			else*/
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
-				pieceSelected = selectPieceJouable(tour);
+				pieceSelected = selectPieceJouable(this.tour);
 				
 				// Demande une position de destination tant qu'elle n'est
 				// pas conforme aux destinations possibles pour cette pièce.
@@ -168,7 +170,7 @@ public class Partie implements java.io.Serializable
 					this.mesDestinations.add(pos);
 				}
 			
-			tour++;
+				this.tour++;
 		}		
 	}
 	
@@ -236,34 +238,41 @@ public class Partie implements java.io.Serializable
 		return res.toString();
 	}
 	
-	
-	
-	public void ReglerTimer()
-	
-	{
-	
-		
-		boolean tempsjoueurblancecoule = false;
-		boolean tempsjoueurnoirecoute = false;
-		int tempsblanc = 3600;
-		int tempsnoir = 3600;
-		int tempssysteme ;  // valeur du temps systeme
-	   
+	public boolean defilerTemps(Joueur j)
+	{	
 		/* Methode qui compare le temps du systeme au temp de jeu d'un joueur.
-		 * Met fin à la partie si le temps de jeu est ecoule.
-		 */
+		 * Met fin à la partie si le temps de jeu est ecoule. */
 		
-		long tempsystem = System.currentTimeMillis();
+		// MAJ temps
+		boolean fini = false;
+		long tempsSystemDebut = System.currentTimeMillis();
+		long tempsEcoule = 0;
 		
-		tempsjoueurblancecoule = tempsjoueurblancecoule - tempsystem;
+		do
+		{
+			tempsEcoule = System.currentTimeMillis() - tempsSystemDebut;
+			
+			// peut devenir source de probleme, le temps ne se decompte pas.
+			// jouer sur les transtypages int/long
+			if((int)tempsEcoule == 1)
+			{
+				j.setTempsEcoule(j.getTempsEcoule() - tempsEcoule);
+				tempsSystemDebut = System.currentTimeMillis();
+			}
+		}
+		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
+				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
+				&& j.getTempsEcoule() > 0);
 		
 		
 		
 		
+		fini = true;
 		
-
-		
-	}
+		return fini;
+	}	
+	
+	
 		
 	}
 	
