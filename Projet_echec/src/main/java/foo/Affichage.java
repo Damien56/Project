@@ -106,14 +106,14 @@ public class Affichage extends JFrame{
 
 		fenMenu.setVisible(true);
 
-<<<<<<< HEAD
+
 	}
 
 
 	/*public static void confirmExit (final JFrame fen){
-=======
+
 	public static void confirmExit (final JFrame fen){
->>>>>>> bigodam
+
 		
 		fen.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e){
@@ -134,14 +134,14 @@ public class Affichage extends JFrame{
             }
 		});	
 		
-<<<<<<< HEAD
+
 }*/
 	
 
-=======
-}
+
+
 		
->>>>>>> bigodam
+
 	public static void menuJoueurs(){
 
 		//j1.setColumns(10);
@@ -287,7 +287,7 @@ public class Affichage extends JFrame{
 
 	}
 
-<<<<<<< HEAD
+
 	public void confirmExit(){
 
 		JFrame fenetre1 = new JFrame("Fin de partie");
@@ -307,8 +307,6 @@ public class Affichage extends JFrame{
 
 	}
 
-=======
->>>>>>> bigodam
 	public static void afficherAide(){
 		if (p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()] != null){
 			Vector<Position> dest = p.getEchiquier().destinationPossible(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]);
@@ -426,13 +424,11 @@ public class Affichage extends JFrame{
 		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
-<<<<<<< HEAD
+
 
 		//confirmExit(fenEchiquier);
 
-=======
-		//confirmExit(fenEchiquier);
->>>>>>> bigodam
+
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
@@ -646,9 +642,8 @@ public class Affichage extends JFrame{
 		}
 	}
 
-<<<<<<< HEAD
-=======
-	public static class EcouteurExit implements ActionListener{
+
+/*	public static class EcouteurExit implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){
 			if (e.getSource() == oui ){
@@ -662,45 +657,16 @@ public class Affichage extends JFrame{
 				
 			}
 		}
-		
->>>>>>> bigodam
+		*/
+
 	public static void main(String[] args) {
 		
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 		menuPrincipal();
 		p.jouerPartie();
 
-=======
-		menuPrincipal();
-		p.jouerPartie();
-<<<<<<< HEAD
->>>>>>> parent of 43e9865... exit
-=======
-		menuPrincipal();
-		p.jouerPartie();
->>>>>>> parent of 43e9865... exit
-=======
-		menuPrincipal();
-		p.jouerPartie();
->>>>>>> parent of 43e9865... exit
-=======
->>>>>>> bigodam
-		
-		//menuPrincipal();
-		//choixDeLaPartie();
-		//menuFinDePartie();
-		//choixDesJoueur();
 
-		//tabPieces();
-		//afficherEchiquier();
-
-		//ech.echiquierStandard();
-		//afficherEchiquier(ech);
-		//afficherPartiePersonnalisee();
-		
 
 
 	}

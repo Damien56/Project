@@ -272,12 +272,9 @@ public class Partie implements java.io.Serializable
 		fini = true;
 		return fini;
 		
-<<<<<<< HEAD
-		}	
 
-=======
 	}	
->>>>>>> bigodam
+
 	
 	
 		/*public void GererTour()
@@ -287,26 +284,19 @@ public class Partie implements java.io.Serializable
 			this.J1.setTempsEcoule(30);
 			this.J2.setTempsEcoule(30);
 			
-<<<<<<< HEAD
-			while()
-			{
-=======
+
 			//while (1)
 			
->>>>>>> bigodam
+
 				J1.getTempsEcoule();
 				J2.getTempsEcoule();
 			}
 	
 		}*/
 			
-<<<<<<< HEAD
-}	
-=======
+
 			}
-	}
-			
->>>>>>> bigodam
+	
 	
 
 
