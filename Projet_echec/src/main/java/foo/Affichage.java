@@ -15,7 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import pieces.Cavalier;
+import pieces.Dame;
+import pieces.Fou;
+import pieces.Pion;
 import pieces.Position;
+import pieces.Roi;
+import pieces.Tour;
 
 
 
@@ -310,39 +316,52 @@ public class Affichage extends JFrame{
 					String type = ech.getTableau()[i][j].getClass().getName();
 					String color = ech.getTableau()[i][j].getCouleur();
 					if((type=="pieces.Pion")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Pion(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionb.gif"));
+						
 					}
 					else if((type=="pieces.Tour") && (color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Tour(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourb.gif"));
 					}
 					else if((type=="pieces.Fou")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Fou(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foub.gif"));
 					}
 					else if((type=="pieces.Cavalier")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Cavalier(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/cavalierb.gif"));
 					}
 					else if((type=="pieces.Dame")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Dame(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/dameb.gif"));
 					}
 					else if((type=="pieces.Roi")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Roi(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roib.gif"));
 					}
 					else if((type=="pieces.Pion")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Pion(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionn.gif"));
 					}
 					else if((type=="pieces.Tour") && (color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Tour(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourn.gif"));
 					}
 					else if((type=="pieces.Fou")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Fou(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foun.gif"));
 					}
 					else if((type=="pieces.Cavalier")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Cavalier(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/cavaliern.gif"));
 					}
 					else if((type=="pieces.Dame")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Dame(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/damen.gif"));
 					}
 					else if((type=="pieces.Roi")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Roi(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
 					}
 					else{
@@ -508,6 +527,7 @@ public class Affichage extends JFrame{
 				for(int j=0; j<8 ; j++){
 					if (e.getSource() == tabBoutton[i][j]){
 						p.setCaseCliquee(new Position(i,j));
+						//p.getEchiquier().getTableau()[i][j].setPositionPossible();
 						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
 
 						for(int i1=0; i1<8; i1++){
