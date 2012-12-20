@@ -120,7 +120,7 @@ public class Affichage extends JFrame{
 		fenMenu.getContentPane().add(pan);
 		fenMenu.pack();
 		fenMenu.setSize(400,400);
-<<<<<<< HEAD
+
 
 		//confirmExit(fenMenu);
 
@@ -162,12 +162,7 @@ public class Affichage extends JFrame{
 
 		
 
-=======
-		fenMenu.setVisible(true);
 
-	}
-
->>>>>>> master
 	public static void menuJoueurs(){
 
 		//j1.setColumns(10);
@@ -197,11 +192,10 @@ public class Affichage extends JFrame{
 		pan.add(pan3);
 
 
-<<<<<<< HEAD
+
 		//confirmExit(fenMenuJoueur);
 
-=======
->>>>>>> master
+
 		fenMenuJoueur.getContentPane().add(pan);
 		fenMenuJoueur.pack();
 		fenMenuJoueur.setSize(400,400);
@@ -231,11 +225,10 @@ public class Affichage extends JFrame{
 		pan.add(revenir);
 
 
-<<<<<<< HEAD
+
 		//confirmExit(fenMenuPartie);
 
-=======
->>>>>>> master
+
 		fenMenuPartie.getContentPane().add(pan);
 		fenMenuPartie.pack();
 		fenMenuPartie.setSize(400,400);
@@ -319,10 +312,7 @@ public class Affichage extends JFrame{
 
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 	public void confirmExit(){
 
 		JFrame fenetre1 = new JFrame("Fin de partie");
@@ -479,13 +469,11 @@ public class Affichage extends JFrame{
 
 		fenEchiquier.setSize(400,400);
 
-<<<<<<< HEAD
+
 
 		//confirmExit(fenEchiquier);
 
 
-=======
->>>>>>> master
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
@@ -518,11 +506,9 @@ public class Affichage extends JFrame{
 
 		fenEchiquier.setSize(400,400);
 
-<<<<<<< HEAD
+
 		//confirmExit(fenEchiquier);
 
-=======
->>>>>>> master
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 
@@ -711,7 +697,7 @@ public class Affichage extends JFrame{
 		}
 	}
 
-<<<<<<< HEAD
+
 
 /*	public static class EcouteurExit implements ActionListener{
 
@@ -737,34 +723,10 @@ public class Affichage extends JFrame{
 		p.jouerPartie();
 
 
-=======
-	public static void main(String[] args) {
 
-		menuPrincipal();
-		p.jouerPartie();
-
-		//menuPrincipal();
-		//choixDeLaPartie();
-		//menuFinDePartie();
-		//choixDesJoueur();
-
-		//tabPieces();
-		//afficherEchiquier();
-
-		//ech.echiquierStandard();
-		//afficherEchiquier(ech);
-		//afficherPartiePersonnalisee();
-		//afficherPartieStandard();
-		//afficherPartieStandard();
-
->>>>>>> master
 
 	}
 
-<<<<<<< HEAD
-	}
 
 }
-=======
-}
->>>>>>> master
+

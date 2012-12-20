@@ -20,14 +20,27 @@ public class Pion extends Piece
 			//positions pour un pion noir
 			if(this.getCouleur() == "noir")
 			{
-				this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
-				this.PositionPossible[this.position.getI() + 2][this.position.getJ()] = 1 ;
+				if (this.position.getI()<7)
+					this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
+				if (this.position.getI()<6)
+					this.PositionPossible[this.position.getI() + 2][this.position.getJ()] = 1 ;
+				if(this.position.getJ()<7)
+					this.PositionPossible[this.position.getI() + 1][this.position.getJ()+1]=1;
+				if (this.position.getJ()>0)
+					this.PositionPossible[this.position.getI() + 1][this.position.getJ()-1]=1;
 			}
 			
 			else if(this.getCouleur() == "blanc")
 			{
-				this.PositionPossible[this.position.getI() - 1][this.position.getJ()] = 1 ;
-				this.PositionPossible[this.position.getI() - 2][this.position.getJ()] = 1 ;
+				if (this.position.getI()>0)
+					this.PositionPossible[this.position.getI() - 1][this.position.getJ()] = 1 ;
+				if (this.position.getI()>1)
+					this.PositionPossible[this.position.getI() - 2][this.position.getJ()] = 1 ;
+				if(this.position.getJ()<7)
+					this.PositionPossible[this.position.getI() - 1][this.position.getJ()+1]=1;
+				if (this.position.getJ()>0)
+					this.PositionPossible[this.position.getI() - 1][this.position.getJ()-1]=1;
+				
 			}
 		}
 
