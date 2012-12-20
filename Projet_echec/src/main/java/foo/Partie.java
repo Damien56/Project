@@ -275,16 +275,21 @@ public class Partie implements java.io.Serializable
 		}	
 	
 	
-		public void GérerTour()
+		public void GererTour()
 		
 		{
 			// Temps max pour test
 			this.J1.setTempsEcoule(30);
 			this.J2.setTempsEcoule(30);
 			
+			while (1)
 			
-		}		
-	}
+				J1.getTempsEcoule();
+				J2.getTempsEcoule();
+	
+			
+			
+			
 	
 
 
