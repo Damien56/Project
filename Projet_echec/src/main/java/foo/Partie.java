@@ -125,17 +125,19 @@ public class Partie implements java.io.Serializable
 		Piece pieceSelected = null;
 		Piece monRoi;
 		Position pos = null;
-		
+			
+		System.out.println(this.E.toString());//Affichage Echiquier de depart
+			
 		while(!fini && !estMat)
 		{			
 			monRoi = selectMonRoi(tour);
 					
 			// Test si le roi de ma couleur est mat
-			if(monRoi!=null)
+			/*if(monRoi!=null)
 				if(this.E.estMat((Roi)monRoi))
 					estMat = true;
 
-			else
+			else*/
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
 				pieceSelected = selectPieceJouable(tour);
@@ -150,7 +152,7 @@ public class Partie implements java.io.Serializable
 						for(int i=0;i<this.E.destinationPossible(pieceSelected).size();i++){
 							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
 								this.E.deplacerPiece(pieceSelected, pos);
-								System.out.println(this.E.toString());
+								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop=true;
 							}
 						}
@@ -180,13 +182,13 @@ public class Partie implements java.io.Serializable
 			pos = this.getCaseCliquee();
 			if(pos!=null)
 				if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null)
-					if(((tour%2 != 0) && (pieceSelected.getCouleur() == "blanc")) || ((tour%2 == 0) && (pieceSelected.getCouleur() == "noir"))){
+					if(((tour%2 != 0) && (this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur() == "blanc")) || ((tour%2 == 0) && (this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur() == "noir"))){
 						pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
 						stop=true;
 					}
 		}
 		while(stop==false);
-		
+
 		return pieceSelected;
 	}
 	
@@ -229,4 +231,37 @@ public class Partie implements java.io.Serializable
 		StringBuffer res = new StringBuffer("");
 		return res.toString();
 	}
-}
+	
+	
+	
+	public void ReglerTimer()
+	
+	{
+	
+		
+		boolean tempsjoueurblancecoule = false;
+		boolean tempsjoueurnoirecoute = false;
+		int tempsblanc = 3600;
+		int tempsnoir = 3600;
+		int tempssysteme ;  // valeur du temps systeme
+	   
+		/* Methode qui compare le temps du systeme au temp de jeu d'un joueur.
+		 * Met fin à la partie si le temps de jeu est ecoule.
+		 */
+		
+		long tempsystem = System.currentTimeMillis();
+		
+		tempsjoueurblancecoule = tempsjoueurblancecoule - tempsystem;
+		
+		
+		
+		
+		
+
+		
+	}
+		
+	}
+	
+
+
