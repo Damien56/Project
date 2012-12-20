@@ -4,19 +4,19 @@ public class testClasse {
 	
 	public static void main(String[] args) {
 		Dame dame = new Dame(new Position(4,3),"blanc");
-		dame.toStringDame();
+		dame.toString();
 		Fou fou = new Fou(new Position(4,3),"blanc");
-		fou.toStringFou();
+		fou.toString();
 		Tour tour = new Tour (new Position(4,3), "blanc");
-		tour.toStringTour();
+		tour.toString();
 		Pion pion = new Pion (new Position(4,3), "blanc");
-		pion.toStringPion();
+		pion.toString();
 		Roi Roi =new Roi(new Position(4,3),"blanc");
-		Roi.toStringRoi();
+		Roi.toString();
 		Roi Roi2 =new Roi(new Position(0,0),"blanc");
-		Roi2.toStringRoi();
+		Roi2.toString();
 		Roi Roi3 =new Roi(new Position(0,7),"blanc");
-		Roi3.toStringRoi();
+		Roi3.toString();
 		Cavalier Cavalier = new Cavalier (new Position(4,3), "blanc");
 		Cavalier.toStringCavalier();
 		Cavalier Cavalier1 = new Cavalier (new Position(0,0), "blanc");

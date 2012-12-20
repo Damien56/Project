@@ -2,6 +2,8 @@ package foo;
 
 import java.io.Serializable;
 
+import javax.swing.Timer;
+
 public class Joueur
 {
 	
@@ -10,6 +12,7 @@ public class Joueur
 	private String Nom;
 	private String Couleur;
 	private int Score;
+	private long tempsEcoule;
 	
 	
 	// Constructeur de la classe Joueur
@@ -18,6 +21,7 @@ public class Joueur
 		this.Nom = nom;
 		this.Couleur = couleur;
 		this.Score = s;
+		this.tempsEcoule = 0;
 	}
 	
 	public Joueur(String nom, String couleur)
@@ -68,5 +72,14 @@ public class Joueur
 		res.append(" point(s).");
 		return res.toString();
 	}
-
+	
+	public long getTempsEcoule()
+	{
+		return this.tempsEcoule;
+	}
+	
+	public void setTempsEcoule(long t)
+	{
+		this.tempsEcoule = t;
+	}
 }
