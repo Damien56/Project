@@ -161,8 +161,7 @@ public class Echiquier
 		}
 		return res.toString();
 	}	
-	
-	
+		
 	public Vector<Position> destinationPossible(Piece piece){
 
 		Vector<Position> dest = new Vector<Position>();
@@ -396,48 +395,59 @@ public class Echiquier
 		return estPrenable(roi);
 	}
 	
+<<<<<<< HEAD
 	public boolean estMat(Piece roi){
+=======
+	public boolean estMat(Piece roi)
+	{
+>>>>>>> master
 		boolean mat = false;
 		Position positionTest = roi.getPosition();
 		Vector<Position> destination = destinationPossible(roi);
+		String couleurDuMechant = "";
+		Piece mechant;
 		
-		for(int i=0; i<destination.size();i++){
+		for(int i = 0; i < destination.size(); i++)
+		{
 			roi.setPosition(destination.elementAt(i));					
-			if(estEchec(roi)==false){
+			if(estEchec(roi) == false)
+			{
 				roi.setPosition(positionTest);
 				mat = false;
 			}
 		}
 		
-		String couleurDuMechant="";
-		if(roi.getCouleur()=="blanc"){
-			couleurDuMechant="noir";
-		}
-		else if(roi.getCouleur()=="noir"){
-			couleurDuMechant="blanc";
-		}
 		
-		Piece mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
+		if(roi.getCouleur() == "blanc")
+			couleurDuMechant = "noir";
 		
-		if(mechant!=null){//si un mechant existe faire :
-			if(estPrenable(mechant)){
+		else
+			if(roi.getCouleur() == "noir")
+				couleurDuMechant = "blanc";
+		
+		
+		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
+		
+		//si un mechant existe faire :
+		if(mechant != null)
+		{
+			if(estPrenable(mechant))
 				mat = false;
-			}
+			
 
 			destination = destinationPossible(mechant);
-			for(int i=0; i<destination.size(); i++){
+			for(int i = 0; i < destination.size(); i++)
+			{
 				mechant.setPosition(destination.elementAt(i));
-				if(estPrenable(mechant)){
+				if(estPrenable(mechant))
+				{
 					Position protection = mechant.getPositionDuMechant();
 					deplacerPiece(tableau[protection.getI()][protection.getJ()],destination.elementAt(i));
-					if(estEchec(roi)){
+					if(estEchec(roi))
 						mat = true;
-					}
 				}
 			}
 		}
-
 		return mat;	
 	}
-
 }
