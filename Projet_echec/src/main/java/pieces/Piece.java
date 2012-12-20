@@ -8,7 +8,10 @@ public class Piece
 	protected String Couleur;
 	protected String Image;
 	protected int[][] PositionPossible = new int[8][8];
-	private Position positionDuMechant;
+	protected Position positionDuMechant;
+	protected boolean DejaDeplace;
+	protected int NombreDeDeplacement;
+	
 	
 	public Piece(Position position, String couleur)
 	{
@@ -16,6 +19,8 @@ public class Piece
 		this.Couleur = couleur;
 		this.Image = "";
 		this.positionDuMechant = null;
+		this.DejaDeplace = false;
+		this.NombreDeDeplacement = 0;
 		
 		 for (int i = 0 ; i < 8 ; i++)
 			 for(int j = 0 ; j < 8 ; j++)
@@ -77,4 +82,25 @@ public class Piece
 	{
 		this.positionDuMechant = positionDuMechant;
 	}
+
+	public void setDejaDeplace(boolean dejaDeplace)
+	{
+		this.DejaDeplace = dejaDeplace;
+	}
+	
+	public boolean getDejaDeplace()
+	{
+		return this.DejaDeplace;
+	}
+	
+	public void setNombreDeDeplacement(int i)
+	{
+		this.NombreDeDeplacement = i;
+	}
+	
+	public int getNombreDeDeplacement()
+	{
+		return this.NombreDeDeplacement;
+	}
+	
 }

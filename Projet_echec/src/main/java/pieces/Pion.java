@@ -2,14 +2,14 @@ package pieces;
 
 public class Pion extends Piece
 {
-	private int NombreDeDeplacement ;
+	
 	
 	public Pion(Position position, String couleur)
 	{
 		super(position, couleur);
 		this.setPositionPossible();
 		this.Image = "Image d'une dame de cette couleur";
-		this.NombreDeDeplacement = 0;
+		
 	}
 	
 	//a modifier pour la dernière case
@@ -35,7 +35,7 @@ public class Pion extends Piece
 		else if(this.getCouleur() == "noir" && this.position.getI() != 7)
 			this.PositionPossible[this.position.getI() + 1][this.position.getJ()] = 1 ;
 		
-		else if(this.getCouleur()=="blanc" && this.position.getI()!=0)
+		else if(this.getCouleur() == "blanc" && this.position.getI() != 0)
 			this.PositionPossible[this.position.getI() - 1][this.position.getJ()] = 1 ;		
 	}
 
