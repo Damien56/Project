@@ -1,5 +1,8 @@
 package pieces;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 
 public class Piece
 {
@@ -72,6 +75,11 @@ public class Piece
 	{
 		return this.PositionPossible;
 	}
+	
+	/*public void setPositionPossible(int[][] PosPossible)
+	{
+		this.PositionPossible=PosPossible;
+	}*/
 	
 	public Position getPositionDuMechant()
 	{
