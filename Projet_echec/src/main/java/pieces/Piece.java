@@ -35,6 +35,12 @@ public class Piece
 		return this.positionOld;
 	}
 	
+	/*public void setPositionPossible(Piece p){
+		
+		
+		
+	}*/
+	
 	public String getCouleur()
 	{
 		return this.Couleur;
