@@ -117,7 +117,7 @@ public class Affichage extends JFrame{
 		fenMenu.pack();
 		fenMenu.setSize(400,400);
 		
-		confirmExit(fenMenu);
+		//confirmExit(fenMenu);
 				
 		fenMenu.setVisible(true);
 		
@@ -126,7 +126,7 @@ public class Affichage extends JFrame{
 
 
 
-	public static void confirmExit (final JFrame fen){
+	/*public static void confirmExit (final JFrame fen){
 		
 		fen.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e){
@@ -147,7 +147,7 @@ public class Affichage extends JFrame{
             }
 		});	
 		
-}
+}*/
 	
 	
 	public static void menuJoueurs(){
@@ -178,7 +178,7 @@ public class Affichage extends JFrame{
 		pan.add(pan2);
 		pan.add(pan3);
 
-		confirmExit(fenMenuJoueur);
+		//confirmExit(fenMenuJoueur);
 		fenMenuJoueur.getContentPane().add(pan);
 		fenMenuJoueur.pack();
 		fenMenuJoueur.setSize(400,400);
@@ -207,7 +207,7 @@ public class Affichage extends JFrame{
 		pan.add(partieP);
 		pan.add(revenir);
 
-		confirmExit(fenMenuPartie);
+		//confirmExit(fenMenuPartie);
 		fenMenuPartie.getContentPane().add(pan);
 		fenMenuPartie.pack();
 		fenMenuPartie.setSize(400,400);
@@ -416,7 +416,7 @@ public class Affichage extends JFrame{
 		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
-		confirmExit(fenEchiquier);
+		//confirmExit(fenEchiquier);
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
@@ -448,7 +448,7 @@ public class Affichage extends JFrame{
 		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
-		confirmExit(fenEchiquier);
+		//confirmExit(fenEchiquier);
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 
@@ -655,6 +655,7 @@ public class Affichage extends JFrame{
 	public static void main(String[] args) {
 		
 		menuPrincipal();
+		//getEchiquier().echiquierStandard();
 		p.jouerPartie();
 		
 		//menuPrincipal();
