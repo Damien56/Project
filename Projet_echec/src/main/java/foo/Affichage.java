@@ -15,7 +15,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import pieces.Cavalier;
+import pieces.Dame;
+import pieces.Fou;
+import pieces.Pion;
 import pieces.Position;
+import pieces.Roi;
+import pieces.Tour;
 
 
 
@@ -45,6 +51,7 @@ public class Affichage extends JFrame{
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	private static JPanel panEchiquier = new JPanel();
 	private static JPanel monPanel = new JPanel();
+	private static boolean[][] dejaEcoute = new boolean[8][8];
 
 	//attributs afficherPartieStandard et partie perso
 	private static JFrame fenEchiquierStand = new JFrame("Jeu D'échec ");
@@ -74,7 +81,19 @@ public class Affichage extends JFrame{
 
 
 	public Affichage(){
+		for(int i=0; i<8; i++)
+			for(int j=0; j<8 ; j++)
+				this.dejaEcoute[i][j]=false;
 	}
+
+	public static boolean getdejaEcoute(int i, int j){
+		return dejaEcoute[i][j];
+	}
+
+	public static void setdejaEcoute(int i, int j, boolean stat){
+		dejaEcoute[i][j] = stat;
+	}
+
 
 	public static void menuPrincipal(){
 
@@ -101,6 +120,7 @@ public class Affichage extends JFrame{
 		fenMenu.getContentPane().add(pan);
 		fenMenu.pack();
 		fenMenu.setSize(400,400);
+<<<<<<< HEAD
 
 		//confirmExit(fenMenu);
 
@@ -142,6 +162,12 @@ public class Affichage extends JFrame{
 
 		
 
+=======
+		fenMenu.setVisible(true);
+
+	}
+
+>>>>>>> master
 	public static void menuJoueurs(){
 
 		//j1.setColumns(10);
@@ -171,8 +197,11 @@ public class Affichage extends JFrame{
 		pan.add(pan3);
 
 
+<<<<<<< HEAD
 		//confirmExit(fenMenuJoueur);
 
+=======
+>>>>>>> master
 		fenMenuJoueur.getContentPane().add(pan);
 		fenMenuJoueur.pack();
 		fenMenuJoueur.setSize(400,400);
@@ -202,8 +231,11 @@ public class Affichage extends JFrame{
 		pan.add(revenir);
 
 
+<<<<<<< HEAD
 		//confirmExit(fenMenuPartie);
 
+=======
+>>>>>>> master
 		fenMenuPartie.getContentPane().add(pan);
 		fenMenuPartie.pack();
 		fenMenuPartie.setSize(400,400);
@@ -287,7 +319,10 @@ public class Affichage extends JFrame{
 
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 	public void confirmExit(){
 
 		JFrame fenetre1 = new JFrame("Fin de partie");
@@ -313,13 +348,13 @@ public class Affichage extends JFrame{
 
 			for (Position pos : dest){
 				tabBoutton[pos.getI()][pos.getJ()].setBackground(Color.green);
-				//tabBoutton[pos.getI()][pos.getJ()].repaint();
+				tabBoutton[pos.getI()][pos.getJ()].repaint();
 			}
 		}
 		else 
 			System.out.println("error");
 
-		
+
 	}
 
 	public static JPanel afficherEchiquier(Echiquier ech)
@@ -328,7 +363,7 @@ public class Affichage extends JFrame{
 			panEchiquier = new JPanel();
 		JPanel pan = panEchiquier;
 		pan.removeAll();
-		
+
 		pan.setSize(400, 100);
 		pan.setLayout(new GridLayout(8,8));
 		for(int i=0; i<8; i++){
@@ -339,39 +374,52 @@ public class Affichage extends JFrame{
 					String type = ech.getTableau()[i][j].getClass().getName();
 					String color = ech.getTableau()[i][j].getCouleur();
 					if((type=="pieces.Pion")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Pion(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionb.gif"));
+						
 					}
 					else if((type=="pieces.Tour") && (color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Tour(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourb.gif"));
 					}
 					else if((type=="pieces.Fou")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Fou(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foub.gif"));
 					}
 					else if((type=="pieces.Cavalier")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Cavalier(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/cavalierb.gif"));
 					}
 					else if((type=="pieces.Dame")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Dame(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/dameb.gif"));
 					}
 					else if((type=="pieces.Roi")&&(color=="blanc")){
+						p.getEchiquier().getTableau()[i][j]= new Roi(new Position(i,j),"blanc");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roib.gif"));
 					}
 					else if((type=="pieces.Pion")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Pion(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionn.gif"));
 					}
 					else if((type=="pieces.Tour") && (color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Tour(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourn.gif"));
 					}
 					else if((type=="pieces.Fou")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Fou(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/foun.gif"));
 					}
 					else if((type=="pieces.Cavalier")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Cavalier(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/cavaliern.gif"));
 					}
 					else if((type=="pieces.Dame")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Dame(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/damen.gif"));
 					}
 					else if((type=="pieces.Roi")&&(color=="noir")){
+						p.getEchiquier().getTableau()[i][j]= new Roi(new Position(i,j),"noir");
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
 					}
 					else{
@@ -392,7 +440,7 @@ public class Affichage extends JFrame{
 
 				if(tabBoutton[i][j].getAction()==null)
 					tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
-				
+
 				pan.add(tabBoutton[i][j]);				
 			}
 
@@ -402,7 +450,13 @@ public class Affichage extends JFrame{
 	}
 
 	public static void afficherPartieStandard(){
+
+		/*if(cont!=null)
+			cont.removeAll();
 		
+		cont = fenEchiquierStand.getContentPane();*/
+
+		//panEchiquier = afficherEchiquier(p.getEchiquier());
 		panEchiquier.setLayout(new GridLayout(9,8));
 
 		JPanel pan2 = new JPanel();
@@ -422,20 +476,29 @@ public class Affichage extends JFrame{
 		monPanel.add(pan2);
 
 		fenEchiquier.getContentPane().add(monPanel);
-		
+
 		fenEchiquier.setSize(400,400);
 
+<<<<<<< HEAD
 
 		//confirmExit(fenEchiquier);
 
 
+=======
+>>>>>>> master
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
 
 	public static  void afficherPartiePersonnalisee()
 	{
+		/*if(cont!=null)
+			cont.removeAll();
+		
+		cont = fenEchiquierPerso.getContentPane();*/
+
 		JPanel panPiece = tabPieces();
+		//panEchiquier = afficherEchiquier(p.getEchiquier());
 
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,2));
@@ -452,16 +515,19 @@ public class Affichage extends JFrame{
 		monPanel.add(pan2);
 
 		fenEchiquier.getContentPane().add(monPanel);
-		
+
 		fenEchiquier.setSize(400,400);
 
+<<<<<<< HEAD
 		//confirmExit(fenEchiquier);
 
+=======
+>>>>>>> master
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 
 	}	
-	
+
 	public static class EcouteurMenu implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){ 
@@ -521,6 +587,7 @@ public class Affichage extends JFrame{
 	public  static class EcouteurEchiquier implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 
+
 			if (e.getSource() == commencer){
 				fenEchiquier.dispose();
 				afficherPartieStandard();	
@@ -530,6 +597,7 @@ public class Affichage extends JFrame{
 				for(int j=0; j<8 ; j++){
 					if (e.getSource() == tabBoutton[i][j]){
 						p.setCaseCliquee(new Position(i,j));
+						//p.getEchiquier().getTableau()[i][j].setPositionPossible();
 						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
 
 						for(int i1=0; i1<8; i1++){
@@ -549,10 +617,11 @@ public class Affichage extends JFrame{
 
 						panEchiquier=afficherEchiquier(p.getEchiquier());
 						monPanel.updateUI();
-						
+
 					}
 				}
-			}		
+			}
+
 		}
 	}
 
@@ -642,6 +711,7 @@ public class Affichage extends JFrame{
 		}
 	}
 
+<<<<<<< HEAD
 
 /*	public static class EcouteurExit implements ActionListener{
 
@@ -667,8 +737,34 @@ public class Affichage extends JFrame{
 		p.jouerPartie();
 
 
+=======
+	public static void main(String[] args) {
 
+		menuPrincipal();
+		p.jouerPartie();
+
+		//menuPrincipal();
+		//choixDeLaPartie();
+		//menuFinDePartie();
+		//choixDesJoueur();
+
+		//tabPieces();
+		//afficherEchiquier();
+
+		//ech.echiquierStandard();
+		//afficherEchiquier(ech);
+		//afficherPartiePersonnalisee();
+		//afficherPartieStandard();
+		//afficherPartieStandard();
+
+>>>>>>> master
 
 	}
 
+<<<<<<< HEAD
+	}
+
 }
+=======
+}
+>>>>>>> master
