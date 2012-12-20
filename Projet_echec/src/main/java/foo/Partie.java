@@ -152,6 +152,7 @@ public class Partie implements java.io.Serializable
 								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop = true;
 							}
+							//sinon si pos = piece de la même couleur alors pieceSelected = pos
 
 				if(this.E.destinationPossible(pieceSelected).size() == 0)
 				{

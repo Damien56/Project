@@ -402,6 +402,10 @@ public class Affichage extends JFrame{
 
 		}
 
+		if (aide==true){
+			afficherAide();
+		}
+		
 		JTextField txt = new JTextField("null");
 		if(p.getTour()%2 == 0){
 			txt.setText("Noirs jouent");
@@ -553,9 +557,6 @@ public class Affichage extends JFrame{
 							}
 						}
 
-						if (aide==true){
-							afficherAide();
-						}
 
 						panEchiquier=afficherEchiquier(p.getEchiquier());
 						monPanel.updateUI();
