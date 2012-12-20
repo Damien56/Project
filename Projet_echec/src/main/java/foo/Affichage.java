@@ -43,6 +43,8 @@ public class Affichage extends JFrame{
 
 	//attribut afficherEchiquier()
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
+	private static JPanel panEchiquier = new JPanel();
+	private static Container cont = new Container();
 
 	//attributs afficherPartieStandard et partie perso
 	private static JFrame fenEchiquierStand = new JFrame("Jeu D'échec ");
@@ -274,12 +276,12 @@ public class Affichage extends JFrame{
 		else 
 			System.out.println("error");
 
+		
 	}
 
 	public static JPanel afficherEchiquier(Echiquier ech)
 	{
-
-		Container cont = fenEchiquier.getContentPane();
+				
 		JPanel pan =new JPanel();
 		pan.setSize(400, 100);
 		pan.setLayout(new GridLayout(8,8));
@@ -342,28 +344,26 @@ public class Affichage extends JFrame{
 					tabBoutton[i][j].setBackground(Color.lightGray);
 				}
 
-				tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
-				pan.add(tabBoutton[i][j]);
+				if(panEchiquier!=null){
+					tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
+					pan.add(tabBoutton[i][j]);
+				}
 			}
 
 		}
 
-		cont.add(pan);
-		fenEchiquier.setSize(400,400);
-		//fenEchiquier.getContentPane().add(pan);
-		//fen.pack();
-		//fenEchiquier.setVisible(true);
-
 		return pan;
 	}
 
-	public static Container afficherPartieStandard(){
-
-
-		Container cont = fenEchiquierStand.getContentPane();
-
-		JPanel pan = afficherEchiquier(p.getE());
-		pan.setLayout(new GridLayout(9,8));
+	public static void afficherPartieStandard(){
+		
+		if(cont!=null)
+			cont.removeAll();
+		
+		cont = fenEchiquierStand.getContentPane();
+		
+		panEchiquier = afficherEchiquier(p.getE());
+		panEchiquier.setLayout(new GridLayout(9,8));
 
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,4));
@@ -377,23 +377,24 @@ public class Affichage extends JFrame{
 		pan2.setSize(50,20);
 
 		cont.setLayout(new GridLayout(2,1));
-		cont.add(pan);
+		cont.add(panEchiquier);
 		cont.add(pan2);
-
 
 		fenEchiquierStand.setSize(400,400);
 
 		fenEchiquierStand.pack();
 		fenEchiquierStand.setVisible(true);
-		return cont;
 	}
 
 	public static  void afficherPartiePersonnalisee()
 	{
-		Container cont = fenEchiquierPerso.getContentPane();
-
+		if(cont!=null)
+			cont.removeAll();
+		
+		cont = fenEchiquierPerso.getContentPane();
+		
 		JPanel panPiece = tabPieces();
-		JPanel panEch = afficherEchiquier(p.getE());
+		panEchiquier = afficherEchiquier(p.getE());
 
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,2));
@@ -404,7 +405,7 @@ public class Affichage extends JFrame{
 		pan2.setSize(50,20);
 
 		cont.setLayout(new GridLayout(2,2));
-		cont.add(panEch);
+		cont.add(panEchiquier);
 		cont.add(panPiece);
 		cont.add(pan2);
 
@@ -413,11 +414,10 @@ public class Affichage extends JFrame{
 		fenEchiquierPerso.pack();
 		fenEchiquierPerso.setVisible(true);
 
-
 	}
 
 
-	public static void afficherPartie(){
+	/*public static void afficherPartie(){
 
 
 		Container cont = fenEchiquierStand.getContentPane();
@@ -442,12 +442,14 @@ public class Affichage extends JFrame{
 		cont.add(pan);
 		cont.add(pan2);
 
-
+		if (aide==true){
+			afficherAide();
+		}
 		fenEchiquierStand.setSize(400,400);
 
 		fenEchiquierStand.pack();
 		fenEchiquierStand.setVisible(true);
-	}
+	}*/
 
 	
 	
@@ -465,7 +467,6 @@ public class Affichage extends JFrame{
 				System.exit(0); 
 			}
 		}
-
 	}
 
 	public  static class EcouteurChoixJoueur implements ActionListener{
@@ -538,11 +539,14 @@ public class Affichage extends JFrame{
 							afficherAide();
 						}
 
-
+						panEchiquier.updateUI();
+						cont.revalidate();
+						cont.repaint();
+						
 					}
 				}
 			}
-			afficherPartie();
+			
 		}
 	}
 
@@ -633,9 +637,10 @@ public class Affichage extends JFrame{
 	}
 
 	public static void main(String[] args) {
-
-
-
+		
+		menuPrincipal();
+		p.jouerPartie();
+		
 		//menuPrincipal();
 		//choixDeLaPartie();
 		//menuFinDePartie();
@@ -648,10 +653,6 @@ public class Affichage extends JFrame{
 		//afficherEchiquier(ech);
 		//afficherPartiePersonnalisee();
 		//afficherPartieStandard();
-		
-		menuPrincipal();
-		p.jouerPartie();
-		
 		//afficherPartieStandard();
 
 

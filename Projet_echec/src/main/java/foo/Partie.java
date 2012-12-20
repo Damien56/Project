@@ -255,7 +255,7 @@ public class Partie implements java.io.Serializable
 		
 		long tempsystem = System.currentTimeMillis();
 		
-		tempsjoueurblancecoule = tempsjoueurblancecoule - tempsystem;
+		//tempsjoueurblancecoule = tempsjoueurblancecoule - tempsystem;
 		
 		
 		
