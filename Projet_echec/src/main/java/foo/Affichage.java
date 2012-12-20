@@ -416,11 +416,7 @@ public class Affichage extends JFrame{
 
 	}
 
-<<<<<<< HEAD
 
-
-
-=======
 	public static void afficherPartie(){
 
 
@@ -455,7 +451,6 @@ public class Affichage extends JFrame{
 
 	
 	
->>>>>>> master
 	public static class EcouteurMenu implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){ 
