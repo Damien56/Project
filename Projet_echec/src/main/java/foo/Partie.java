@@ -156,8 +156,12 @@ public class Partie implements java.io.Serializable
 								loop=true;
 							}
 						}
+				if(this.E.destinationPossible(pieceSelected).size()==0){
+					loop=true;
+					tour++;
 				}
-				
+			}
+
 				loop=false;
 				if(pos!=null && pieceSelected!=null){
 					this.mesPositions.add(pieceSelected.getPosition());
