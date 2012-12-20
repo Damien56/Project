@@ -249,16 +249,7 @@ public class Partie implements java.io.Serializable
 	
 	{	
 		/* Methode qui compare le temps du systeme au temp de jeu d'un joueur.
-<<<<<<< HEAD
-		 * Met fin à la partie si le temps de jeu est ecoule.
-		 */
-		
-		long tempsystem = System.currentTimeMillis();
-		
-		//tempsjoueurblancecoule = tempsjoueurblancecoule - tempsystem;
-=======
 		 * Met fin à la partie si le temps de jeu est ecoule. */
->>>>>>> master
 		
 		// MAJ temps
 		boolean fini = false;
@@ -281,15 +272,9 @@ public class Partie implements java.io.Serializable
 		}
 		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
-<<<<<<< HEAD
-				&& !fini);
-		
-		
-=======
 				&& j.getTempsEcoule() > 0);
 		
 		fini = true;
->>>>>>> Vieille
 		return fini;
 		
 		}	

@@ -266,8 +266,8 @@ public class Affichage extends JFrame{
 	}
 
 	public static void afficherAide(){
-		if (p.getE().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()] != null){
-			Vector<Position> dest = p.getE().destinationPossible(p.getE().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]);
+		if (p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()] != null){
+			Vector<Position> dest = p.getEchiquier().destinationPossible(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]);
 
 			for (Position pos : dest){
 				tabBoutton[pos.getI()][pos.getJ()].setBackground(Color.green);
@@ -362,7 +362,7 @@ public class Affichage extends JFrame{
 		
 		cont = fenEchiquierStand.getContentPane();
 		
-		panEchiquier = afficherEchiquier(p.getE());
+		panEchiquier = afficherEchiquier(p.getEchiquier());
 		panEchiquier.setLayout(new GridLayout(9,8));
 
 		JPanel pan2 = new JPanel();
@@ -394,7 +394,7 @@ public class Affichage extends JFrame{
 		cont = fenEchiquierPerso.getContentPane();
 		
 		JPanel panPiece = tabPieces();
-		panEchiquier = afficherEchiquier(p.getE());
+		panEchiquier = afficherEchiquier(p.getEchiquier());
 
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,2));
@@ -472,10 +472,10 @@ public class Affichage extends JFrame{
 	public  static class EcouteurChoixJoueur implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == ok){
-				p.getJ1().setNom(j1.getText());
-				p.getJ1().setCouleur("blanc");
-				p.getJ2().setNom(j2.getText());
-				p.getJ2().setCouleur("noir");
+				p.getJoueur1().setNom(j1.getText());
+				p.getJoueur1().setCouleur("blanc");
+				p.getJoueur2().setNom(j2.getText());
+				p.getJoueur2().setCouleur("noir");
 				fenMenuJoueur.dispose();
 				menuPartie();  
 			}

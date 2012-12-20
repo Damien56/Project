@@ -395,12 +395,10 @@ public class Echiquier
 		return estPrenable(roi);
 	}
 	
-<<<<<<< HEAD
-	public boolean estMat(Piece roi){
-=======
+
 	public boolean estMat(Piece roi)
 	{
->>>>>>> master
+
 		boolean mat = false;
 		Position positionTest = roi.getPosition();
 		Vector<Position> destination = destinationPossible(roi);
