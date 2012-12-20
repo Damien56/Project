@@ -429,9 +429,9 @@ public class Affichage extends JFrame{
 
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,4));
-		revenir.addActionListener(new EcouteurChoixPartie());
-		aideBoutton.addActionListener(new EcouteurAide());
-		creer.addActionListener(new EcouteurMenu());
+		//revenir.addActionListener(new EcouteurChoixPartie());
+		//aideBoutton.addActionListener(new EcouteurAide());
+		//creer.addActionListener(new EcouteurMenu());
 		pan2.add(revenir);
 		pan2.add(aideBoutton);
 		pan2.add(creer);
