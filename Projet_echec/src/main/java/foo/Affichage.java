@@ -655,7 +655,7 @@ public class Affichage extends JFrame{
 	public static void main(String[] args) {
 		
 		menuPrincipal();
-		//p.jouerPartie();
+		p.jouerPartie();
 		
 		//menuPrincipal();
 		//choixDeLaPartie();
@@ -668,8 +668,7 @@ public class Affichage extends JFrame{
 		//ech.echiquierStandard();
 		//afficherEchiquier(ech);
 		//afficherPartiePersonnalisee();
-		//afficherPartieStandard();
-		//afficherPartieStandard();
+		
 
 	}
 }

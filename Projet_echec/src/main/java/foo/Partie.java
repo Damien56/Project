@@ -268,27 +268,30 @@ public class Partie implements java.io.Serializable
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
 				&& j.getTempsEcoule() > 0);
 		
+		
 		fini = true;
 		return fini;
 		
 		}	
+
 	
 	
-		public void GererTour()
+		/*public void GererTour()
 		
 		{
 			// Temps max pour test
 			this.J1.setTempsEcoule(30);
 			this.J2.setTempsEcoule(30);
 			
-			while (1)
-			
+			while()
+			{
 				J1.getTempsEcoule();
 				J2.getTempsEcoule();
+			}
 	
+		}*/
 			
-			
-			
+}	
 	
 
 
