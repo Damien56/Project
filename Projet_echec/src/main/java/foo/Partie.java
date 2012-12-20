@@ -231,4 +231,37 @@ public class Partie implements java.io.Serializable
 		StringBuffer res = new StringBuffer("");
 		return res.toString();
 	}
-}
+	
+	
+	
+	public void ReglerTimer()
+	
+	{
+	
+		
+		boolean tempsjoueurblancecoule = false;
+		boolean tempsjoueurnoirecoute = false;
+		int tempsblanc = 3600;
+		int tempsnoir = 3600;
+		int tempssysteme ;  // valeur du temps systeme
+	   
+		/* Methode qui compare le temps du systeme au temp de jeu d'un joueur.
+		 * Met fin à la partie si le temps de jeu est ecoule.
+		 */
+		
+		long tempsystem = System.currentTimeMillis();
+		
+		tempsjoueurblancecoule = tempsjoueurblancecoule - tempsystem;
+		
+		
+		
+		
+		
+
+		
+	}
+		
+	}
+	
+
+
