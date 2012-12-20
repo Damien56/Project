@@ -54,7 +54,6 @@ public class Affichage extends JFrame{
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	private static JPanel panEchiquier = new JPanel();
 	private static JPanel monPanel = new JPanel();
-	private static boolean[][] dejaEcoute = new boolean[8][8];
 
 	//attributs afficherPartieStandard et partie perso
 	private static JFrame fenEchiquierStand = new JFrame("Jeu D'échec ");
@@ -88,19 +87,8 @@ public class Affichage extends JFrame{
 
 
 	public Affichage(){
-		for(int i=0; i<8; i++)
-			for(int j=0; j<8 ; j++)
-				this.dejaEcoute[i][j]=false;
-	}
 
-	public static boolean getdejaEcoute(int i, int j){
-		return dejaEcoute[i][j];
 	}
-
-	public static void setdejaEcoute(int i, int j, boolean stat){
-		dejaEcoute[i][j] = stat;
-	}
-
 
 	public static void menuPrincipal(){
 
@@ -136,40 +124,6 @@ public class Affichage extends JFrame{
 
 
 	}
-
-
-	/*public static void confirmExit (final JFrame fen){
-
-	public static void confirmExit (final JFrame fen){
-
-		
-		fen.addWindowListener(new WindowAdapter(){
-            public void windowClosing(WindowEvent e){
-                  int reponse = JOptionPane.showConfirmDialog(fen,
-                                       "Voulez-vous quitter l'application",
-                                       "Confirmation",
-                                       JOptionPane.YES_NO_OPTION,
-                                       JOptionPane.QUESTION_MESSAGE);
-                  if (reponse==JOptionPane.YES_OPTION){
-                      Dialogue.serialiserPartie(p, "proute.txt");    
-                	  fen.dispose();
-                	  fen.setDefaultCloseOperation(EXIT_ON_CLOSE);
-                  }
-                  if (reponse==JOptionPane.YES_OPTION){
-                	  fen.setVisible(true);
-                  }
-                  
-            }
-		});	
-		
-
-}*/
-	
-
-
-
-		
-
 
 	public static void menuJoueurs(){
 
@@ -323,7 +277,6 @@ public class Affichage extends JFrame{
 
 	}
 
-<<<<<<< HEAD
 	public static void confirmExit (final JFrame fen){
 
 		fen.addWindowListener(new WindowAdapter(){
@@ -343,26 +296,6 @@ public class Affichage extends JFrame{
 				}
 			}
 		});	
-=======
-
-	public void confirmExit(){
-
-		JFrame fenetre1 = new JFrame("Fin de partie");
-		JPanel panel1 =new JPanel();
-		panel1.setSize(400, 100);
-		panel1.setLayout( new BoxLayout(panel1,1));
-
-		JButton confirmer = new JButton("Confirmer sortie de la partie");
-		confirmer.setSize(200,50);
-
-		panel1.add(confirmer);
-
-		fenetre1.getContentPane().add(panel1);
-		fenetre1.pack();
-		fenetre1.setVisible(true);
-
->>>>>>> master
-
 	}
 	
 	public static void afficherAide(){
@@ -729,27 +662,23 @@ public class Affichage extends JFrame{
 		}
 	}
 
-<<<<<<< HEAD
-	public static class EcouteurExit implements ActionListener{
-=======
-
 
 /*	public static class EcouteurExit implements ActionListener{
->>>>>>> master
+
 
 		public void actionPerformed(ActionEvent e){
 			if (e.getSource() == oui ){
 				Dialogue.serialiserPartie(p, "proute.txt");
 				System.exit(0);
 			}
-<<<<<<< HEAD
+
 			else if (e.getSource() == non ){
 				fenExit.dispose();				
 			}
 		}
 	}
 	
-=======
+
 			if (e.getSource() == non ){
 				fenExit.dispose();
 				
@@ -759,7 +688,7 @@ public class Affichage extends JFrame{
 		}
 		*/
 
->>>>>>> master
+
 	public static void main(String[] args) {
 		
 
@@ -767,14 +696,6 @@ public class Affichage extends JFrame{
 		menuPrincipal();
 		p.jouerPartie();
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> master
 	}
-
-
 }
 
