@@ -3,7 +3,7 @@ package pieces;
 public class Roi extends Piece {
 
 	private boolean Echec;
-	private boolean DejaDeplace;
+	
 	
 
 	public Roi(Position position,String couleur) {
@@ -11,7 +11,6 @@ public class Roi extends Piece {
 		this.setPositionPossible();
 		this.Image="image dame de cette couleur";
 		this.Echec =false;
-		this.DejaDeplace =false;
 		
 	}
 	
@@ -84,6 +83,14 @@ public class Roi extends Piece {
 			
 		}
 		this.PositionPossible[i][j] = 0 ;
+		
+		if(DejaDeplace==false){
+				this.PositionPossible[i][j+2]=1;
+				this.PositionPossible[i][j-2]=1;
+			}
+			
+			
+		
 	}
 
 	// affiche les caracteristiques du Roi
@@ -120,16 +127,7 @@ public class Roi extends Piece {
 	}
 
 
-	public boolean isDejaDeplace()
-	{
-		return this.DejaDeplace;
-	}
-
-
-	public void setDejaDeplace(boolean dejaDeplace)
-	{
-		this.DejaDeplace = dejaDeplace;
-	}
+	
 	
 	
 	public boolean estMat()

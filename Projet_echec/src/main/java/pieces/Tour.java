@@ -2,14 +2,12 @@ package pieces;
 
 public class Tour extends Piece
 {
-	private boolean DejaDeplace;
 
 	public Tour(Position position, String couleur)
 	{
 		super(position, couleur);
 		this.setPositionPossible();
 		this.Image = "Image d'une tour de cette couleur";
-		this.DejaDeplace = false;
 	}
 
 	
@@ -24,15 +22,6 @@ public class Tour extends Piece
 		this.PositionPossible[this.position.getI()][this.position.getJ()]=0;				
 	}
 	
-	public boolean isDejaDeplace()
-	{
-		return this.DejaDeplace;
-	}
-
-	public void setDejaDeplace(boolean dejaDeplace)
-	{
-		this.DejaDeplace = dejaDeplace;
-	}
 		
 	public String toString()
 	{

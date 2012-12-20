@@ -80,11 +80,24 @@ public class Echiquier
 	public boolean deplacerPiece(Piece p, Position pos)
 	{
 		//for(Position c : this.destinationPossible(p)){
-		for(int z=0; z<this.destinationPossible(p).size();z++){
-			if(this.destinationPossible(p).elementAt(z).isEqual(pos)){
-			p.setPosition(pos);
-			this.ajouterPiece(p);
-			this.supprimerPiece(p.getPositionOld());
+		for(int z=0; z<this.destinationPossible(p).size();z++)
+		{
+			if(this.destinationPossible(p).elementAt(z).isEqual(pos))
+			{
+				if((p.getDejaDeplace() == false)&&((p.getClass().getName() == "pieces.Roi")
+						|| (p.getClass().getName() == "pieces.Tour")))
+					p.setDejaDeplace(true);
+					
+				else if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion"))
+					p.setNombreDeDeplacement(1);
+					
+				else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion"))
+					p.setNombreDeDeplacement(2);
+				
+				p.setPosition(pos);
+				this.ajouterPiece(p);
+				this.supprimerPiece(p.getPositionOld());
+				
 			/*for(int i = 0; i < 8; i++)
 			{
 				for(int j = 0; j < 8; j++)
@@ -162,30 +175,31 @@ public class Echiquier
 		return res.toString();
 	}	
 		
-	public Vector<Position> destinationPossible(Piece piece){
-
+	public Vector<Position> destinationPossible(Piece piece)
+	{
 		Vector<Position> dest = new Vector<Position>();
 		int[][] tabposition = piece.getPositionPossible();
 
-		int i=0, j=0;
+		int i = 0, j = 0;
 		
 		//deplacements pour le cavalier
-		if(piece.getClass().getName()=="pieces.Cavalier"){
-			for(i=0; i<8; i++){//parcourir les lignes
-				for(j=0; j<8; j++){//parcourir les colonnes
-					if(tabposition[i][j]==1){
-						if(this.tableau[i][j]==null){
-							dest.add(new Position(i,j));
-						}
-						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
-							dest.add(new Position(i,j));
-						}
+		if(piece.getClass().getName() == "pieces.Cavalier")
+			for(i = 0; i < 8; i++) //parcourir les lignes
+				for(j = 0; j < 8; j++) //parcourir les colonnes
+					if(tabposition[i][j] == 1)
+					{
+						if(this.tableau[i][j] == null)
+							dest.add(new Position(i, j));
+						
+						else
+							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+								dest.add(new Position(i, j));
 					}
-				}
-			}			
-		}
-		else{//deplacements pour toutes les pièces sauf le cavalier
-			//deplacement vers le bas
+
+		// deplacement pour toutes les pièces sauf le cavalier
+		// deplacement vers le bas
+		else
+		{
 			i=piece.getPosition().getI();//initialisation de la position de recherche
 			j=piece.getPosition().getJ();
 			do{
