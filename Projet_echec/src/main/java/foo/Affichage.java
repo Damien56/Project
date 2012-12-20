@@ -45,7 +45,6 @@ public class Affichage extends JFrame{
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	private static JPanel panEchiquier = new JPanel();
 	private static JPanel monPanel = new JPanel();
-	private static boolean[][] dejaEcoute = new boolean[8][8];
 
 	//attributs afficherPartieStandard et partie perso
 	private static JFrame fenEchiquierStand = new JFrame("Jeu D'échec ");
@@ -75,19 +74,7 @@ public class Affichage extends JFrame{
 
 
 	public Affichage(){
-		for(int i=0; i<8; i++)
-			for(int j=0; j<8 ; j++)
-				this.dejaEcoute[i][j]=false;
 	}
-	
-	public static boolean getdejaEcoute(int i, int j){
-		return dejaEcoute[i][j];
-	}
-	
-	public static void setdejaEcoute(int i, int j, boolean stat){
-		dejaEcoute[i][j] = stat;
-	}
-	
 
 	public static void menuPrincipal(){
 
@@ -119,10 +106,14 @@ public class Affichage extends JFrame{
 
 		fenMenu.setVisible(true);
 
+<<<<<<< HEAD
 	}
 
 
 	/*public static void confirmExit (final JFrame fen){
+=======
+	public static void confirmExit (final JFrame fen){
+>>>>>>> bigodam
 		
 		fen.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e){
@@ -143,9 +134,14 @@ public class Affichage extends JFrame{
             }
 		});	
 		
+<<<<<<< HEAD
 }*/
 	
 
+=======
+}
+		
+>>>>>>> bigodam
 	public static void menuJoueurs(){
 
 		//j1.setColumns(10);
@@ -291,6 +287,7 @@ public class Affichage extends JFrame{
 
 	}
 
+<<<<<<< HEAD
 	public void confirmExit(){
 
 		JFrame fenetre1 = new JFrame("Fin de partie");
@@ -310,13 +307,15 @@ public class Affichage extends JFrame{
 
 	}
 
+=======
+>>>>>>> bigodam
 	public static void afficherAide(){
 		if (p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()] != null){
 			Vector<Position> dest = p.getEchiquier().destinationPossible(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]);
 
 			for (Position pos : dest){
 				tabBoutton[pos.getI()][pos.getJ()].setBackground(Color.green);
-				tabBoutton[pos.getI()][pos.getJ()].repaint();
+				//tabBoutton[pos.getI()][pos.getJ()].repaint();
 			}
 		}
 		else 
@@ -406,12 +405,6 @@ public class Affichage extends JFrame{
 
 	public static void afficherPartieStandard(){
 		
-		/*if(cont!=null)
-			cont.removeAll();
-		
-		cont = fenEchiquierStand.getContentPane();*/
-		
-		//panEchiquier = afficherEchiquier(p.getEchiquier());
 		panEchiquier.setLayout(new GridLayout(9,8));
 
 		JPanel pan2 = new JPanel();
@@ -433,22 +426,20 @@ public class Affichage extends JFrame{
 		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
+<<<<<<< HEAD
 
 		//confirmExit(fenEchiquier);
 
+=======
+		//confirmExit(fenEchiquier);
+>>>>>>> bigodam
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
 
 	public static  void afficherPartiePersonnalisee()
 	{
-		/*if(cont!=null)
-			cont.removeAll();
-		
-		cont = fenEchiquierPerso.getContentPane();*/
-		
 		JPanel panPiece = tabPieces();
-		//panEchiquier = afficherEchiquier(p.getEchiquier());
 
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,2));
@@ -534,7 +525,6 @@ public class Affichage extends JFrame{
 	public  static class EcouteurEchiquier implements ActionListener{
 		public void actionPerformed(ActionEvent e){
 
-
 			if (e.getSource() == commencer){
 				fenEchiquier.dispose();
 				afficherPartieStandard();	
@@ -566,8 +556,7 @@ public class Affichage extends JFrame{
 						
 					}
 				}
-			}
-			
+			}		
 		}
 	}
 
@@ -657,6 +646,24 @@ public class Affichage extends JFrame{
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	public static class EcouteurExit implements ActionListener{
+
+		public void actionPerformed(ActionEvent e){
+			if (e.getSource() == oui ){
+				Dialogue.serialiserPartie(p, "proute.txt");
+				System.exit(0);
+			}
+			if (e.getSource() == non ){
+				fenExit.dispose();
+				
+			}
+				
+			}
+		}
+		
+>>>>>>> bigodam
 	public static void main(String[] args) {
 		
 <<<<<<< HEAD
@@ -669,6 +676,7 @@ public class Affichage extends JFrame{
 =======
 		menuPrincipal();
 		p.jouerPartie();
+<<<<<<< HEAD
 >>>>>>> parent of 43e9865... exit
 =======
 		menuPrincipal();
@@ -678,6 +686,8 @@ public class Affichage extends JFrame{
 		menuPrincipal();
 		p.jouerPartie();
 >>>>>>> parent of 43e9865... exit
+=======
+>>>>>>> bigodam
 		
 		//menuPrincipal();
 		//choixDeLaPartie();

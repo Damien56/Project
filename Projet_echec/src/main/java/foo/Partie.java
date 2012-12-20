@@ -149,7 +149,6 @@ public class Partie implements java.io.Serializable
 							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i)))
 							{
 								this.E.deplacerPiece(pieceSelected, pos);
-								//pieceSelected.setPositionPossible();
 								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop = true;
 							}
@@ -273,8 +272,12 @@ public class Partie implements java.io.Serializable
 		fini = true;
 		return fini;
 		
+<<<<<<< HEAD
 		}	
 
+=======
+	}	
+>>>>>>> bigodam
 	
 	
 		/*public void GererTour()
@@ -284,15 +287,26 @@ public class Partie implements java.io.Serializable
 			this.J1.setTempsEcoule(30);
 			this.J2.setTempsEcoule(30);
 			
+<<<<<<< HEAD
 			while()
 			{
+=======
+			//while (1)
+			
+>>>>>>> bigodam
 				J1.getTempsEcoule();
 				J2.getTempsEcoule();
 			}
 	
 		}*/
 			
+<<<<<<< HEAD
 }	
+=======
+			}
+	}
+			
+>>>>>>> bigodam
 	
 
 
