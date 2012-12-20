@@ -29,7 +29,7 @@ public class Affichage extends JFrame{
 	private static JFrame fenMenu = new JFrame("Jeu D'échec - Menu");
 	private static JButton creer =new JButton("Créer Partie");
 	private static JButton revoir =new JButton("Revoir la Partie");
-	private static JButton exit =new JButton("Quitter la partie");
+	private static JButton exit1 =new JButton("Quitter la partie");
 
 
 	//attributs de menuJoueurs()
@@ -109,29 +109,26 @@ public class Affichage extends JFrame{
 		revoir.addActionListener(new EcouteurMenu());
 
 
-		exit.setSize(200,60);
-		exit.addActionListener(new EcouteurMenu());
+		exit1.setSize(200,60);
+		exit1.addActionListener(new EcouteurMenu());
 
 		pan.setLayout(new GridLayout(3,1));
 		pan.add(creer);
 		pan.add(revoir);
-		pan.add(exit);
+		pan.add(exit1);
 
 
 		fenMenu.getContentPane().add(pan);
 		fenMenu.pack();
 		fenMenu.setSize(400,400);
-<<<<<<< HEAD
-		
+
 		//confirmExit(fenMenu);
-				
-=======
->>>>>>> parent of 5a767d9... confirm exit
+
 		fenMenu.setVisible(true);
 
 	}
 
-<<<<<<< HEAD
+
 	/*public static void confirmExit (final JFrame fen){
 		
 		fen.addWindowListener(new WindowAdapter(){
@@ -155,9 +152,7 @@ public class Affichage extends JFrame{
 		
 }*/
 	
-	
-=======
->>>>>>> parent of 5a767d9... confirm exit
+
 	public static void menuJoueurs(){
 
 		//j1.setColumns(10);
@@ -186,11 +181,9 @@ public class Affichage extends JFrame{
 		pan.add(pan2);
 		pan.add(pan3);
 
-<<<<<<< HEAD
-		//confirmExit(fenMenuJoueur);
-=======
 
->>>>>>> parent of 5a767d9... confirm exit
+		//confirmExit(fenMenuJoueur);
+
 		fenMenuJoueur.getContentPane().add(pan);
 		fenMenuJoueur.pack();
 		fenMenuJoueur.setSize(400,400);
@@ -219,11 +212,9 @@ public class Affichage extends JFrame{
 		pan.add(partieP);
 		pan.add(revenir);
 
-<<<<<<< HEAD
-		//confirmExit(fenMenuPartie);
-=======
 
->>>>>>> parent of 5a767d9... confirm exit
+		//confirmExit(fenMenuPartie);
+
 		fenMenuPartie.getContentPane().add(pan);
 		fenMenuPartie.pack();
 		fenMenuPartie.setSize(400,400);
@@ -471,11 +462,9 @@ public class Affichage extends JFrame{
 		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
-<<<<<<< HEAD
-		//confirmExit(fenEchiquier);
-=======
 
->>>>>>> parent of 5a767d9... confirm exit
+		//confirmExit(fenEchiquier);
+
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 	}
@@ -507,11 +496,9 @@ public class Affichage extends JFrame{
 		fenEchiquier.getContentPane().add(monPanel);
 		
 		fenEchiquier.setSize(400,400);
-<<<<<<< HEAD
-		//confirmExit(fenEchiquier);
-=======
 
->>>>>>> parent of 5a767d9... confirm exit
+		//confirmExit(fenEchiquier);
+
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 
@@ -527,7 +514,7 @@ public class Affichage extends JFrame{
 			if (e.getSource() == revoir){
 				System.out.println("revoir"); 
 			}
-			if (e.getSource() == exit){
+			if (e.getSource() == exit1){
 				System.exit(0); 
 			}
 		}
@@ -701,14 +688,10 @@ public class Affichage extends JFrame{
 
 	public static void main(String[] args) {
 		
-<<<<<<< HEAD
+
 		menuPrincipal();
-		//getEchiquier().echiquierStandard();
 		p.jouerPartie();
-=======
-		//menuPrincipal();
-		//p.jouerPartie();
->>>>>>> parent of 5a767d9... confirm exit
+
 		
 		//menuPrincipal();
 		//choixDeLaPartie();
