@@ -11,22 +11,22 @@ public class Echiquier
 {
 	/* Declaration des attributs de la classe */
 	private Piece tableau[][];
-	
-	
+
+
 	/* Declaration du constructeur de la classe */
-	
+
 	public Echiquier()
 	{
 		tableau = new Piece[8][8];
 	}
-	
+
 	/* Declaration des methodes de la classe */
-	
+
 	public boolean echiquierStandard()
 	{
-		
+
 		String couleur = "noir";
-		
+
 		// Premiere ligne des pieces noires - Premiere ligne echiquier
 		this.tableau[0][0] = new Tour(new Position(0,0), couleur); 
 		this.tableau[0][1] = new Cavalier(new Position(0,1), couleur);
@@ -36,7 +36,7 @@ public class Echiquier
 		this.tableau[0][5] = new Fou(new Position(0,5), couleur);
 		this.tableau[0][6] = new Cavalier(new Position(0,6), couleur);
 		this.tableau[0][7] = new Tour(new Position(0,7), couleur);
-		
+
 		// Deuxieme ligne des pieces noires - Deuxieme ligne echiquier
 		this.tableau[1][0] = new Pion(new Position(1, 0), couleur);
 		this.tableau[1][1] = new Pion(new Position(1, 1), couleur);
@@ -46,9 +46,9 @@ public class Echiquier
 		this.tableau[1][5] = new Pion(new Position(1, 5), couleur);
 		this.tableau[1][6] = new Pion(new Position(1, 6), couleur);
 		this.tableau[1][7] = new Pion(new Position(1, 7), couleur);
-		
+
 		couleur = "blanc";
-		
+
 		// Premiere ligne des pieces blanches - Huitieme ligne echiquier
 		this.tableau[7][0] = new Tour(new Position(7, 0), couleur);
 		this.tableau[7][1] = new Cavalier(new Position(7, 1), couleur);
@@ -58,7 +58,7 @@ public class Echiquier
 		this.tableau[7][5] = new Fou(new Position(7, 5), couleur);
 		this.tableau[7][6] = new Cavalier(new Position(7, 6), couleur);
 		this.tableau[7][7] = new Tour(new Position(7, 7), couleur);
-		
+
 		// Deuxieme ligne des pieces blanches - Septieme ligne echiquier
 		this.tableau[6][0] = new Pion(new Position(6, 0), couleur);
 		this.tableau[6][1] = new Pion(new Position(6, 1), couleur);
@@ -68,15 +68,15 @@ public class Echiquier
 		this.tableau[6][5] = new Pion(new Position(6, 5), couleur);
 		this.tableau[6][6] = new Pion(new Position(6, 6), couleur);
 		this.tableau[6][7] = new Pion(new Position(6, 7), couleur);
-		
+
 		return true;		
 	}
-	
+
 	public Piece[][] getTableau()
 	{
 		return this.tableau;
 	}
-	
+
 	public boolean deplacerPiece(Piece p, Position pos)
 	{
 		//for(Position c : this.destinationPossible(p)){
@@ -87,17 +87,17 @@ public class Echiquier
 				if((p.getDejaDeplace() == false)&&((p.getClass().getName() == "pieces.Roi")
 						|| (p.getClass().getName() == "pieces.Tour")))
 					p.setDejaDeplace(true);
-					
+
 				else if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion"))
 					p.setNombreDeDeplacement(1);
-					
+
 				else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion"))
 					p.setNombreDeDeplacement(2);
-				
+
 				p.setPosition(pos);
 				this.ajouterPiece(p);
 				this.supprimerPiece(p.getPositionOld());
-				
+
 			/*for(int i = 0; i < 8; i++)
 			{
 				for(int j = 0; j < 8; j++)
@@ -110,9 +110,9 @@ public class Echiquier
 		}
 		return true;
 	}
-	
-	
-	
+
+
+
 	/*public boolean ajouterPiece(String nom, Position p, String couleur)
 	{
 		boolean isOk = false;
@@ -124,12 +124,12 @@ public class Echiquier
 		
 		return isOk;
 	}*/
-	
+
 	public void ajouterPiece(Piece piece)
 	{
 		this.tableau[piece.getPosition().getI()][piece.getPosition().getJ()] = piece;
 	}
-	
+
 	public boolean supprimerPiece(Position p)
 	{
 		boolean isOk = false;
@@ -138,16 +138,16 @@ public class Echiquier
 		{
 			isOk = true;
 		}
-		
+
 		return isOk;
 	}
-	
+
 	public String toString()
 	{
 		StringBuffer res = new StringBuffer("");
 		String piece = "";
 		String couleur = "";
-	
+
 		for(int i = 0; i < 8; i++)
 		{
 			for(int j = 0; j < 8; j++)
@@ -161,9 +161,9 @@ public class Echiquier
 				{
 					piece = this.tableau[i][j].getClass().getName();
 					couleur = this.tableau[i][j].getCouleur();
-					
+
 				}			
-				
+
 				res.append(" [ ");
 				res.append(piece);
 				res.append(" ");
@@ -174,27 +174,27 @@ public class Echiquier
 		}
 		return res.toString();
 	}	
-		
-	public Vector<Position> destinationPossible(Piece piece)
-	{
+
+	public Vector<Position> destinationPossible(Piece piece){
+
 		Vector<Position> dest = new Vector<Position>();
 		int[][] tabposition = piece.getPositionPossible();
 
-		int i = 0, j = 0;
-		
+		int i=0, j=0;
+
 		//deplacements pour le cavalier
-		if(piece.getClass().getName() == "pieces.Cavalier")
-			for(i = 0; i < 8; i++) //parcourir les lignes
-				for(j = 0; j < 8; j++) //parcourir les colonnes
-					if(tabposition[i][j] == 1)
-					{
-						if(this.tableau[i][j] == null)
-							dest.add(new Position(i, j));
-						
-						else
-							if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
-								dest.add(new Position(i, j));
+		if(piece.getClass().getName()=="pieces.Cavalier"){
+			for(i=0; i<8; i++){//parcourir les lignes
+				for(j=0; j<8; j++){//parcourir les colonnes
+					if(tabposition[i][j]==1){
+						if(this.tableau[i][j]==null){
+							dest.add(new Position(i,j));
+						}
+						else if((this.tableau[i][j]!=null) && (this.tableau[i][j].getCouleur()!=piece.getCouleur())){
+							dest.add(new Position(i,j));
+						}
 					}
+<<<<<<< HEAD
 
 		// deplacement pour toutes les pièces sauf le cavalier
 		// deplacement vers le bas
@@ -208,6 +208,18 @@ public class Echiquier
 			{
 				if(i < 7)
 				{
+=======
+				}
+			}			
+		}
+		else{//deplacements pour toutes les pièces sauf le cavalier
+			//deplacement vers le bas
+			i=piece.getPosition().getI();//initialisation de la position de recherche
+			j=piece.getPosition().getJ();
+			do{
+
+				if(i<7){
+>>>>>>> master
 					i++;
 					if(tabposition[i][j] == 1)
 					{
@@ -362,18 +374,18 @@ public class Echiquier
 			}while(this.tableau[i][j]==null && j<7 && i>0);
 		}
 
-		
+
 
 		return dest;
 	}
 
-	
+
 	public boolean estBloquee(Piece p)
 	{
 		Piece sauv = p;
 		Piece monRoi = null;
 		boolean isOk = false;
-		
+
 		for (int i = 0; i < 8; i++)
 		{
 			for (int j = 0; j < 8; j++)
@@ -387,16 +399,16 @@ public class Echiquier
 		}
 
 		supprimerPiece(p.getPosition());	
-		
+
 		if (estEchec(monRoi))	/* Roi de la meme couleur que la piece */
 		{
 			isOk = true;
 		}
-			
+
 		ajouterPiece(sauv); 
 		return isOk;
 	}
-	
+
 	public boolean estPrenable(Piece r)
 	{
 		boolean bool = false;
@@ -420,11 +432,11 @@ public class Echiquier
 		}
 		return bool;			
 	}
-	
+
 	public boolean estEchec(Piece roi){
 		return estPrenable(roi);
 	}
-	
+
 
 	public boolean estMat(Piece roi)
 	{
@@ -434,7 +446,7 @@ public class Echiquier
 		Vector<Position> destination = destinationPossible(roi);
 		String couleurDuMechant = "";
 		Piece mechant;
-		
+
 		for(int i = 0; i < destination.size(); i++)
 		{
 			roi.setPosition(destination.elementAt(i));					
@@ -444,24 +456,24 @@ public class Echiquier
 				mat = false;
 			}
 		}
-		
-		
+
+
 		if(roi.getCouleur() == "blanc")
 			couleurDuMechant = "noir";
-		
+
 		else
 			if(roi.getCouleur() == "noir")
 				couleurDuMechant = "blanc";
-		
-		
+
+
 		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
-		
+
 		//si un mechant existe faire :
 		if(mechant != null)
 		{
 			if(estPrenable(mechant))
 				mat = false;
-			
+
 
 			destination = destinationPossible(mechant);
 			for(int i = 0; i < destination.size(); i++)

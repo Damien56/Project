@@ -17,8 +17,8 @@ public class Partie implements java.io.Serializable
 	public String nomPiece, couleurPiece;
 	public boolean suivant;
 	public int tour;
-	
-	
+
+
 	// Le constructeur
 	public Partie(Joueur j1, Joueur j2, Echiquier e)
 	{
@@ -35,13 +35,13 @@ public class Partie implements java.io.Serializable
 		this.suivant = false;
 		this.tour = 1;
 	}
-	
+
 	public Partie()
 	{
 		this(new Joueur(), new Joueur(), new Echiquier());		
 	}	
-	
-	
+
+
 	public Echiquier getEchiquier() {
 		return E;
 	}
@@ -110,8 +110,8 @@ public class Partie implements java.io.Serializable
 		this.suivant = suivant;
 	}
 
-	
-	
+
+
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
 	public void jouerPartie()
 	{
@@ -119,13 +119,13 @@ public class Partie implements java.io.Serializable
 		Piece pieceSelected = null;
 		Roi monRoi;
 		Position pos = null;
-			
+
 		System.out.println(this.E.toString()); //Affichage Echiquier de depart
-			
+
 		while(!fini && !isMat)
 		{			
 			monRoi = selectMonRoi(this.tour);
-					
+
 			// Test si le roi de ma couleur est mat
 			/*if(monRoi != null)
 				if(this.E.estMat(monRoi))
@@ -135,14 +135,14 @@ public class Partie implements java.io.Serializable
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
 				pieceSelected = selectPieceJouable(this.tour);
-				
+
 				// Demande une position de destination tant qu'elle n'est
 				// pas conforme aux destinations possibles pour cette pièce.
-				
+
 			while(loop == false)
 			{
 				pos = this.getCaseCliquee();
-				
+
 				if(pos != null)
 					if(pieceSelected!=null)
 						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++)
@@ -152,7 +152,7 @@ public class Partie implements java.io.Serializable
 								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop = true;
 							}
-				
+
 				if(this.E.destinationPossible(pieceSelected).size() == 0)
 				{
 					loop = true;
@@ -161,17 +161,17 @@ public class Partie implements java.io.Serializable
 			}
 
 			loop = false;
-			
+
 			if(pos != null && pieceSelected != null)
 			{
 				this.mesPositions.add(pieceSelected.getPosition());
 				this.mesDestinations.add(pos);
 			}	
-			
+
 			this.tour++;
 		}		
 	}
-	
+
 	// Selectionne sur l'echiquier la piece cliquee,
 	// et verifie si elle a la couleur attendue en fonction du tour
 	// (INIT : les blancs commencent, tour = 1)
@@ -180,7 +180,7 @@ public class Partie implements java.io.Serializable
 		Position pos = null;
 		Piece pieceSelected = null;
 		boolean stop = false;
-		
+
 		do
 		{
 			pos = this.getCaseCliquee();
@@ -197,13 +197,13 @@ public class Partie implements java.io.Serializable
 
 		return pieceSelected;
 	}
-	
+
 	// Recherche le roi de ma couleur en fonction du tour
 	// (INIT : les blancs commencent, tour = 1)
 	public Roi selectMonRoi(int tour)
 	{
 		Roi monRoi = null;
-		
+
 		for(int i = 0; i < 8; i++)
 			for(int j = 0; j < 8; j++)
 				if(this.E.getTableau()[i][j]!=null)
@@ -214,15 +214,15 @@ public class Partie implements java.io.Serializable
 
 		return monRoi;
 	}
-	
+
 	public void rejeuPartie()
 	{
 		this.E = this.eDepart;
-		
+
 		for(int i = 0; i < this.mesPositions.size(); i++)
 		{
 			this.E.deplacerPiece(this.E.getTableau()[this.mesPositions.elementAt(i).getI()][this.mesPositions.elementAt(i).getJ()], this.mesDestinations.elementAt(i));
-			
+
 			// A chaque clic sur le bouton suivant
 			do
 			{
@@ -232,28 +232,28 @@ public class Partie implements java.io.Serializable
 		}
 	}
 
-	
+
 	public String toString()
 	{
 		StringBuffer res = new StringBuffer("");
 		return res.toString();
 	}
-	
+
 	public boolean defilerTemps(Joueur j)
-	
+
 	{	
 		/* Methode qui compare le temps du systeme au temp de jeu d'un joueur.
 		 * Met fin à la partie si le temps de jeu est ecoule. */
-		
+
 		// MAJ temps
 		boolean fini = false;
 		long tempsSystemDebut = System.currentTimeMillis();
 		long tempsEcoule = 0;
-		
+
 		do
 		{
 			tempsEcoule = System.currentTimeMillis() - tempsSystemDebut;
-			
+
 			// peut devenir source de probleme, le temps ne se decompte pas.
 			// jouer sur les transtypages int/long
 			if((int)tempsEcoule == 1)
@@ -267,23 +267,20 @@ public class Partie implements java.io.Serializable
 		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
 				&& j.getTempsEcoule() > 0);
-		
+
 		fini = true;
 		return fini;
-		
+
 		}	
-	
-	
+
+
 		public void GérerTour()
-		
+
 		{
 			// Temps max pour test
 			this.J1.setTempsEcoule(30);
 			this.J2.setTempsEcoule(30);
-			
-			
+
+
 		}		
 	}
-	
-
-

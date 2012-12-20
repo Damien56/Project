@@ -79,15 +79,15 @@ public class Affichage extends JFrame{
 			for(int j=0; j<8 ; j++)
 				this.dejaEcoute[i][j]=false;
 	}
-	
+
 	public static boolean getdejaEcoute(int i, int j){
 		return dejaEcoute[i][j];
 	}
-	
+
 	public static void setdejaEcoute(int i, int j, boolean stat){
 		dejaEcoute[i][j] = stat;
 	}
-	
+
 
 	public static void menuPrincipal(){
 
@@ -290,7 +290,7 @@ public class Affichage extends JFrame{
 		else 
 			System.out.println("error");
 
-		
+
 	}
 
 	public static JPanel afficherEchiquier(Echiquier ech)
@@ -299,7 +299,7 @@ public class Affichage extends JFrame{
 			panEchiquier = new JPanel();
 		JPanel pan = panEchiquier;
 		pan.removeAll();
-		
+
 		pan.setSize(400, 100);
 		pan.setLayout(new GridLayout(8,8));
 		for(int i=0; i<8; i++){
@@ -363,7 +363,7 @@ public class Affichage extends JFrame{
 
 				if(tabBoutton[i][j].getAction()==null)
 					tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
-				
+
 				pan.add(tabBoutton[i][j]);				
 			}
 
@@ -373,12 +373,12 @@ public class Affichage extends JFrame{
 	}
 
 	public static void afficherPartieStandard(){
-		
+
 		/*if(cont!=null)
 			cont.removeAll();
 		
 		cont = fenEchiquierStand.getContentPane();*/
-		
+
 		//panEchiquier = afficherEchiquier(p.getEchiquier());
 		panEchiquier.setLayout(new GridLayout(9,8));
 
@@ -399,7 +399,7 @@ public class Affichage extends JFrame{
 		monPanel.add(pan2);
 
 		fenEchiquier.getContentPane().add(monPanel);
-		
+
 		fenEchiquier.setSize(400,400);
 
 		fenEchiquier.pack();
@@ -412,7 +412,7 @@ public class Affichage extends JFrame{
 			cont.removeAll();
 		
 		cont = fenEchiquierPerso.getContentPane();*/
-		
+
 		JPanel panPiece = tabPieces();
 		//panEchiquier = afficherEchiquier(p.getEchiquier());
 
@@ -431,14 +431,14 @@ public class Affichage extends JFrame{
 		monPanel.add(pan2);
 
 		fenEchiquier.getContentPane().add(monPanel);
-		
+
 		fenEchiquier.setSize(400,400);
 
 		fenEchiquier.pack();
 		fenEchiquier.setVisible(true);
 
 	}	
-	
+
 	public static class EcouteurMenu implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){ 
@@ -527,11 +527,11 @@ public class Affichage extends JFrame{
 
 						panEchiquier=afficherEchiquier(p.getEchiquier());
 						monPanel.updateUI();
-						
+
 					}
 				}
 			}
-			
+
 		}
 	}
 
@@ -622,10 +622,10 @@ public class Affichage extends JFrame{
 	}
 
 	public static void main(String[] args) {
-		
+
 		menuPrincipal();
 		p.jouerPartie();
-		
+
 		//menuPrincipal();
 		//choixDeLaPartie();
 		//menuFinDePartie();
