@@ -44,7 +44,8 @@ public class Affichage extends JFrame{
 	//attribut afficherEchiquier()
 	private static JFrame fenEchiquier = new JFrame("Jeu D'échec ");
 	private static JPanel panEchiquier = new JPanel();
-	private static Container cont = new Container();
+	private static JPanel monPanel = new JPanel();
+
 
 	//attributs afficherPartieStandard et partie perso
 	private static JFrame fenEchiquierStand = new JFrame("Jeu D'échec ");
@@ -344,7 +345,7 @@ public class Affichage extends JFrame{
 					tabBoutton[i][j].setBackground(Color.lightGray);
 				}
 
-				if(panEchiquier!=null){
+				if(panEchiquier==null){
 					tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
 					pan.add(tabBoutton[i][j]);
 				}
@@ -357,10 +358,10 @@ public class Affichage extends JFrame{
 
 	public static void afficherPartieStandard(){
 		
-		if(cont!=null)
+		/*if(cont!=null)
 			cont.removeAll();
 		
-		cont = fenEchiquierStand.getContentPane();
+		cont = fenEchiquierStand.getContentPane();*/
 		
 		panEchiquier = afficherEchiquier(p.getEchiquier());
 		panEchiquier.setLayout(new GridLayout(9,8));
@@ -376,22 +377,24 @@ public class Affichage extends JFrame{
 		pan2.add(timer);
 		pan2.setSize(50,20);
 
-		cont.setLayout(new GridLayout(2,1));
-		cont.add(panEchiquier);
-		cont.add(pan2);
+		monPanel.setLayout(new GridLayout(2,1));
+		monPanel.add(panEchiquier);
+		monPanel.add(pan2);
 
-		fenEchiquierStand.setSize(400,400);
+		fenEchiquier.getContentPane().add(monPanel);
+		
+		fenEchiquier.setSize(400,400);
 
-		fenEchiquierStand.pack();
-		fenEchiquierStand.setVisible(true);
+		fenEchiquier.pack();
+		fenEchiquier.setVisible(true);
 	}
 
 	public static  void afficherPartiePersonnalisee()
 	{
-		if(cont!=null)
+		/*if(cont!=null)
 			cont.removeAll();
 		
-		cont = fenEchiquierPerso.getContentPane();
+		cont = fenEchiquierPerso.getContentPane();*/
 		
 		JPanel panPiece = tabPieces();
 		panEchiquier = afficherEchiquier(p.getEchiquier());
@@ -404,54 +407,19 @@ public class Affichage extends JFrame{
 		pan2.add(commencer);
 		pan2.setSize(50,20);
 
-		cont.setLayout(new GridLayout(2,2));
-		cont.add(panEchiquier);
-		cont.add(panPiece);
-		cont.add(pan2);
+		monPanel.setLayout(new GridLayout(2,2));
+		monPanel.add(panEchiquier);
+		monPanel.add(panPiece);
+		monPanel.add(pan2);
 
-		fenEchiquierPerso.setSize(400,400);
-
-		fenEchiquierPerso.pack();
-		fenEchiquierPerso.setVisible(true);
-
-	}
-
-
-	/*public static void afficherPartie(){
-
-
-		Container cont = fenEchiquierStand.getContentPane();
+		fenEchiquier.getContentPane().add(monPanel);
 		
-		cont.removeAll();
+		fenEchiquier.setSize(400,400);
 
-		JPanel pan = afficherEchiquier(p.getE());
-		pan.setLayout(new GridLayout(9,8));
+		fenEchiquier.pack();
+		fenEchiquier.setVisible(true);
 
-		JPanel pan2 = new JPanel();
-		pan2.setLayout(new GridLayout(1,4));
-		//revenir.addActionListener(new EcouteurChoixPartie());
-		//aideBoutton.addActionListener(new EcouteurAide());
-		//creer.addActionListener(new EcouteurMenu());
-		pan2.add(revenir);
-		pan2.add(aideBoutton);
-		pan2.add(creer);
-		pan2.add(timer);
-		pan2.setSize(50,20);
-
-		cont.setLayout(new GridLayout(2,1));
-		cont.add(pan);
-		cont.add(pan2);
-
-		if (aide==true){
-			afficherAide();
-		}
-		fenEchiquierStand.setSize(400,400);
-
-		fenEchiquierStand.pack();
-		fenEchiquierStand.setVisible(true);
-	}*/
-
-	
+	}	
 	
 	public static class EcouteurMenu implements ActionListener{
 
@@ -514,7 +482,7 @@ public class Affichage extends JFrame{
 
 
 			if (e.getSource() == commencer){
-				fenEchiquierPerso.dispose();
+				fenEchiquier.dispose();
 				afficherPartieStandard();	
 			}
 
@@ -539,9 +507,11 @@ public class Affichage extends JFrame{
 							afficherAide();
 						}
 
-						panEchiquier.updateUI();
-						cont.revalidate();
-						cont.repaint();
+						//panEchiquier=afficherEchiquier(p.getEchiquier());
+						monPanel.updateUI();
+						//monPanel.revalidate();
+						//monPanel.repaint();
+						//fenEchiquierStand.repaint();
 						
 					}
 				}
