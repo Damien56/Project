@@ -123,7 +123,7 @@ public class Partie implements java.io.Serializable
 		boolean fini = false, estMat = false, loop=false;
 		int tour = 1;
 		Piece pieceSelected = null;
-		Piece monRoi;
+		Roi monRoi=null;
 		Position pos = null;
 			
 		System.out.println(this.E.toString());//Affichage Echiquier de depart
@@ -134,7 +134,7 @@ public class Partie implements java.io.Serializable
 					
 			// Test si le roi de ma couleur est mat
 			/*if(monRoi!=null)
-				if(this.E.estMat((Roi)monRoi))
+				if(this.E.estMat(monRoi))
 					estMat = true;
 
 			else*/
@@ -198,9 +198,9 @@ public class Partie implements java.io.Serializable
 	
 	// Recherche le roi de ma couleur en fonction du tour
 	// (INIT : les blancs commencent, tour = 1)
-	public Piece selectMonRoi(int tour)
+	public Roi selectMonRoi(int tour)
 	{
-		Piece monRoi = null;
+		Roi monRoi = null;
 		
 		for(int i = 0; i < 8; i++)
 			for(int j = 0; j < 8; j++)
