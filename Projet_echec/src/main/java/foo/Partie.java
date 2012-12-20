@@ -208,7 +208,7 @@ public class Partie implements java.io.Serializable
 					if(this.E.getTableau()[i][j].getClass().getName() == "pieces.Roi")
 						if((this.E.getTableau()[i][j].getCouleur() == "blanc") && ((tour%2 != 0)) ||
 								(this.E.getTableau()[i][j].getCouleur() == "noir") && ((tour%2 == 0)))
-							monRoi = this.E.getTableau()[i][j];	
+							monRoi = (Roi)this.E.getTableau()[i][j];
 
 		return monRoi;
 	}
