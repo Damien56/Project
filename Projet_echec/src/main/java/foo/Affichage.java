@@ -301,7 +301,7 @@ public class Affichage extends JFrame{
 		pan.removeAll();
 
 		pan.setSize(400, 100);
-		pan.setLayout(new GridLayout(8,8));
+		pan.setLayout(new GridLayout(9,8));
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
 
@@ -369,6 +369,15 @@ public class Affichage extends JFrame{
 
 		}
 
+		JTextField txt = new JTextField("null");
+		if(p.getTour()%2 == 0){
+			txt.setText("Noirs jouent");
+		}
+		else if(p.getTour()%2 ==1){
+			txt.setText("Blancs jouent");
+		}
+		pan.add(txt);
+		
 		return pan;
 	}
 

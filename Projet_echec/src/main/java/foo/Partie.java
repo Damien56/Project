@@ -282,5 +282,9 @@ public class Partie implements java.io.Serializable
 			this.J2.setTempsEcoule(30);
 
 
+		}
+
+		public int getTour() {
+			return this.tour;
 		}		
 	}
