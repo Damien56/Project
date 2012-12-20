@@ -47,19 +47,19 @@ public class Partie implements java.io.Serializable
 	}	
 	
 	
-	public Echiquier getE() {
+	public Echiquier getEchiquier() {
 		return E;
 	}
 
-	public Joueur getJ1() {
+	public Joueur getJoueur1() {
 		return this.J1;
 	}
 
-	public Joueur getJ2() {
+	public Joueur getJoueur2() {
 		return this.J2;
 	}
 
-	public boolean isStd() {
+	public boolean isStandard() {
 		return this.isStd;
 	}
 
@@ -83,15 +83,15 @@ public class Partie implements java.io.Serializable
 		return this.suivant;
 	}
 
-	public void setJ1(Joueur j1) {
+	public void setJoueur1(Joueur j1) {
 		this.J1 = j1;
 	}
 
-	public void setJ2(Joueur j2) {
+	public void setJoueur2(Joueur j2) {
 		this.J2 = j2;
 	}
 
-	public void setStd(boolean isStd) {
+	public void setStandard(boolean isStd) {
 		this.isStd = isStd;
 	}
 
