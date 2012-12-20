@@ -2,6 +2,8 @@ package foo;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import pieces.Position;
@@ -57,7 +60,11 @@ public class Affichage extends JFrame{
 	private static boolean aide = false;
 	private static JButton aideBoutton = new JButton("Aide");
 
-
+//attribut exit
+	static JFrame fenExit = new JFrame("Fin de partie");
+	private static JTextField conf = new JTextField("Voulez-vous vraiment quitter??");
+	private static JButton oui =new JButton("OUI");
+	private static JButton non =new JButton("NON");
 
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static JButton tabPiece[][] = new JButton[6][2];
@@ -247,22 +254,44 @@ public class Affichage extends JFrame{
 
 	}
 
-	public void confirmExit(){
+	public static void confirmExit(){
 
-		JFrame fenetre1 = new JFrame("Fin de partie");
+		/*JFrame fenetre1 = new JFrame("Fin de partie");
 		JPanel panel1 =new JPanel();
 		panel1.setSize(400, 100);
-		panel1.setLayout( new BoxLayout(panel1,1));
+		panel1.setLayout( new GridLayout(2,1));
 
-		JButton confirmer = new JButton("Confirmer sortie de la partie");
-		confirmer.setSize(200,50);
-
-		panel1.add(confirmer);
-
+		
+		conf.setSize(200,50);
+		
+		panel1.add(conf);
+		panel1.add(oui);
+		panel1.add(non);
 		fenetre1.getContentPane().add(panel1);
 		fenetre1.pack();
-		fenetre1.setVisible(true);
-
+		fenetre1.setVisible(true);*/
+		
+		
+		Container tmp = fenExit.getContentPane();
+	    JTextArea zoneSaisie = new JTextArea("Voulez-vous vraiment Quitter ??");
+	    JPanel panSaisie = new JPanel();
+	    JPanel boutonsChoix = new JPanel();
+	    JButton oui = new JButton("OUI");
+	    JButton non = new JButton("NON");
+	    tmp.setLayout(new BoxLayout(tmp, BoxLayout.Y_AXIS));
+    	panSaisie.setLayout(new FlowLayout());
+        panSaisie.add(zoneSaisie);
+        tmp.add(panSaisie);
+    	boutonsChoix.setLayout(new FlowLayout());
+    	oui.setSize(new Dimension(80,80));
+        boutonsChoix.add(oui);
+    	non.setSize(new Dimension(80,80));
+        boutonsChoix.add(non);
+        tmp.add(boutonsChoix);
+        
+       
+        fenExit.setSize(200,100);
+        fenExit.setVisible(true);
 
 	}
 
@@ -608,8 +637,8 @@ public class Affichage extends JFrame{
 
 	public static void main(String[] args) {
 		
-		menuPrincipal();
-		p.jouerPartie();
+		//menuPrincipal();
+		//p.jouerPartie();
 		
 		//menuPrincipal();
 		//choixDeLaPartie();
@@ -618,7 +647,7 @@ public class Affichage extends JFrame{
 
 		//tabPieces();
 		//afficherEchiquier();
-
+		confirmExit();
 		//ech.echiquierStandard();
 		//afficherEchiquier(ech);
 		//afficherPartiePersonnalisee();
