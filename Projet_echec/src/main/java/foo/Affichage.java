@@ -661,10 +661,15 @@ public class Affichage extends JFrame{
 		
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		menuPrincipal();
 		p.jouerPartie();
 
+=======
+		menuPrincipal();
+		p.jouerPartie();
+>>>>>>> parent of 43e9865... exit
 =======
 		menuPrincipal();
 		p.jouerPartie();
