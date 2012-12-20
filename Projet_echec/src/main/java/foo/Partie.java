@@ -20,13 +20,12 @@ public class Partie implements java.io.Serializable
 	
 	
 	// Le constructeur
-	public Partie(Joueur j1, Joueur j2, Echiquier e, boolean isStd)
+	public Partie(Joueur j1, Joueur j2, Echiquier e)
 	{
 		this.J1 = j1;
 		this.J2 = j2;
 		this.E = e;
 		this.eDepart = e;
-		this.isStd = isStd; 
 		this.mesPositions = new Vector<Position>();
 		this.mesDestinations = new Vector<Position>();
 		this.caseCliquee = null;
@@ -35,17 +34,11 @@ public class Partie implements java.io.Serializable
 		this.couleurPiece = "";
 		this.suivant = false;
 		this.tour = 1;
-		
-		if(isStd)
-		{
-			this.E.echiquierStandard();
-			this.eDepart.echiquierStandard();
-		}
 	}
 	
 	public Partie()
 	{
-		this(new Joueur(), new Joueur(), new Echiquier(), true);		
+		this(new Joueur(), new Joueur(), new Echiquier());		
 	}	
 	
 	
@@ -81,7 +74,7 @@ public class Partie implements java.io.Serializable
 		return this.couleurPiece;
 	}
 
-	public boolean isSuivant() {
+	public boolean getSuivant() {
 		return this.suivant;
 	}
 
@@ -234,7 +227,8 @@ public class Partie implements java.io.Serializable
 			do
 			{
 			}
-			while(!this.isSuivant());
+			while(!this.getSuivant());
+			this.setSuivant(false);
 		}
 	}
 
