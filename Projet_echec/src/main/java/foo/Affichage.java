@@ -416,11 +416,6 @@ public class Affichage extends JFrame{
 
 	}
 
-<<<<<<< HEAD
-
-
-
-=======
 	public static void afficherPartie(){
 
 
@@ -455,7 +450,7 @@ public class Affichage extends JFrame{
 
 	
 	
->>>>>>> master
+
 	public static class EcouteurMenu implements ActionListener{
 
 		public void actionPerformed(ActionEvent e){ 
@@ -641,7 +636,7 @@ public class Affichage extends JFrame{
 
 
 
-		//menuPrincipal();
+		menuPrincipal();
 		//choixDeLaPartie();
 		//menuFinDePartie();
 		//choixDesJoueur();
@@ -654,8 +649,8 @@ public class Affichage extends JFrame{
 		//afficherPartiePersonnalisee();
 		//afficherPartieStandard();
 		
-		menuPrincipal();
-		p.jouerPartie();
+		//menuPrincipal();
+		//p.jouerPartie();
 		
 		//afficherPartieStandard();
 
