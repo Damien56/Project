@@ -29,12 +29,12 @@ public class Echiquier
 
 		// Premiere ligne des pieces noires - Premiere ligne echiquier
 		this.tableau[0][0] = new Tour(new Position(0,0), couleur); 
-		//this.tableau[0][1] = new Cavalier(new Position(0,1), couleur);
-		//this.tableau[0][2] = new Fou(new Position(0,2), couleur);
-		//this.tableau[0][3] = new Dame(new Position(0,3), couleur);
+		this.tableau[0][1] = new Cavalier(new Position(0,1), couleur);
+		this.tableau[0][2] = new Fou(new Position(0,2), couleur);
+		this.tableau[0][3] = new Dame(new Position(0,3), couleur);
 		this.tableau[0][4] = new Roi(new Position(0,4),couleur);
-		//this.tableau[0][5] = new Fou(new Position(0,5), couleur);
-		//this.tableau[0][6] = new Cavalier(new Position(0,6), couleur);
+		this.tableau[0][5] = new Fou(new Position(0,5), couleur);
+		this.tableau[0][6] = new Cavalier(new Position(0,6), couleur);
 		this.tableau[0][7] = new Tour(new Position(0,7), couleur);
 
 		// Deuxieme ligne des pieces noires - Deuxieme ligne echiquier
@@ -51,12 +51,12 @@ public class Echiquier
 
 		// Premiere ligne des pieces blanches - Huitieme ligne echiquier
 		this.tableau[7][0] = new Tour(new Position(7, 0), couleur);
-		//this.tableau[7][1] = new Cavalier(new Position(7, 1), couleur);
-		//this.tableau[7][2] = new Fou(new Position(7, 2), couleur);
-		//this.tableau[7][3] = new Dame(new Position(7, 3), couleur);
+		this.tableau[7][1] = new Cavalier(new Position(7, 1), couleur);
+		this.tableau[7][2] = new Fou(new Position(7, 2), couleur);
+		this.tableau[7][3] = new Dame(new Position(7, 3), couleur);
 		this.tableau[7][4] = new Roi(new Position(7, 4), couleur);
-		//this.tableau[7][5] = new Fou(new Position(7, 5), couleur);
-		//this.tableau[7][6] = new Cavalier(new Position(7, 6), couleur);
+		this.tableau[7][5] = new Fou(new Position(7, 5), couleur);
+		this.tableau[7][6] = new Cavalier(new Position(7, 6), couleur);
 		this.tableau[7][7] = new Tour(new Position(7, 7), couleur);
 
 		// Deuxieme ligne des pieces blanches - Septieme ligne echiquier
@@ -80,57 +80,116 @@ public class Echiquier
 	public boolean deplacerPiece(Piece p, Position pos)
 	{
 		if(p != null){
-			for(int z=0; z<this.destinationPossible(p).size();z++)
-			{
-				if(this.destinationPossible(p).elementAt(z).isEqual(pos))
-				{
-					if((p.getDejaDeplace() == false)&&((p.getClass().getName() == "pieces.Roi") || (p.getClass().getName() == "pieces.Tour"))){
-						p.setDejaDeplace(true);
-					}
-					else if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion")){
-						p.setNombreDeDeplacement(1);
-					}
-					else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion")){
-						p.setNombreDeDeplacement(2);
-					}
+			/*if((p.getDejaDeplace() == false)&&((p.getClass().getName() == "pieces.Roi") || (p.getClass().getName() == "pieces.Tour"))){
+				p.setDejaDeplace(true);
+			}
+			else if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion")){
+				p.setNombreDeDeplacement(1);
+			}
+			else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion")){
+				p.setNombreDeDeplacement(2);
+			}*/
 
 
-					if(this.tableau[pos.getI()][pos.getJ()+1] != null){
-						if((p.getClass().getName() == "pieces.Roi") && (this.tableau[pos.getI()][pos.getJ()+1].getClass().getName() == "pieces.Tour")){
+			if(p.getClass().getName() == "pieces.Roi" && p.getDejaDeplace() == false){
+				if(this.tableau[pos.getI()][pos.getJ()+1] != null){//Roc à droite
+					if(this.tableau[pos.getI()][pos.getJ()+1].getClass().getName() == "pieces.Tour"){
 
-							this.supprimerPiece(p.getPosition());
-							this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()+1].getPosition());
+						this.supprimerPiece(p.getPosition());
+						this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()+1].getPosition());
 
-							Roi r = (Roi)p;
-							r.setPosition(pos);
-							r.setDejaDeplace(true);
-							r.setPositionPossible();
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
 
-							Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()-1), p.getCouleur());
-							t.setDejaDeplace(true);
-							t.setPositionPossible();
+						Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()-1), p.getCouleur());
+						t.setDejaDeplace(true);
+						t.setPositionPossible();
 
-							this.ajouterPiece(r);
-							this.ajouterPiece(t);
-						}
-						else if((p.getClass().getName() == "pieces.Pion")){
-
-							this.supprimerPiece(p.getPosition());
-
-							Pion newP = new Pion(pos, p.getCouleur());
-							newP.setNombreDeDeplacement(p.getNombreDeDeplacement());
-
-							this.ajouterPiece(newP);
-						}
+						this.ajouterPiece(r);
+						this.ajouterPiece(t);
 					}
 					else
 					{
-						p.setPosition(pos);
-						this.ajouterPiece(p);
-						this.supprimerPiece(p.getPositionOld());
+						this.supprimerPiece(p.getPosition());
+
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
+
+						this.ajouterPiece(r);
 					}
 				}
+				else if(this.tableau[pos.getI()][pos.getJ()-2] != null){//Roc à gauche
+					if(this.tableau[pos.getI()][pos.getJ()-2].getClass().getName() == "pieces.Tour"){
+
+						this.supprimerPiece(p.getPosition());
+						this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()-2].getPosition());
+
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
+
+						Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()+1), p.getCouleur());
+						t.setDejaDeplace(true);
+						t.setPositionPossible();
+
+						this.ajouterPiece(r);
+						this.ajouterPiece(t);
+					}
+					else
+					{
+						this.supprimerPiece(p.getPosition());
+
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
+
+						this.ajouterPiece(r);
+					}
+				}
+				else
+				{
+					this.supprimerPiece(p.getPosition());
+
+					Roi r = (Roi)p;
+					r.setPosition(pos);
+					r.setDejaDeplace(true);
+					r.setPositionPossible();
+
+					this.ajouterPiece(r);
+				}
 			}
+			else if((p.getClass().getName() == "pieces.Pion")){
+
+				if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion")){
+					p.setNombreDeDeplacement(1);
+				}
+				else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion")){
+					p.setNombreDeDeplacement(2);
+				}
+
+				this.supprimerPiece(p.getPosition());
+
+				Pion newP = (Pion)p;
+				newP.setPosition(pos);
+				newP.setNombreDeDeplacement(p.getNombreDeDeplacement());
+				newP.setPositionPossible();
+
+				this.ajouterPiece(newP);
+			}
+			else
+			{
+				p.setPosition(pos);
+				this.ajouterPiece(p);
+				this.supprimerPiece(p.getPositionOld());
+			}
+
+
 		}
 		return true;
 	}
