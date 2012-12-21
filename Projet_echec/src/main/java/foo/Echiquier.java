@@ -235,6 +235,7 @@ public class Echiquier
 			
 
 		//deplacement vers le haut
+		
 		i = piece.getPosition().getI();//reinitialisation a la position de la piece a verifier
 		
 		do
