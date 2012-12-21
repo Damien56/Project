@@ -4,8 +4,10 @@ public class App
 {
     public static void main(String[] args)
     {
-		//Affichage.menuPartie();
-    	Affichage.menuPartie();
+
+		Affichage.menuPrincipal();
 		Affichage.getPartie().jouerPartie();
     }
 }
+
+	

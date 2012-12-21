@@ -1,5 +1,6 @@
 package foo;
 
+import java.util.Calendar;
 import java.util.Vector;
 
 import pieces.*;
@@ -18,6 +19,8 @@ public class Partie implements java.io.Serializable
 	public boolean suivant;
 	public int tour;
 	public boolean persoFinie;
+	public int coupSuivant;
+	private static boolean finDePartie = false;
 
 
 	// Le constructeur
@@ -35,6 +38,7 @@ public class Partie implements java.io.Serializable
 		this.couleurPiece = "";
 		this.suivant = false;
 		this.tour = 1;
+		this.coupSuivant = 0;
 	}
 
 	public Partie()
@@ -120,6 +124,16 @@ public class Partie implements java.io.Serializable
 	{
 		return this.persoFinie;
 	}
+	
+	public void setCoupSuivant(int i)
+	{
+		this.coupSuivant = i;
+	}
+	
+	public int getCoupSuivant()
+	{
+		return this.coupSuivant;
+	}
 
 
 
@@ -128,12 +142,14 @@ public class Partie implements java.io.Serializable
 	{
 		boolean fini = false, isMat = false, loop = false;
 		Piece pieceSelected = null;
+
 		Piece monRoi = null;
+
 		Position pos = null;
 
 		System.out.println(this.E.toString()); //Affichage Echiquier de depart
 
-		while(!fini && !isMat)
+		while(/*!fini && !isMat &&*/ !finDePartie)
 		{			
 			monRoi = selectMonRoi(this.tour);
 
@@ -170,12 +186,10 @@ public class Partie implements java.io.Serializable
 										pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];//sinon si pos = piece de la même couleur alors pieceSelected = pos
 									}
 								}
-
 							}
 							if(this.E.destinationPossible(pieceSelected).size() == 0)
 							{
 								loop = true;
-								//this.tour++;
 							}
 						}
 					}
@@ -189,39 +203,41 @@ public class Partie implements java.io.Serializable
 					this.mesPositions.add(pieceSelected.getPosition());
 					this.mesDestinations.add(pos);
 				}	
-
-				//this.tour++;
 			}	
 		}
 	}
 
+	public static void setFinDePartie(boolean finDePartie) {
+		Partie.finDePartie = finDePartie;
+	}
+
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
-	public void jouerPartiePersonnalisee()
+	public void personnaliserPartie()
 	{
-		while(!getPersoFinie())
+		//while(!getPersoFinie())
 		{
-			if(this.getNomPiece() == "piece.Roi") {
+			if(this.getNomPiece() == "pieces.Roi") {
 				this.E.ajouterPiece(new Roi(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 
+
 			else if(this.getNomPiece() == "piece.Dame") {
+
 				this.E.ajouterPiece(new Dame(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Tour") {
+			else if(this.getNomPiece() == "pieces.Tour") {
 				this.E.ajouterPiece(new Tour(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Fou") {
+			else if(this.getNomPiece() == "pieces.Fou") {
 				this.E.ajouterPiece(new Fou(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Cavalier") {
+			else if(this.getNomPiece() == "pieces.Cavalier") {
 				this.E.ajouterPiece(new Cavalier(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Pion") {
+			else if(this.getNomPiece() == "pieces.Pion") {
 				this.E.ajouterPiece(new Pion(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 		}
-
-		this.jouerPartie();
 	}
 
 
@@ -258,31 +274,36 @@ public class Partie implements java.io.Serializable
 	{
 		Piece monRoi = null;
 
-		for(int i = 0; i < 8; i++)
-			for(int j = 0; j < 8; j++)
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
 				if(this.E.getTableau()[i][j]!=null)
 					if(this.E.getTableau()[i][j].getClass().getName() == "pieces.Roi")
 						if((this.E.getTableau()[i][j].getCouleur() == "blanc") && ((tour%2 != 0)) ||
 								(this.E.getTableau()[i][j].getCouleur() == "noir") && ((tour%2 == 0)))
-							monRoi = (Roi)this.E.getTableau()[i][j];
 
+							monRoi = this.E.getTableau()[i][j];
+			}
+		}
 		return monRoi;
 	}
 
 	public void rejeuPartie()
 	{
 		this.E = this.eDepart;
-
-		for(int i = 0; i < this.mesPositions.size(); i++)
+		
+		if (this.getCoupSuivant() < this.mesPositions.size())
 		{
-			this.E.deplacerPiece(this.E.getTableau()[this.mesPositions.elementAt(i).getI()][this.mesPositions.elementAt(i).getJ()], this.mesDestinations.elementAt(i));
-
-			// A chaque clic sur le bouton suivant
-			do
+			for(int i = 0; i < this.getCoupSuivant(); i++)
 			{
+				this.E.deplacerPiece(this.E.getTableau()[this.mesPositions.elementAt(i).getI()][this.mesPositions.elementAt(i).getJ()], this.mesDestinations.elementAt(i));
+	
+				// A chaque clic sur le bouton suivant
+				//do
+				//{
+				//}
+				//while(!this.getSuivant());
+				//this.setSuivant(false);
 			}
-			while(!this.getSuivant());
-			this.setSuivant(false);
 		}
 	}
 
@@ -301,22 +322,16 @@ public class Partie implements java.io.Serializable
 
 		// MAJ temps
 		boolean fini = false;
-		long tempsSystemDebut = System.currentTimeMillis();
-		long tempsEcoule = 0;
-
+		
 		do
 		{
-			tempsEcoule = System.currentTimeMillis() - tempsSystemDebut;
-
-			// peut devenir source de probleme, le temps ne se decompte pas.
-			// jouer sur les transtypages int/long
-			if((int)tempsEcoule == 1)
-			{
-				j.setTempsEcoule(j.getTempsEcoule() - tempsEcoule);
-				tempsSystemDebut = System.currentTimeMillis();
-				if(j.getTempsEcoule() <= 0)
-					fini = true;
-			}
+			try
+	        {
+	            Thread.sleep(1000);
+	            j.setTempsEcoule(j.getTempsEcoule() - 1);
+	            System.out.println("Joueur " + j.getNom() + " : " + j.getTempsEcoule());
+            }
+	        catch (InterruptedException exception){}
 		}
 		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
@@ -327,23 +342,45 @@ public class Partie implements java.io.Serializable
 		return fini;
 
 	}
-	public void GererTour(){
+	public void gererTour()
+	{
 		// Temps max pour test
-		this.J1.setTempsEcoule(30);
-		this.J2.setTempsEcoule(30);
-
-		//while (1)
+		this.J1.setTempsEcoule(10);
+		this.J2.setTempsEcoule(10);
+		boolean fini = false;
+		
+		while(!fini)
 		{
-
-
-			J1.getTempsEcoule();
-			J2.getTempsEcoule();
+			if(this.getTour()%2 == 1 && this.J2.getTempsEcoule() != 0)
+			{
+				while(!defilerTemps(this.J1))
+				{
+					defilerTemps(this.J1);
+				}
+			}
+			
+			if(this.getTour()%2 == 0 && this.J1.getTempsEcoule() != 0)
+			{
+				while(!defilerTemps(this.J2))
+				{
+					defilerTemps(this.J2);
+				}
+			}
+			if(this.J1.getTempsEcoule() == 0 || this.J2.getTempsEcoule() == 0)
+			{
+				fini = true;
+			}	
 		}
-
 	}
 
 	public int getTour() {
 		return this.tour;
+	}
+	
+	public static void main(String[] args)
+	{
+		//Partie p = new Partie();
+		//p.gererTour();		
 	}	
 }
 

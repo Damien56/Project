@@ -27,7 +27,7 @@ public class Echiquier
 
 		String couleur = "noir";
 
-		// Premiere ligne des pieces noires - Premiere ligne echiquier
+		//Premiere ligne des pieces noires - Premiere ligne echiquier
 		this.tableau[0][0] = new Tour(new Position(0,0), couleur); 
 		this.tableau[0][1] = new Cavalier(new Position(0,1), couleur);
 		this.tableau[0][2] = new Fou(new Position(0,2), couleur);
@@ -523,6 +523,7 @@ public class Echiquier
 						{
 							p.setPositionDuMechant(pos);
 							prenable = true;
+							System.out.println("estprenable : " + prenable);
 						}
 					}
 				}
@@ -582,25 +583,24 @@ public class Echiquier
 				// si le roi peut etre protégé :
 				destination = destinationPossible(mechant);
 				if(destination != null){
-					for(int i = 0; i < destination.size(); i++)
+				for(int i = 0; i < destination.size(); i++)
+				{
+					mechant.setPosition(destination.elementAt(i));
+					if(estPrenable(mechant))
 					{
-						mechant.setPosition(destination.elementAt(i));
-						if(estPrenable(mechant))
-						{
-							estProtegeable = true;
-							//Position protection = mechant.getPositionDuMechant();
-							//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
-						}
+						estProtegeable = true;
+						//Position protection = mechant.getPositionDuMechant();
+						//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
 					}
 				}
-			}
-			//si un mechant existe faire et n'est pas prenable, c'est perdu !
-			if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
-			{
-				mat = true;
-			}
-		}	
-
+				}
+				//si un mechant existe faire et n'est pas prenable, c'est perdu !
+				if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
+				{
+					mat = true;
+				}
+			}	
+		}
 		return mat;	
 	}
 }
