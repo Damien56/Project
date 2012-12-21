@@ -179,6 +179,8 @@ public class Echiquier
 	{
 		Vector<Position> dest = new Vector<Position>();
 		int[][] tabposition = piece.getPositionPossible();
+		
+		if (piece != null){
 
 		int i = 0, j = 0;
 
@@ -230,7 +232,7 @@ public class Echiquier
 			}
 			
 			while(this.tableau[i][j] == null && i < 7);			
-		}
+		
 		
 			
 
@@ -391,9 +393,10 @@ public class Echiquier
 			}
 		}
 		while(this.tableau[i][j] == null && j < 7 && i > 0);
-			
-		return dest;
+		}
 	}
+		return dest;
+}
 
 	public boolean estBloquee(Piece p)
 	{
