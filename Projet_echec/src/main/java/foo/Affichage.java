@@ -75,12 +75,17 @@ public class Affichage extends JFrame{
 
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static JButton tabPiece[][] = new JButton[6][2];
-
+	
+	
 	private static Partie p = new Partie();
 
 
 	public Affichage(){
 
+	}
+
+	public static void setP(Partie p) {
+		Affichage.p = p;
 	}
 
 	public static boolean isCommencerBool() {
@@ -530,7 +535,7 @@ public class Affichage extends JFrame{
 						JOptionPane.YES_NO_OPTION,
 						JOptionPane.QUESTION_MESSAGE);
 				if (reponse==JOptionPane.YES_OPTION){
-					Dialogue.serialiserPartie(p, "proute.txt"); 
+					Dialogue.serialiserPartie(p, "Partie.txt"); 
 					fen.dispose();
 					fen.setDefaultCloseOperation(EXIT_ON_CLOSE);
 				}
@@ -554,7 +559,7 @@ public class Affichage extends JFrame{
 				revoirPartie();
 			}
 			if (e.getSource() == exit1){
-
+				Dialogue.serialiserPartie(p, "Partie.txt");
 				System.exit(0); 
 			}
 		}
@@ -721,8 +726,8 @@ public class Affichage extends JFrame{
 	public static class EcouteurSuivant implements ActionListener{
 		public void actionPerformed(ActionEvent e){ 
 			if (e.getSource() == suivant){
-				p.setCoupSuivant(CoupSuivant++);
-				System.out.println(CoupSuivant);
+				p.setCoupSuivant(p.getCoupSuivant()+1);
+				System.out.println(p.getCoupSuivant());
 				revoirPartie();
 			}
 
@@ -740,6 +745,7 @@ public class Affichage extends JFrame{
 				}
 				if (e.getSource() == terminer){
 					fenEchiquier.dispose();
+					p.setFinDePartie(true);
 					menuExit();
 
 				}

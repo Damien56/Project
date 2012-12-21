@@ -19,6 +19,7 @@ public class Partie implements java.io.Serializable
 	public int tour;
 	public boolean persoFinie;
 	public int coupSuivant;
+	private static boolean finDePartie = false;
 
 
 	// Le constructeur
@@ -145,17 +146,17 @@ public class Partie implements java.io.Serializable
 
 		System.out.println(this.E.toString()); //Affichage Echiquier de depart
 
-		while(!fini && !isMat)
+		while(/*!fini && !isMat &&*/ !finDePartie)
 		{			
 			monRoi = selectMonRoi(this.tour);
 
 			// Test si le roi de ma couleur est mat
-			if(this.E.estMat(monRoi))
+			/*if(this.E.estMat(monRoi))
 			{
 				isMat = true;
 			}
 
-			else
+			else*/
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
 				pieceSelected = selectPieceJouable(this.tour);
@@ -201,6 +202,10 @@ public class Partie implements java.io.Serializable
 
 			this.tour++;
 		}		
+	}
+
+	public static void setFinDePartie(boolean finDePartie) {
+		Partie.finDePartie = finDePartie;
 	}
 
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
@@ -366,13 +371,6 @@ public class Partie implements java.io.Serializable
 		return this.tour;
 	}
 	
-	public static void main(String args[])
-	{
-		Partie p = new Partie();
-		Joueur j = new Joueur();
-		j.setTempsEcoule(1000);
-		p.defilerTemps(j);
-	}
 	
 }
 

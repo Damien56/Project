@@ -582,13 +582,11 @@ public class Echiquier
 	{
 
 		boolean mat = false, estProtegeable = false;
-		if (roi!=null){
+		if(roi!=null){
 			Position positionTest = roi.getPosition();
 			Vector<Position> destination = destinationPossible(roi);
 			String couleurDuMechant = "";
 			Piece mechant;
-
-<<<<<<< HEAD
 
 			if(roi.getCouleur() == "blanc")
 			{
@@ -596,20 +594,6 @@ public class Echiquier
 			}
 
 			else
-=======
-<<<<<<< HEAD
-		if(roi!=null){
-			for(int i = 0; i < destination.size(); i++)
-=======
-		if(roi.getCouleur() == "blanc")
-		{
-			couleurDuMechant = "noir";
-		}
-		
-		else
-		{
-			if(roi.getCouleur() == "noir")
->>>>>>> origin/bigodam
 			{
 				if(roi.getCouleur() == "noir")
 				{
@@ -617,25 +601,13 @@ public class Echiquier
 				}
 			}
 
-<<<<<<< HEAD
 			mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
 
 			// Si le roi peut toujours se déplacer :
 			for(int i = 0; i < destination.size(); i++)
-=======
-		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
-		
-		// Si le roi peut toujours se déplacer :
-		for(int i = 0; i < destination.size(); i++)
-		{
-			roi.setPosition(destination.elementAt(i));					
-			if(estEchec(roi) == false)
->>>>>>> master
->>>>>>> origin/bigodam
 			{
 				roi.setPosition(destination.elementAt(i));					
 				if(estEchec(roi) == false)
-
 				{
 					roi.setPosition(destination.elementAt(i));					
 					if(estEchec(roi) == false)
@@ -644,56 +616,31 @@ public class Echiquier
 						mat = false;
 					}
 				}
-<<<<<<< HEAD
 			} // adapter destinations si estEchec
-=======
-			}
-<<<<<<< HEAD
->>>>>>> origin/bigodam
 
 
-			// si le roi peut etre protégé :
-			destination = destinationPossible(mechant);
-			for(int i = 0; i < destination.size(); i++)
-
-<<<<<<< HEAD
-=======
-			else if(roi.getCouleur() == "noir"){
-				couleurDuMechant = "blanc";
-			}
-		}
-		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
-
-		//si un mechant existe faire :
-		if(mechant != null)
-=======
-		} // adapter destinations si estEchec
-	
-		
-		// si le roi peut etre protégé :
-		destination = destinationPossible(mechant);
-		for(int i = 0; i < destination.size(); i++)
->>>>>>> master
-		{
-			mechant.setPosition(destination.elementAt(i));
-			if(estPrenable(mechant))
->>>>>>> origin/bigodam
-			{
-				mechant.setPosition(destination.elementAt(i));
-				if(estPrenable(mechant))
+			if(mechant!=null){
+				// si le roi peut etre protégé :
+				destination = destinationPossible(mechant);
+				if(destination != null){
+				for(int i = 0; i < destination.size(); i++)
 				{
-					estProtegeable = true;
-					//Position protection = mechant.getPositionDuMechant();
-					//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
+					mechant.setPosition(destination.elementAt(i));
+					if(estPrenable(mechant))
+					{
+						estProtegeable = true;
+						//Position protection = mechant.getPositionDuMechant();
+						//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
+					}
+				}
+				}
+				//si un mechant existe faire et n'est pas prenable, c'est perdu !
+				if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
+				{
+					mat = true;
 				}
 			}	
-
-			//si un mechant existe faire et n'est pas prenable, c'est perdu !
-			if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
-			{
-				mat = true;
-			}
-		}	
+		}
 		return mat;	
 	}
 }
