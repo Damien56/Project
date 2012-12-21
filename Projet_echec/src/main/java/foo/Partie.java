@@ -110,12 +110,12 @@ public class Partie implements java.io.Serializable
 	public void setSuivant(boolean suivant) {
 		this.suivant = suivant;
 	}
-	
+
 	public void setPersoFinie(boolean b)
 	{
 		this.persoFinie = b;
 	}
-	
+
 	public boolean getPersoFinie()
 	{
 		return this.persoFinie;
@@ -138,57 +138,59 @@ public class Partie implements java.io.Serializable
 			monRoi = selectMonRoi(this.tour);
 
 			// Test si le roi de ma couleur est mat
-			if(this.E.estMat(monRoi))
-			{
-				isMat = true;
+			if(monRoi!=null && this.E!=null){
+				if(this.E.estMat(monRoi))
+				{
+					isMat = true;
+				}
 			}
+			else{
+				// Selectionne la piece cliquee et
+				// verifie si elle a la couleur attendue en fonction du tour
+				pieceSelected = selectPieceJouable(this.tour);
 
-			else
-			// Selectionne la piece cliquee et
-			// verifie si elle a la couleur attendue en fonction du tour
-			pieceSelected = selectPieceJouable(this.tour);
+				// Demande une position de destination tant qu'elle n'est
+				// pas conforme aux destinations possibles pour cette pièce.
 
-			// Demande une position de destination tant qu'elle n'est
-			// pas conforme aux destinations possibles pour cette pièce.
+				while(loop == false)
+				{
+					pos = this.getCaseCliquee();
 
-			while(loop == false)
-			{
-				pos = this.getCaseCliquee();
-
-				if(pos != null){
-					if(pieceSelected!=null){
-						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++){
-							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
-								this.E.deplacerPiece(pieceSelected, pos);
-								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
-								loop = true;
-							}
-							else if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null){ 
-								if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){
-									pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];//sinon si pos = piece de la même couleur alors pieceSelected = pos
+					if(pos != null){
+						if(pieceSelected!=null){
+							for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++){
+								if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
+									this.E.deplacerPiece(pieceSelected, pos);
+									System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
+									loop = true;
 								}
-							}
+								else if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null){ 
+									if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){
+										pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];//sinon si pos = piece de la même couleur alors pieceSelected = pos
+									}
+								}
 
-						}
-						if(this.E.destinationPossible(pieceSelected).size() == 0)
-						{
-							loop = true;
-							this.tour++;
+							}
+							if(this.E.destinationPossible(pieceSelected).size() == 0)
+							{
+								loop = true;
+								this.tour++;
+							}
 						}
 					}
 				}
-			}
 
-			loop = false;
+				loop = false;
 
-			if(pos != null && pieceSelected != null)
-			{
-				this.mesPositions.add(pieceSelected.getPosition());
-				this.mesDestinations.add(pos);
+				if(pos != null && pieceSelected != null)
+				{
+					this.mesPositions.add(pieceSelected.getPosition());
+					this.mesDestinations.add(pos);
+				}	
+
+				this.tour++;
 			}	
-
-			this.tour++;
-		}		
+		}
 	}
 
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
@@ -199,7 +201,7 @@ public class Partie implements java.io.Serializable
 			if(this.getNomPiece() == "piece.Roi") {
 				this.E.ajouterPiece(new Roi(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			
+
 			else if(this.getNomPiece() == "piece.Dame") {
 				this.E.ajouterPiece(new Dame(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
@@ -216,11 +218,11 @@ public class Partie implements java.io.Serializable
 				this.E.ajouterPiece(new Pion(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 		}
-		
+
 		this.jouerPartie();
 	}
 
-			
+
 
 	// Selectionne sur l'echiquier la piece cliquee,
 	// et verifie si elle a la couleur attendue en fonction du tour

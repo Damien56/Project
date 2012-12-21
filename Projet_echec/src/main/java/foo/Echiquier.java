@@ -532,7 +532,7 @@ public class Echiquier
 				}
 			}
 		}
-		
+
 		// On supprime ma piece pour tester
 		supprimerPiece(p.getPosition());	
 
@@ -549,7 +549,7 @@ public class Echiquier
 	{
 		boolean prenable = false;
 		Vector<Position> destinationPossibleAdverse;
-		
+
 		for (int i = 0; i < 8; i++)
 		{
 			for (int j = 0; j < 8; j++)
@@ -570,7 +570,7 @@ public class Echiquier
 		}
 		return prenable;			
 	}
-	
+
 
 	public boolean estEchec(Piece roi)
 	{
@@ -581,83 +581,65 @@ public class Echiquier
 	{
 
 		boolean mat = false, estProtegeable = false;
-		Position positionTest = roi.getPosition();
-		Vector<Position> destination = destinationPossible(roi);
-		String couleurDuMechant = "";
-		Piece mechant;
-
-<<<<<<< HEAD
 		if(roi!=null){
-			for(int i = 0; i < destination.size(); i++)
-=======
-		if(roi.getCouleur() == "blanc")
-		{
-			couleurDuMechant = "noir";
-		}
-		
-		else
-		{
-			if(roi.getCouleur() == "noir")
-			{
-				couleurDuMechant = "blanc";
-			}
-		}
+			Position positionTest = roi.getPosition();
+			Vector<Position> destination = destinationPossible(roi);
+			String couleurDuMechant = "";
+			Piece mechant;
 
-		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
-		
-		// Si le roi peut toujours se déplacer :
-		for(int i = 0; i < destination.size(); i++)
-		{
-			roi.setPosition(destination.elementAt(i));					
-			if(estEchec(roi) == false)
->>>>>>> master
+			if(roi.getCouleur() == "blanc")
+			{
+				couleurDuMechant = "noir";
+			}
+
+			else
+			{
+				if(roi.getCouleur() == "noir")
+				{
+					couleurDuMechant = "blanc";
+				}
+			}
+
+			mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
+
+			// Si le roi peut toujours se déplacer :
+			for(int i = 0; i < destination.size(); i++)
 			{
 				roi.setPosition(destination.elementAt(i));					
 				if(estEchec(roi) == false)
 				{
-					roi.setPosition(positionTest);
-					mat = false;
+					roi.setPosition(destination.elementAt(i));					
+					if(estEchec(roi) == false)
+					{
+						roi.setPosition(positionTest);
+						mat = false;
+					}
 				}
-			}
-<<<<<<< HEAD
+			} // adapter destinations si estEchec
 
 
-			if(roi.getCouleur() == "blanc"){
-				couleurDuMechant = "noir";
-			}
-
-			else if(roi.getCouleur() == "noir"){
-				couleurDuMechant = "blanc";
-			}
+			if(mechant!=null){
+				// si le roi peut etre protégé :
+				destination = destinationPossible(mechant);
+				if(destination != null){
+				for(int i = 0; i < destination.size(); i++)
+				{
+					mechant.setPosition(destination.elementAt(i));
+					if(estPrenable(mechant))
+					{
+						estProtegeable = true;
+						//Position protection = mechant.getPositionDuMechant();
+						//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
+					}
+				}
+				}
+				//si un mechant existe faire et n'est pas prenable, c'est perdu !
+				if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
+				{
+					mat = true;
+				}
+			}	
 		}
-		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
-
-		//si un mechant existe faire :
-		if(mechant != null)
-=======
-		} // adapter destinations si estEchec
-	
-		
-		// si le roi peut etre protégé :
-		destination = destinationPossible(mechant);
-		for(int i = 0; i < destination.size(); i++)
->>>>>>> master
-		{
-			mechant.setPosition(destination.elementAt(i));
-			if(estPrenable(mechant))
-			{
-				estProtegeable = true;
-				//Position protection = mechant.getPositionDuMechant();
-				//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
-			}
-		}	
-				
-		//si un mechant existe faire et n'est pas prenable, c'est perdu !
-		if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
-		{
-			mat = true;
-		}
-			
 		return mat;	
 	}
 }
