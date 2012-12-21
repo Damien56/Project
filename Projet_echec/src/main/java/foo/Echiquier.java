@@ -94,26 +94,33 @@ public class Echiquier
 				else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion"))
 					p.setNombreDeDeplacement(2);
 				
-				if((p.getClass().getName() == "pieces.Roi") && (this.tableau[pos.getI()][pos.getJ()].getClass().getName() == "pieces.Tour"))
+				
+				
+				/*if((p.getClass().getName() == "pieces.Roi") && (this.tableau[pos.getI()][pos.getJ()].getClass().getName() == "pieces.Tour"))
 				{
+					this.supprimerPiece(p.getPositionOld());
+					this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()].getPositionOld());
+					
 					Roi r = new Roi(pos, p.getCouleur());
 					r.setDejaDeplace(p.getDejaDeplace());
 					
 					Tour t = new Tour(p.getPosition(), this.tableau[pos.getI()][pos.getJ()].getCouleur());
 					t.setDejaDeplace(this.tableau[pos.getI()][pos.getJ()].getDejaDeplace());
 					
-					this.supprimerPiece(p.getPositionOld());
-					this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()].getPositionOld());
+					
 					
 					this.ajouterPiece(r);
 					this.ajouterPiece(t);
 				}
-				else if((p.getClass().getName() == "pieces.Pion"))
+				
+				else*/ if((p.getClass().getName() == "pieces.Pion"))
 				{
+					this.supprimerPiece(p.getPositionOld());
+					
 					Pion newP = new Pion(pos, p.getCouleur());
 					newP.setNombreDeDeplacement(p.getNombreDeDeplacement());
 					
-					this.supprimerPiece(p.getPositionOld());
+					
 					this.ajouterPiece(newP);
 				}
 				else
