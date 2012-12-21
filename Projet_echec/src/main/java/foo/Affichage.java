@@ -315,6 +315,7 @@ public class Affichage extends JFrame{
 
 	public static JPanel afficherEchiquier(Echiquier ech)
 	{
+		
 		if( panEchiquier == null )
 			panEchiquier = new JPanel();
 		JPanel pan = panEchiquier;
@@ -415,7 +416,12 @@ public class Affichage extends JFrame{
 			txt.setText("Blancs jouent");
 		}
 		pan.add(txt);
-		
+		if( p.getCaseCliquee()!= null && p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]!=null && p.getEchiquier()!=null )
+			System.out.println(p.getEchiquier().estPrenable(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]));
+		if( p.getCaseCliquee()!= null && p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]!=null && p.getEchiquier()!=null )
+			System.out.println(p.getEchiquier().estPrenable(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]));
+		if( p.getCaseCliquee()!= null && p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]!=null && p.getEchiquier()!=null )
+			System.out.println(p.getEchiquier().estPrenable(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]));
 		return pan;
 	}
 
