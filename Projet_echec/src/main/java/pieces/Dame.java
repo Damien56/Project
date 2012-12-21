@@ -11,6 +11,13 @@ public class Dame extends Piece
 
 	public void setPositionPossible()
 	{
+		for(int a=0; a<8; a++)
+		{
+			for(int b=0; b<8; b++){
+				this.PositionPossible[a][b]=0;
+			}
+		}
+		
 		int i = this.position.getI();
 		int j = this.position.getJ();
 	

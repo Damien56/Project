@@ -163,6 +163,7 @@ public class Partie implements java.io.Serializable
 									this.E.deplacerPiece(pieceSelected, pos);
 									System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 									loop = true;
+									this.tour++;
 								}
 								else if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null){ 
 									if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){
@@ -174,7 +175,7 @@ public class Partie implements java.io.Serializable
 							if(this.E.destinationPossible(pieceSelected).size() == 0)
 							{
 								loop = true;
-								this.tour++;
+								//this.tour++;
 							}
 						}
 					}
@@ -189,7 +190,7 @@ public class Partie implements java.io.Serializable
 					this.mesDestinations.add(pos);
 				}	
 
-				this.tour++;
+				//this.tour++;
 			}	
 		}
 	}
