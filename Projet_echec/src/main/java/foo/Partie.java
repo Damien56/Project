@@ -110,12 +110,12 @@ public class Partie implements java.io.Serializable
 	public void setSuivant(boolean suivant) {
 		this.suivant = suivant;
 	}
-	
+
 	public void setPersoFinie(boolean b)
 	{
 		this.persoFinie = b;
 	}
-	
+
 	public boolean getPersoFinie()
 	{
 		return this.persoFinie;
@@ -128,7 +128,7 @@ public class Partie implements java.io.Serializable
 	{
 		boolean fini = false, isMat = false, loop = false;
 		Piece pieceSelected = null;
-		Roi monRoi;
+		Piece monRoi;
 		Position pos = null;
 
 		System.out.println(this.E.toString()); //Affichage Echiquier de depart
@@ -144,9 +144,9 @@ public class Partie implements java.io.Serializable
 			}
 
 			else
-			// Selectionne la piece cliquee et
-			// verifie si elle a la couleur attendue en fonction du tour
-			pieceSelected = selectPieceJouable(this.tour);
+				// Selectionne la piece cliquee et
+				// verifie si elle a la couleur attendue en fonction du tour
+				pieceSelected = selectPieceJouable(this.tour);
 
 			// Demande une position de destination tant qu'elle n'est
 			// pas conforme aux destinations possibles pour cette pièce.
@@ -199,7 +199,7 @@ public class Partie implements java.io.Serializable
 			if(this.getNomPiece() == "pieces.Roi") {
 				this.E.ajouterPiece(new Roi(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			
+
 			else if(this.getNomPiece() == "pieces.Dame") {
 				this.E.ajouterPiece(new Dame(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
@@ -216,11 +216,11 @@ public class Partie implements java.io.Serializable
 				this.E.ajouterPiece(new Pion(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 		}
-		
+
 		//this.jouerPartie();
 	}
 
-			
+
 
 	// Selectionne sur l'echiquier la piece cliquee,
 	// et verifie si elle a la couleur attendue en fonction du tour
@@ -250,18 +250,20 @@ public class Partie implements java.io.Serializable
 
 	// Recherche le roi de ma couleur en fonction du tour
 	// (INIT : les blancs commencent, tour = 1)
-	public Roi selectMonRoi(int tour)
+	public Piece selectMonRoi(int tour)
 	{
-		Roi monRoi = null;
+		Piece monRoi = null;
 
-		for(int i = 0; i < 8; i++)
-			for(int j = 0; j < 8; j++)
+		for(int i = 0; i < 8; i++){
+			for(int j = 0; j < 8; j++){
 				if(this.E.getTableau()[i][j]!=null)
 					if(this.E.getTableau()[i][j].getClass().getName() == "pieces.Roi")
 						if((this.E.getTableau()[i][j].getCouleur() == "blanc") && ((tour%2 != 0)) ||
 								(this.E.getTableau()[i][j].getCouleur() == "noir") && ((tour%2 == 0)))
-							monRoi = (Roi)this.E.getTableau()[i][j];
 
+							monRoi = this.E.getTableau()[i][j];
+			}
+		}
 		return monRoi;
 	}
 

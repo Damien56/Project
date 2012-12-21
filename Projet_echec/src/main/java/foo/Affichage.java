@@ -287,7 +287,7 @@ public class Affichage extends JFrame{
 		exit1.setSize(200,60);
 		exit1.addActionListener(new EcouteurMenu());
 
-		pan.setLayout(new GridLayout(3,1));
+		pan.setLayout(new GridLayout(2,1));
 		pan.add(revenir);
 		pan.add(exit1);
 
