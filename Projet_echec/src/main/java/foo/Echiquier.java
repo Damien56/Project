@@ -80,57 +80,116 @@ public class Echiquier
 	public boolean deplacerPiece(Piece p, Position pos)
 	{
 		if(p != null){
-			for(int z=0; z<this.destinationPossible(p).size();z++)
-			{
-				if(this.destinationPossible(p).elementAt(z).isEqual(pos))
-				{
-					if((p.getDejaDeplace() == false)&&((p.getClass().getName() == "pieces.Roi") || (p.getClass().getName() == "pieces.Tour"))){
-						p.setDejaDeplace(true);
-					}
-					else if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion")){
-						p.setNombreDeDeplacement(1);
-					}
-					else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion")){
-						p.setNombreDeDeplacement(2);
-					}
+			/*if((p.getDejaDeplace() == false)&&((p.getClass().getName() == "pieces.Roi") || (p.getClass().getName() == "pieces.Tour"))){
+				p.setDejaDeplace(true);
+			}
+			else if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion")){
+				p.setNombreDeDeplacement(1);
+			}
+			else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion")){
+				p.setNombreDeDeplacement(2);
+			}*/
 
 
-					if(this.tableau[pos.getI()][pos.getJ()+1] != null){
-						if((p.getClass().getName() == "pieces.Roi") && (this.tableau[pos.getI()][pos.getJ()+1].getClass().getName() == "pieces.Tour")){
+			if(p.getClass().getName() == "pieces.Roi" && p.getDejaDeplace() == false){
+				if(this.tableau[pos.getI()][pos.getJ()+1] != null){//Roc à droite
+					if(this.tableau[pos.getI()][pos.getJ()+1].getClass().getName() == "pieces.Tour"){
 
-							this.supprimerPiece(p.getPosition());
-							this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()+1].getPosition());
+						this.supprimerPiece(p.getPosition());
+						this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()+1].getPosition());
 
-							Roi r = (Roi)p;
-							r.setPosition(pos);
-							r.setDejaDeplace(true);
-							r.setPositionPossible();
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
 
-							Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()-1), p.getCouleur());
-							t.setDejaDeplace(true);
-							t.setPositionPossible();
+						Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()-1), p.getCouleur());
+						t.setDejaDeplace(true);
+						t.setPositionPossible();
 
-							this.ajouterPiece(r);
-							this.ajouterPiece(t);
-						}
-						else if((p.getClass().getName() == "pieces.Pion")){
-
-							this.supprimerPiece(p.getPosition());
-
-							Pion newP = new Pion(pos, p.getCouleur());
-							newP.setNombreDeDeplacement(p.getNombreDeDeplacement());
-
-							this.ajouterPiece(newP);
-						}
+						this.ajouterPiece(r);
+						this.ajouterPiece(t);
 					}
 					else
 					{
-						p.setPosition(pos);
-						this.ajouterPiece(p);
-						this.supprimerPiece(p.getPositionOld());
+						this.supprimerPiece(p.getPosition());
+
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
+
+						this.ajouterPiece(r);
 					}
 				}
+				else if(this.tableau[pos.getI()][pos.getJ()-2] != null){//Roc à gauche
+					if(this.tableau[pos.getI()][pos.getJ()-2].getClass().getName() == "pieces.Tour"){
+
+						this.supprimerPiece(p.getPosition());
+						this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()-2].getPosition());
+
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
+
+						Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()+1), p.getCouleur());
+						t.setDejaDeplace(true);
+						t.setPositionPossible();
+
+						this.ajouterPiece(r);
+						this.ajouterPiece(t);
+					}
+					else
+					{
+						this.supprimerPiece(p.getPosition());
+
+						Roi r = (Roi)p;
+						r.setPosition(pos);
+						r.setDejaDeplace(true);
+						r.setPositionPossible();
+
+						this.ajouterPiece(r);
+					}
+				}
+				else
+				{
+					this.supprimerPiece(p.getPosition());
+
+					Roi r = (Roi)p;
+					r.setPosition(pos);
+					r.setDejaDeplace(true);
+					r.setPositionPossible();
+
+					this.ajouterPiece(r);
+				}
 			}
+			else if((p.getClass().getName() == "pieces.Pion")){
+
+				if((p.getNombreDeDeplacement() != 1)&&(p.getClass().getName() == "pieces.Pion")){
+					p.setNombreDeDeplacement(1);
+				}
+				else if((Math.abs(p.getPosition().getI() - pos.getI()) == 2) && (p.getNombreDeDeplacement() == 0) && (p.getClass().getName() == "pieces.Pion")){
+					p.setNombreDeDeplacement(2);
+				}
+
+				this.supprimerPiece(p.getPosition());
+
+				Pion newP = (Pion)p;
+				newP.setPosition(pos);
+				newP.setNombreDeDeplacement(p.getNombreDeDeplacement());
+				newP.setPositionPossible();
+
+				this.ajouterPiece(newP);
+			}
+			else
+			{
+				p.setPosition(pos);
+				this.ajouterPiece(p);
+				this.supprimerPiece(p.getPositionOld());
+			}
+
+
 		}
 		return true;
 	}
@@ -529,6 +588,7 @@ public class Echiquier
 			String couleurDuMechant = "";
 			Piece mechant;
 
+<<<<<<< HEAD
 
 			if(roi.getCouleur() == "blanc")
 			{
@@ -536,6 +596,20 @@ public class Echiquier
 			}
 
 			else
+=======
+<<<<<<< HEAD
+		if(roi!=null){
+			for(int i = 0; i < destination.size(); i++)
+=======
+		if(roi.getCouleur() == "blanc")
+		{
+			couleurDuMechant = "noir";
+		}
+		
+		else
+		{
+			if(roi.getCouleur() == "noir")
+>>>>>>> origin/bigodam
 			{
 				if(roi.getCouleur() == "noir")
 				{
@@ -543,10 +617,21 @@ public class Echiquier
 				}
 			}
 
+<<<<<<< HEAD
 			mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
 
 			// Si le roi peut toujours se déplacer :
 			for(int i = 0; i < destination.size(); i++)
+=======
+		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
+		
+		// Si le roi peut toujours se déplacer :
+		for(int i = 0; i < destination.size(); i++)
+		{
+			roi.setPosition(destination.elementAt(i));					
+			if(estEchec(roi) == false)
+>>>>>>> master
+>>>>>>> origin/bigodam
 			{
 				roi.setPosition(destination.elementAt(i));					
 				if(estEchec(roi) == false)
@@ -559,13 +644,40 @@ public class Echiquier
 						mat = false;
 					}
 				}
+<<<<<<< HEAD
 			} // adapter destinations si estEchec
+=======
+			}
+<<<<<<< HEAD
+>>>>>>> origin/bigodam
 
 
 			// si le roi peut etre protégé :
 			destination = destinationPossible(mechant);
 			for(int i = 0; i < destination.size(); i++)
 
+<<<<<<< HEAD
+=======
+			else if(roi.getCouleur() == "noir"){
+				couleurDuMechant = "blanc";
+			}
+		}
+		mechant = new Piece(roi.getPositionDuMechant(), couleurDuMechant);
+
+		//si un mechant existe faire :
+		if(mechant != null)
+=======
+		} // adapter destinations si estEchec
+	
+		
+		// si le roi peut etre protégé :
+		destination = destinationPossible(mechant);
+		for(int i = 0; i < destination.size(); i++)
+>>>>>>> master
+		{
+			mechant.setPosition(destination.elementAt(i));
+			if(estPrenable(mechant))
+>>>>>>> origin/bigodam
 			{
 				mechant.setPosition(destination.elementAt(i));
 				if(estPrenable(mechant))

@@ -4,7 +4,7 @@ public class App
 {
     public static void main(String[] args)
     {
-		Affichage.menuPrincipal();
+		Affichage.menuPartie();
 		Affichage.getPartie().jouerPartie();
     }
 }
