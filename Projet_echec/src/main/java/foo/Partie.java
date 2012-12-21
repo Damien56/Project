@@ -191,32 +191,32 @@ public class Partie implements java.io.Serializable
 	}
 
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
-	public void jouerPartiePersonnalisee()
+	public void personnaliserPartie()
 	{
-		while(!getPersoFinie())
+		//while(!getPersoFinie())
 		{
-			if(this.getNomPiece() == "piece.Roi") {
+			if(this.getNomPiece() == "pieces.Roi") {
 				this.E.ajouterPiece(new Roi(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 			
-			else if(this.getNomPiece() == "piece.Dame") {
+			else if(this.getNomPiece() == "pieces.Dame") {
 				this.E.ajouterPiece(new Dame(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Tour") {
+			else if(this.getNomPiece() == "pieces.Tour") {
 				this.E.ajouterPiece(new Tour(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Fou") {
+			else if(this.getNomPiece() == "pieces.Fou") {
 				this.E.ajouterPiece(new Fou(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Cavalier") {
+			else if(this.getNomPiece() == "pieces.Cavalier") {
 				this.E.ajouterPiece(new Cavalier(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
-			else if(this.getNomPiece() == "piece.Pion") {
+			else if(this.getNomPiece() == "pieces.Pion") {
 				this.E.ajouterPiece(new Pion(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 		}
 		
-		this.jouerPartie();
+		//this.jouerPartie();
 	}
 
 			

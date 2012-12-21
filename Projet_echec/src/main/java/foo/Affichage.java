@@ -60,6 +60,7 @@ public class Affichage extends JFrame{
 	private static JFrame fenEchiquierPerso = new JFrame("Jeu D'échec ");
 	private static JButton  commencer = new JButton ("Commencer la partie");
 	private static JLabel timer =new JLabel("Timer");
+	private static boolean commencerBool = false;
 
 	//attribut afficherAide()
 	private static boolean aide = false;
@@ -88,6 +89,14 @@ public class Affichage extends JFrame{
 
 	public Affichage(){
 
+	}
+
+	public static boolean isCommencerBool() {
+		return commencerBool;
+	}
+
+	public static void setCommencerBool(boolean commencerBool) {
+		Affichage.commencerBool = commencerBool;
 	}
 
 	public static Partie getPartie()
@@ -268,10 +277,7 @@ public class Affichage extends JFrame{
 		pan.add(pionb);
 
 
-		fen.getContentPane().add(pan);
-		confirmExit(fen);
-		fen.pack();
-		fen.setVisible(true);
+		
 
 		return pan;
 
@@ -297,7 +303,7 @@ public class Affichage extends JFrame{
 			}
 		});	
 	}
-	
+
 	public static void afficherAide(){
 		if (p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()] != null){
 			Vector<Position> dest = p.getEchiquier().destinationPossible(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]);
@@ -315,7 +321,7 @@ public class Affichage extends JFrame{
 
 	public static JPanel afficherEchiquier(Echiquier ech)
 	{
-		
+
 		if( panEchiquier == null )
 			panEchiquier = new JPanel();
 		JPanel pan = panEchiquier;
@@ -335,7 +341,7 @@ public class Affichage extends JFrame{
 						pion.setPosition(new Position(i,j));
 						p.getEchiquier().getTableau()[i][j] = pion;
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionb.gif"));
-						
+
 					}
 					else if((type=="pieces.Tour") && (color=="blanc")){
 						Tour tour = (Tour)p.getEchiquier().getTableau()[i][j];
@@ -419,7 +425,7 @@ public class Affichage extends JFrame{
 		if (aide==true){
 			afficherAide();
 		}
-		
+
 		JTextField txt = new JTextField("null");
 		if(p.getTour()%2 == 0){
 			txt.setText("Noirs jouent");
@@ -474,7 +480,7 @@ public class Affichage extends JFrame{
 	public static  void afficherPartiePersonnalisee()
 	{
 		JPanel panPiece = tabPieces();
-		
+
 		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(1,2));
 		revenir.addActionListener(new EcouteurChoixPartie());
@@ -541,6 +547,7 @@ public class Affichage extends JFrame{
 			if (e.getSource() == partieS ){
 				fenMenuPartie.dispose();
 				p.E.echiquierStandard();
+				setCommencerBool(true);
 				afficherPartieStandard(); 
 
 			}
@@ -563,35 +570,31 @@ public class Affichage extends JFrame{
 
 
 			if (e.getSource() == commencer){
+				setCommencerBool(true);
 				fenEchiquier.dispose();
+				monPanel.removeAll();
 				afficherPartieStandard();	
 			}
 
 			for(int i=0; i<8; i++){
 				for(int j=0; j<8 ; j++){
 					if (e.getSource() == tabBoutton[i][j]){
-						p.setCaseCliquee(new Position(i,j));
-						
-						//p.getEchiquier().getTableau()[i][j].setPositionPossible();
-						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
-
-						/*for(int i1=0; i1<8; i1++){
-							for(int j1=0; j1<8 ; j1++){
-								//if (i1 == p.getCaseCliquee().getI() && j1 == p.getCaseCliquee().getJ() )
-									//tabBoutton[i1][j1].setBackground(Color.green);
-								if((i1%2==0 && j1%2 == 0) || (i1%2==1 && j1%2 == 1)){
-									tabBoutton[i1][j1].setBackground(Color.darkGray);
-								}	
-								else{
-									tabBoutton[i1][j1].setBackground(Color.lightGray);
-								}	
-							}
-						}*/
-						
-						tabBoutton[i][j].setBackground(Color.green);
-						panEchiquier=afficherEchiquier(p.getEchiquier());
-						monPanel.updateUI();
-
+						if (isCommencerBool()){
+							p.setCaseCliquee(new Position(i,j));
+							System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
+							tabBoutton[i][j].setBackground(Color.green);
+							panEchiquier=afficherEchiquier(p.getEchiquier());
+							monPanel.updateUI();
+						}
+						else{
+							p.setCaseCliquee(new Position(i,j));
+							System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
+							p.personnaliserPartie();
+							panEchiquier=afficherEchiquier(p.getEchiquier());
+							monPanel.updateUI();
+							p.setNomPiece(null);
+							p.setCouleurPiece(null);
+						}
 					}
 				}
 			}
@@ -684,31 +687,8 @@ public class Affichage extends JFrame{
 			}
 		}
 	}
-
-
-/*	public static class EcouteurExit implements ActionListener{
-
-
-		public void actionPerformed(ActionEvent e){
-			if (e.getSource() == oui ){
-				Dialogue.serialiserPartie(p, "proute.txt");
-				System.exit(0);
-			}
-
-			else if (e.getSource() == non ){
-				fenExit.dispose();				
-			}
-		}
-	}
-	
-
-			if (e.getSource() == non ){
-				fenExit.dispose();
-				
-			}
-				
-			}
-		}
-		*/
 }
+
+
+
 
