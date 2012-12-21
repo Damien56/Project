@@ -116,10 +116,6 @@ public class Affichage extends JFrame{
 		confirmExit(fenMenu);
 		fenMenu.pack();
 		fenMenu.setSize(400,400);
-
-
-		//confirmExit(fenMenu);
-
 		fenMenu.setVisible(true);
 
 
@@ -393,7 +389,8 @@ public class Affichage extends JFrame{
 				else{
 					tabBoutton[i][j].setBackground(Color.lightGray);
 				}
-
+				if(p.getCaseCliquee() != null)
+					tabBoutton[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()].setBackground(Color.green);
 				if(tabBoutton[i][j].getAction()==null)
 					tabBoutton[i][j].addActionListener(new EcouteurEchiquier());
 
@@ -493,6 +490,7 @@ public class Affichage extends JFrame{
 				System.out.println("revoir"); 
 			}
 			if (e.getSource() == exit1){
+
 				System.exit(0); 
 			}
 		}
@@ -551,11 +549,14 @@ public class Affichage extends JFrame{
 				for(int j=0; j<8 ; j++){
 					if (e.getSource() == tabBoutton[i][j]){
 						p.setCaseCliquee(new Position(i,j));
+						
 						//p.getEchiquier().getTableau()[i][j].setPositionPossible();
 						System.out.println(p.getCaseCliquee().getI()+ " "+p.getCaseCliquee().getJ());
 
-						for(int i1=0; i1<8; i1++){
+						/*for(int i1=0; i1<8; i1++){
 							for(int j1=0; j1<8 ; j1++){
+								//if (i1 == p.getCaseCliquee().getI() && j1 == p.getCaseCliquee().getJ() )
+									//tabBoutton[i1][j1].setBackground(Color.green);
 								if((i1%2==0 && j1%2 == 0) || (i1%2==1 && j1%2 == 1)){
 									tabBoutton[i1][j1].setBackground(Color.darkGray);
 								}	
@@ -563,9 +564,9 @@ public class Affichage extends JFrame{
 									tabBoutton[i1][j1].setBackground(Color.lightGray);
 								}	
 							}
-						}
-
-
+						}*/
+						
+						tabBoutton[i][j].setBackground(Color.green);
 						panEchiquier=afficherEchiquier(p.getEchiquier());
 						monPanel.updateUI();
 

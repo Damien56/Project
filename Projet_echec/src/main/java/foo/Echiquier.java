@@ -312,7 +312,7 @@ public class Echiquier
 				if(tabposition[i][j] == 1)
 				{
 					
-					if((this.tableau[i][j] == null) || (this.tableau[i][j].getClass().getName() != "pieces.Pion"))
+					if((this.tableau[i][j] == null) && (piece.getClass().getName() != "pieces.Pion"))
 						dest.add(new Position(i, j));
 			
 					else
@@ -335,12 +335,13 @@ public class Echiquier
 				j--;//deplace colonne vers la gauche
 				if(tabposition[i][j] == 1)
 				{
-					if(this.tableau[i][j] == null)
+					if((this.tableau[i][j] == null) && (piece.getClass().getName() != "pieces.Pion"))
 						dest.add(new Position(i, j));
 						
 					else
 						if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
 							dest.add(new Position(i, j));
+						
 				}
 			}
 		}
@@ -358,7 +359,7 @@ public class Echiquier
 				j++;//deplace colonne vers la droite
 				if(tabposition[i][j] == 1)
 				{
-					if(this.tableau[i][j] == null)
+					if((this.tableau[i][j] == null)&& (piece.getClass().getName() != "pieces.Pion"))
 						dest.add(new Position(i, j));
 					
 					else
@@ -380,11 +381,11 @@ public class Echiquier
 				j++;//deplace colonne vers la droite
 				if(tabposition[i][j] == 1)
 				{
-					if((this.tableau[i][j] == null)  || (this.tableau[i][j].getClass().getName() != "pieces.Pion"))
+					if((this.tableau[i][j] == null)  && (piece.getClass().getName() != "pieces.Pion"))
 						dest.add(new Position(i, j));
 				
 					else
-						if((this.tableau[i][j] != null) || (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+						if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
 						dest.add(new Position(i, j));
 				}
 			}
