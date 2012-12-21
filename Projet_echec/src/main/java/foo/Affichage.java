@@ -90,6 +90,10 @@ public class Affichage extends JFrame{
 
 	}
 
+	public static Partie getPartie()
+	{
+		return p;
+	}
 	public static void menuPrincipal(){
 
 
@@ -687,15 +691,5 @@ public class Affichage extends JFrame{
 			}
 		}
 		*/
-
-
-	public static void main(String[] args) {
-		
-
-
-		menuPrincipal();
-		p.jouerPartie();
-
-	}
 }
 
