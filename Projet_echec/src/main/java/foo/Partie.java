@@ -17,6 +17,7 @@ public class Partie implements java.io.Serializable
 	public String nomPiece, couleurPiece;
 	public boolean suivant;
 	public int tour;
+	public boolean persoFinie;
 
 
 	// Le constructeur
@@ -132,12 +133,12 @@ public class Partie implements java.io.Serializable
 					isMat = true;
 
 			else*/
-				// Selectionne la piece cliquee et
-				// verifie si elle a la couleur attendue en fonction du tour
-				pieceSelected = selectPieceJouable(this.tour);
+			// Selectionne la piece cliquee et
+			// verifie si elle a la couleur attendue en fonction du tour
+			pieceSelected = selectPieceJouable(this.tour);
 
-				// Demande une position de destination tant qu'elle n'est
-				// pas conforme aux destinations possibles pour cette pièce.
+			// Demande une position de destination tant qu'elle n'est
+			// pas conforme aux destinations possibles pour cette pièce.
 
 			while(loop == false)
 			{
@@ -152,6 +153,68 @@ public class Partie implements java.io.Serializable
 								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop = true;
 							}
+				//sinon si pos = piece de la même couleur alors pieceSelected = pos
+
+				if(this.E.destinationPossible(pieceSelected).size() == 0)
+				{
+					loop = true;
+					this.tour++;
+				}
+			}
+
+			loop = false;
+
+			if(pos != null && pieceSelected != null)
+			{
+				this.mesPositions.add(pieceSelected.getPosition());
+				this.mesDestinations.add(pos);
+			}	
+
+			this.tour++;
+		}		
+	}
+
+	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
+	public void jouerPartiePersonnalisee()
+	{
+		boolean fini = false, isMat = false, loop = false;
+		Piece pieceSelected = null;
+		Roi monRoi;
+		Position pos = null;
+
+		System.out.println(this.E.toString()); //Affichage Echiquier de depart
+
+		while(!fini && !isMat)
+		{			
+			monRoi = selectMonRoi(this.tour);
+
+			// Test si le roi de ma couleur est mat
+			/*if(monRoi != null)
+					if(this.E.estMat(monRoi))
+						isMat = true;
+
+				else*/
+			// Selectionne la piece cliquee et
+			// verifie si elle a la couleur attendue en fonction du tour
+			pieceSelected = selectPieceJouable(this.tour);
+
+			// Demande une position de destination tant qu'elle n'est
+			// pas conforme aux destinations possibles pour cette pièce.
+
+			while(loop == false)
+			{
+				pos = this.getCaseCliquee();
+
+				if(pos != null)
+					if(pieceSelected!=null)
+						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++)
+							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i)))
+							{
+								this.E.deplacerPiece(pieceSelected, pos);
+								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
+								loop = true;
+							}
+				//sinon si pos = piece de la même couleur alors pieceSelected = pos
 
 				if(this.E.destinationPossible(pieceSelected).size() == 0)
 				{
@@ -268,39 +331,28 @@ public class Partie implements java.io.Serializable
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
 				&& j.getTempsEcoule() > 0);
 
-		
+
 		fini = true;
 		return fini;
-		
 
-	}	
+	}
+	public void GererTour(){
+		// Temps max pour test
+		this.J1.setTempsEcoule(30);
+		this.J2.setTempsEcoule(30);
 
-	
-	
-		/*public void GererTour()
-		
-
+		//while (1)
 		{
-			// Temps max pour test
-			this.J1.setTempsEcoule(30);
-			this.J2.setTempsEcoule(30);
-
-			
-
-			//while (1)
-			
-
-				J1.getTempsEcoule();
-				J2.getTempsEcoule();
-			}
-	
-		}*/
-			
-	
-
-	
 
 
+			J1.getTempsEcoule();
+			J2.getTempsEcoule();
+		}
 
-		}		
-	
+	}
+
+	public int getTour() {
+		return this.tour;
+	}	
+}
+
