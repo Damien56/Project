@@ -261,11 +261,9 @@ public class Echiquier
 	public Vector<Position> destinationPossible(Piece piece)
 	{
 		Vector<Position> dest = new Vector<Position>();
-		int[][] tabposition = piece.getPositionPossible();
-
-		if (piece != null){
-
-			int i = 0, j = 0;
+		int i = 0, j = 0;
+		if(piece != null){
+			int[][] tabposition = piece.getPositionPossible();
 
 			//deplacements pour le cavalier
 			if(piece.getClass().getName() == "pieces.Cavalier")
@@ -334,11 +332,15 @@ public class Echiquier
 						i--;
 						if(tabposition[i][j] == 1)
 						{
-							if(this.tableau[i][j] == null)
+							if(this.tableau[i][j] == null){
 								dest.add(new Position(i,j));
-
-							else if((this.tableau[i][j].getClass().getName() != "pieces.Pion") && (this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
+							}
+							else if((this.tableau[i][j].getClass().getName() != "pieces.Pion") && (this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur())){
 								dest.add(new Position(i, j));
+							}
+							else if ((this.tableau[i][j].getClass().getName() != "pieces.Dame") && (this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur())){
+								dest.add(new Position(i,j));
+							}
 						}
 					}
 				}
@@ -622,24 +624,25 @@ public class Echiquier
 				// si le roi peut etre protégé :
 				destination = destinationPossible(mechant);
 				if(destination != null){
-				for(int i = 0; i < destination.size(); i++)
-				{
-					mechant.setPosition(destination.elementAt(i));
-					if(estPrenable(mechant))
+					for(int i = 0; i < destination.size(); i++)
 					{
-						estProtegeable = true;
-						//Position protection = mechant.getPositionDuMechant();
-						//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
+						mechant.setPosition(destination.elementAt(i));
+						if(estPrenable(mechant))
+						{
+							estProtegeable = true;
+							//Position protection = mechant.getPositionDuMechant();
+							//deplacerPiece(tableau[protection.getI()][protection.getJ()], destination.elementAt(i));
+						}
 					}
 				}
-				}
-				//si un mechant existe faire et n'est pas prenable, c'est perdu !
-				if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
-				{
-					mat = true;
-				}
-			}	
-		}
+			}
+			//si un mechant existe faire et n'est pas prenable, c'est perdu !
+			if(estEchec(roi) && mechant != null && !estPrenable(mechant) && !estProtegeable)
+			{
+				mat = true;
+			}
+		}	
+
 		return mat;	
 	}
 }
