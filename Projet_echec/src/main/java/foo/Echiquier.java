@@ -31,7 +31,7 @@ public class Echiquier
 		this.tableau[0][0] = new Tour(new Position(0,0), couleur); 
 		//this.tableau[0][1] = new Cavalier(new Position(0,1), couleur);
 		//this.tableau[0][2] = new Fou(new Position(0,2), couleur);
-		this.tableau[0][3] = new Dame(new Position(0,3), couleur);
+		//this.tableau[0][3] = new Dame(new Position(0,3), couleur);
 		this.tableau[0][4] = new Roi(new Position(0,4),couleur);
 		//this.tableau[0][5] = new Fou(new Position(0,5), couleur);
 		//this.tableau[0][6] = new Cavalier(new Position(0,6), couleur);
@@ -53,7 +53,7 @@ public class Echiquier
 		this.tableau[7][0] = new Tour(new Position(7, 0), couleur);
 		//this.tableau[7][1] = new Cavalier(new Position(7, 1), couleur);
 		//this.tableau[7][2] = new Fou(new Position(7, 2), couleur);
-		this.tableau[7][3] = new Dame(new Position(7, 3), couleur);
+		//this.tableau[7][3] = new Dame(new Position(7, 3), couleur);
 		this.tableau[7][4] = new Roi(new Position(7, 4), couleur);
 		//this.tableau[7][5] = new Fou(new Position(7, 5), couleur);
 		//this.tableau[7][6] = new Cavalier(new Position(7, 6), couleur);
@@ -95,18 +95,20 @@ public class Echiquier
 					}
 
 
-					
+					if(this.tableau[pos.getI()][pos.getJ()+1] != null){
 						if((p.getClass().getName() == "pieces.Roi") && (this.tableau[pos.getI()][pos.getJ()+1].getClass().getName() == "pieces.Tour")){
 
 							this.supprimerPiece(p.getPosition());
 							this.supprimerPiece(this.tableau[pos.getI()][pos.getJ()+1].getPosition());
 
-							Roi r = new Roi(p.getPosition(), p.getCouleur());
+							Roi r = (Roi)p;
 							r.setPosition(pos);
-							r.setDejaDeplace(p.getDejaDeplace());
+							r.setDejaDeplace(true);
+							r.setPositionPossible();
 
-							Tour t = new Tour(this.tableau[pos.getI()][pos.getJ()].getPosition(), this.tableau[pos.getI()][pos.getJ()-1].getCouleur());
-							t.setDejaDeplace(this.tableau[pos.getI()][pos.getJ()+1].getDejaDeplace());
+							Tour t = new Tour(new Position(p.getPosition().getI(), p.getPosition().getJ()-1), p.getCouleur());
+							t.setDejaDeplace(true);
+							t.setPositionPossible();
 
 							this.ajouterPiece(r);
 							this.ajouterPiece(t);
@@ -120,6 +122,7 @@ public class Echiquier
 
 							this.ajouterPiece(newP);
 						}
+					}
 					else
 					{
 						p.setPosition(pos);
