@@ -18,6 +18,7 @@ public class Partie implements java.io.Serializable
 	public boolean suivant;
 	public int tour;
 	public boolean persoFinie;
+	public int coupSuivant;
 
 
 	// Le constructeur
@@ -35,6 +36,7 @@ public class Partie implements java.io.Serializable
 		this.couleurPiece = "";
 		this.suivant = false;
 		this.tour = 1;
+		this.coupSuivant = 0;
 	}
 
 	public Partie()
@@ -119,6 +121,16 @@ public class Partie implements java.io.Serializable
 	public boolean getPersoFinie()
 	{
 		return this.persoFinie;
+	}
+	
+	public void setCoupSuivant(int i)
+	{
+		this.coupSuivant = i;
+	}
+	
+	public int getCoupSuivant()
+	{
+		return this.coupSuivant;
 	}
 
 
@@ -268,17 +280,20 @@ public class Partie implements java.io.Serializable
 	public void rejeuPartie()
 	{
 		this.E = this.eDepart;
-
-		for(int i = 0; i < this.mesPositions.size(); i++)
+		
+		if (this.getCoupSuivant() < this.mesPositions.size())
 		{
-			this.E.deplacerPiece(this.E.getTableau()[this.mesPositions.elementAt(i).getI()][this.mesPositions.elementAt(i).getJ()], this.mesDestinations.elementAt(i));
-
-			// A chaque clic sur le bouton suivant
-			do
+			for(int i = 0; i < this.getCoupSuivant(); i++)
 			{
+				this.E.deplacerPiece(this.E.getTableau()[this.mesPositions.elementAt(i).getI()][this.mesPositions.elementAt(i).getJ()], this.mesDestinations.elementAt(i));
+	
+				// A chaque clic sur le bouton suivant
+				//do
+				//{
+				//}
+				//while(!this.getSuivant());
+				//this.setSuivant(false);
 			}
-			while(!this.getSuivant());
-			this.setSuivant(false);
 		}
 	}
 
@@ -303,15 +318,22 @@ public class Partie implements java.io.Serializable
 		do
 		{
 			tempsEcoule = System.currentTimeMillis() - tempsSystemDebut;
-
+			System.out.println("debut");
 			// peut devenir source de probleme, le temps ne se decompte pas.
 			// jouer sur les transtypages int/long
+			
+			System.out.println(System.currentTimeMillis());
 			if((int)tempsEcoule == 1)
 			{
+				
 				j.setTempsEcoule(j.getTempsEcoule() - tempsEcoule);
 				tempsSystemDebut = System.currentTimeMillis();
+				System.out.println(tempsSystemDebut);
 				if(j.getTempsEcoule() <= 0)
+				{
 					fini = true;
+					System.out.println("fin");
+				}
 			}
 		}
 		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
@@ -340,6 +362,15 @@ public class Partie implements java.io.Serializable
 
 	public int getTour() {
 		return this.tour;
-	}	
+	}
+	
+	public static void main(String args[])
+	{
+		Partie p = new Partie();
+		Joueur j = new Joueur();
+		j.setTempsEcoule(1000);
+		p.defilerTemps(j);
+	}
+	
 }
 
