@@ -144,9 +144,9 @@ public class Partie implements java.io.Serializable
 			{
 				pos = this.getCaseCliquee();
 
-				if(pos != null)
-					if(pieceSelected!=null)
-						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++)
+				if(pos != null){
+					if(pieceSelected!=null){
+						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++){
 							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i)))
 							{
 								this.E.deplacerPiece(pieceSelected, pos);
@@ -156,25 +156,29 @@ public class Partie implements java.io.Serializable
 							else if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){//sinon si pos = piece de la même couleur alors pieceSelected = pos
 								pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
 							}
-				
 
-				if(this.E.destinationPossible(pieceSelected).size() == 0)
-				{
-					loop = true;
-					this.tour++;
-				}
+						}
+						if(this.E.destinationPossible(pieceSelected).size() == 0)
+						{
+							loop = true;
+							this.tour++;
+						}
+
+
+
+						loop = false;
+
+						if(pos != null && pieceSelected != null)
+						{
+							this.mesPositions.add(pieceSelected.getPosition());
+							this.mesDestinations.add(pos);
+						}	
+
+						this.tour++;
+					}
+				}		
 			}
-
-			loop = false;
-
-			if(pos != null && pieceSelected != null)
-			{
-				this.mesPositions.add(pieceSelected.getPosition());
-				this.mesDestinations.add(pos);
-			}	
-
-			this.tour++;
-		}		
+		}
 	}
 
 	// Gestion du deplacement des pieces jusqu'à la fin de la partie.
