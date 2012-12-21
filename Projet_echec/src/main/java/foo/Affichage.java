@@ -730,7 +730,7 @@ public class Affichage extends JFrame{
 			}
 			if (e.getSource() == terminer){
 				fenEchiquier.dispose();
-				p.setFinDePartie(true);
+				Partie.setFinDePartie(true);
 				menuExit();
 
 			}
