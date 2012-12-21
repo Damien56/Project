@@ -214,6 +214,7 @@ public class Echiquier
 			
 			do
 			{
+				//deplacement vers le bas
 				if(i < 7)
 				{
 					i++;
@@ -271,8 +272,14 @@ public class Echiquier
 						dest.add(new Position(i, j));
 						
 					else
-						if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
-							dest.add(new Position(i, j));
+						if(this.tableau[i][j] != null)
+							if(this.tableau[i][j].getCouleur() != piece.getCouleur())
+								dest.add(new Position(i, j));
+					
+							else
+								if((this.tableau[i][j].getClass().getName() == "pieces.Tour")
+										&& (!this.tableau[i][j].getDejaDeplace()))
+									dest.add(new Position(i, j));
 				}
 			}
 		}
@@ -292,8 +299,14 @@ public class Echiquier
 						dest.add(new Position(i,j));
 					
 					else
-						if((this.tableau[i][j] != null) && (this.tableau[i][j].getCouleur() != piece.getCouleur()))
-							dest.add(new Position(i, j));
+						if(this.tableau[i][j] != null)
+							if(this.tableau[i][j].getCouleur() != piece.getCouleur())
+								dest.add(new Position(i, j));
+					
+							else
+								if((this.tableau[i][j].getClass().getName() == "pieces.Tour")
+										&& (!this.tableau[i][j].getDejaDeplace()))
+									dest.add(new Position(i, j));
 				}
 			}
 		}
