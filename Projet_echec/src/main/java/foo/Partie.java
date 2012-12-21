@@ -144,24 +144,27 @@ public class Partie implements java.io.Serializable
 			{
 				pos = this.getCaseCliquee();
 
-				if(pos != null)
-					if(pieceSelected!=null)
-						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++)
-							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i)))
-							{
+				if(pos != null){
+					if(pieceSelected!=null){
+						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++){
+							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
 								this.E.deplacerPiece(pieceSelected, pos);
 								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
 								loop = true;
 							}
-							else if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){//sinon si pos = piece de la même couleur alors pieceSelected = pos
-								pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];
+							else if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null){ 
+								if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){
+									pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];//sinon si pos = piece de la même couleur alors pieceSelected = pos
+								}
 							}
-				
 
-				if(this.E.destinationPossible(pieceSelected).size() == 0)
-				{
-					loop = true;
-					this.tour++;
+						}
+						if(this.E.destinationPossible(pieceSelected).size() == 0)
+						{
+							loop = true;
+							this.tour++;
+						}
+					}
 				}
 			}
 
