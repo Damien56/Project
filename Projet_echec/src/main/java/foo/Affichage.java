@@ -331,12 +331,16 @@ public class Affichage extends JFrame{
 					String type = ech.getTableau()[i][j].getClass().getName();
 					String color = ech.getTableau()[i][j].getCouleur();
 					if((type=="pieces.Pion")&&(color=="blanc")){
-						p.getEchiquier().getTableau()[i][j]= new Pion(new Position(i,j),"blanc");
+						Pion pion = (Pion)p.getEchiquier().getTableau()[i][j];
+						pion.setPosition(new Position(i,j));
+						p.getEchiquier().getTableau()[i][j] = pion;
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionb.gif"));
 						
 					}
 					else if((type=="pieces.Tour") && (color=="blanc")){
-						p.getEchiquier().getTableau()[i][j]= new Tour(new Position(i,j),"blanc");
+						Tour tour = (Tour)p.getEchiquier().getTableau()[i][j];
+						tour.setPosition(new Position(i,j));
+						p.getEchiquier().getTableau()[i][j] = tour;
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourb.gif"));
 					}
 					else if((type=="pieces.Fou")&&(color=="blanc")){
@@ -352,15 +356,21 @@ public class Affichage extends JFrame{
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/dameb.gif"));
 					}
 					else if((type=="pieces.Roi")&&(color=="blanc")){
-						p.getEchiquier().getTableau()[i][j]= new Roi(new Position(i,j),"blanc");
+						Roi roi = (Roi)p.getEchiquier().getTableau()[i][j];
+						roi.setPosition(new Position(i,j));
+						p.getEchiquier().getTableau()[i][j] = roi;						
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roib.gif"));
 					}
 					else if((type=="pieces.Pion")&&(color=="noir")){
-						p.getEchiquier().getTableau()[i][j]= new Pion(new Position(i,j),"noir");
+						Pion pion = (Pion)p.getEchiquier().getTableau()[i][j];
+						pion.setPosition(new Position(i,j));
+						p.getEchiquier().getTableau()[i][j] = pion;						
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/pionn.gif"));
 					}
 					else if((type=="pieces.Tour") && (color=="noir")){
-						p.getEchiquier().getTableau()[i][j]= new Tour(new Position(i,j),"noir");
+						Tour tour = (Tour)p.getEchiquier().getTableau()[i][j];
+						tour.setPosition(new Position(i,j));
+						p.getEchiquier().getTableau()[i][j] = tour;
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/tourn.gif"));
 					}
 					else if((type=="pieces.Fou")&&(color=="noir")){
@@ -376,7 +386,9 @@ public class Affichage extends JFrame{
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/damen.gif"));
 					}
 					else if((type=="pieces.Roi")&&(color=="noir")){
-						p.getEchiquier().getTableau()[i][j]= new Roi(new Position(i,j),"noir");
+						Roi roi = (Roi)p.getEchiquier().getTableau()[i][j];
+						roi.setPosition(new Position(i,j));
+						p.getEchiquier().getTableau()[i][j] = roi;
 						tabBoutton[i][j] = new JButton(new ImageIcon("src//main/java/images/roin.gif"));
 					}
 					else{
