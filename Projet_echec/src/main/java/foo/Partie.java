@@ -1,5 +1,6 @@
 package foo;
 
+import java.util.Calendar;
 import java.util.Vector;
 
 import pieces.*;
@@ -141,7 +142,9 @@ public class Partie implements java.io.Serializable
 	{
 		boolean fini = false, isMat = false, loop = false;
 		Piece pieceSelected = null;
-		Piece monRoi;
+
+		Piece monRoi = null;
+
 		Position pos = null;
 
 		System.out.println(this.E.toString()); //Affichage Echiquier de depart
@@ -151,57 +154,57 @@ public class Partie implements java.io.Serializable
 			monRoi = selectMonRoi(this.tour);
 
 			// Test si le roi de ma couleur est mat
-			/*if(this.E.estMat(monRoi))
-			{
-				isMat = true;
+			/*if(monRoi!=null && this.E!=null){
+				if(this.E.estMat(monRoi))
+				{
+					isMat = true;
+				}
 			}
-
-			else*/
+			else*/{
 				// Selectionne la piece cliquee et
 				// verifie si elle a la couleur attendue en fonction du tour
 				pieceSelected = selectPieceJouable(this.tour);
 
-			// Demande une position de destination tant qu'elle n'est
-			// pas conforme aux destinations possibles pour cette pièce.
+				// Demande une position de destination tant qu'elle n'est
+				// pas conforme aux destinations possibles pour cette pièce.
 
-			while(loop == false)
-			{
-				pos = this.getCaseCliquee();
+				while(loop == false)
+				{
+					pos = this.getCaseCliquee();
 
-				if(pos != null){
-					if(pieceSelected!=null){
-						for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++){
-							if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
-								this.E.deplacerPiece(pieceSelected, pos);
-								System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
-								loop = true;
-							}
-							else if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null){ 
-								if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){
-									pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];//sinon si pos = piece de la même couleur alors pieceSelected = pos
+					if(pos != null){
+						if(pieceSelected!=null){
+							for(int i = 0; i < this.E.destinationPossible(pieceSelected).size(); i++){
+								if(pos.isEqual(this.E.destinationPossible(pieceSelected).get(i))){
+									this.E.deplacerPiece(pieceSelected, pos);
+									System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
+									loop = true;
+									this.tour++;
+								}
+								else if(this.E.getTableau()[pos.getI()][pos.getJ()]!=null){ 
+									if(this.E.getTableau()[pos.getI()][pos.getJ()].getCouleur()==pieceSelected.getCouleur()){
+										pieceSelected = this.E.getTableau()[pos.getI()][pos.getJ()];//sinon si pos = piece de la même couleur alors pieceSelected = pos
+									}
 								}
 							}
-
-						}
-						if(this.E.destinationPossible(pieceSelected).size() == 0)
-						{
-							loop = true;
-							this.tour++;
+							if(this.E.destinationPossible(pieceSelected).size() == 0)
+							{
+								loop = true;
+							}
 						}
 					}
 				}
-			}
 
-			loop = false;
+				loop = false;
 
-			if(pos != null && pieceSelected != null)
-			{
-				this.mesPositions.add(pieceSelected.getPosition());
-				this.mesDestinations.add(pos);
+				if(pos != null && pieceSelected != null)
+				{
+					System.out.println(this.E.toString());//Nouvel Echiquier en affichage console
+					this.mesPositions.add(pieceSelected.getPosition());
+					this.mesDestinations.add(pos);
+				}	
 			}	
-
-			this.tour++;
-		}		
+		}
 	}
 
 	public static void setFinDePartie(boolean finDePartie) {
@@ -217,7 +220,9 @@ public class Partie implements java.io.Serializable
 				this.E.ajouterPiece(new Roi(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 
-			else if(this.getNomPiece() == "pieces.Dame") {
+
+			else if(this.getNomPiece() == "piece.Dame") {
+
 				this.E.ajouterPiece(new Dame(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 			else if(this.getNomPiece() == "pieces.Tour") {
@@ -233,8 +238,6 @@ public class Partie implements java.io.Serializable
 				this.E.ajouterPiece(new Pion(this.getCaseCliquee(), this.getCouleurPiece()));
 			}
 		}
-
-		//this.jouerPartie();
 	}
 
 
@@ -319,29 +322,16 @@ public class Partie implements java.io.Serializable
 
 		// MAJ temps
 		boolean fini = false;
-		long tempsSystemDebut = System.currentTimeMillis();
-		long tempsEcoule = 0;
-
+		
 		do
 		{
-			tempsEcoule = System.currentTimeMillis() - tempsSystemDebut;
-			System.out.println("debut");
-			// peut devenir source de probleme, le temps ne se decompte pas.
-			// jouer sur les transtypages int/long
-			
-			System.out.println(System.currentTimeMillis());
-			if((int)tempsEcoule == 1)
-			{
-				
-				j.setTempsEcoule(j.getTempsEcoule() - tempsEcoule);
-				tempsSystemDebut = System.currentTimeMillis();
-				System.out.println(tempsSystemDebut);
-				if(j.getTempsEcoule() <= 0)
-				{
-					fini = true;
-					System.out.println("fin");
-				}
-			}
+			try
+	        {
+	            Thread.sleep(1000);
+	            j.setTempsEcoule(j.getTempsEcoule() - 1);
+	            System.out.println("Joueur " + j.getNom() + " : " + j.getTempsEcoule());
+            }
+	        catch (InterruptedException exception){}
 		}
 		while(!((j.getCouleur() == "blanc" && this.tour%2 != 0 && this.caseCliquee == this.mesDestinations.lastElement())
 				|| (j.getCouleur() == "noir" && this.tour%2 == 0 && this.caseCliquee == this.mesDestinations.lastElement()))
@@ -352,25 +342,45 @@ public class Partie implements java.io.Serializable
 		return fini;
 
 	}
-	public void GererTour(){
+	public void gererTour()
+	{
 		// Temps max pour test
-		this.J1.setTempsEcoule(30);
-		this.J2.setTempsEcoule(30);
-
-		//while (1)
+		this.J1.setTempsEcoule(10);
+		this.J2.setTempsEcoule(10);
+		boolean fini = false;
+		
+		while(!fini)
 		{
-
-
-			J1.getTempsEcoule();
-			J2.getTempsEcoule();
+			if(this.getTour()%2 == 1 && this.J2.getTempsEcoule() != 0)
+			{
+				while(!defilerTemps(this.J1))
+				{
+					defilerTemps(this.J1);
+				}
+			}
+			
+			if(this.getTour()%2 == 0 && this.J1.getTempsEcoule() != 0)
+			{
+				while(!defilerTemps(this.J2))
+				{
+					defilerTemps(this.J2);
+				}
+			}
+			if(this.J1.getTempsEcoule() == 0 || this.J2.getTempsEcoule() == 0)
+			{
+				fini = true;
+			}	
 		}
-
 	}
 
 	public int getTour() {
 		return this.tour;
 	}
 	
-	
+	public static void main(String[] args)
+	{
+		//Partie p = new Partie();
+		//p.gererTour();		
+	}	
 }
 

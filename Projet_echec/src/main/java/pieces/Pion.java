@@ -20,6 +20,13 @@ public class Pion extends Piece
 	//a modifier pour la dernière case
 	public void setPositionPossible()
 	{	
+		for(int a=0; a<8; a++)
+		{
+			for(int b=0; b<8; b++){
+				this.PositionPossible[a][b]=0;
+			}
+		}
+				
 		if (this.NombreDeDeplacement == 0)
 		{
 			//positions pour un pion noir

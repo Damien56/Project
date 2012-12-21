@@ -19,6 +19,13 @@ public class Roi extends Piece {
 		int i = this.position.getI();
 		int j = this.position.getJ();
 		
+		for(int a=0; a<8; a++)
+		{
+			for(int b=0; b<8; b++){
+				this.PositionPossible[a][b]=0;
+			}
+		}
+		
 		if ((i < 7 && i > 1) && (j < 7 && j > 1) )
 		{
 			this.PositionPossible[i + 1][j + 1] = 1 ;
