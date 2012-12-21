@@ -138,11 +138,12 @@ public class Partie implements java.io.Serializable
 			monRoi = selectMonRoi(this.tour);
 
 			// Test si le roi de ma couleur est mat
-			/*if(monRoi != null)
-				if(this.E.estMat(monRoi))
-					isMat = true;
+			if(this.E.estMat(monRoi))
+			{
+				isMat = true;
+			}
 
-			else*/
+			else
 			// Selectionne la piece cliquee et
 			// verifie si elle a la couleur attendue en fonction du tour
 			pieceSelected = selectPieceJouable(this.tour);
