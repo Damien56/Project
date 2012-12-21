@@ -1,7 +1,7 @@
 package foo;
 
 import java.awt.Color;
-import java.awt.Container;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +9,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Vector;
 
-import javax.swing.BoxLayout;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -64,7 +64,7 @@ public class Affichage extends JFrame{
 	//attributs afficherPartieStandard et partie perso
 	private static JFrame fenEchiquierStand = new JFrame("Jeu D'échec ");
 	private static JButton  commencer = new JButton ("Commencer la partie");
-	private static JLabel txt =new JLabel("Timer");
+
 	private static boolean commencerBool = false;
 	private static JButton terminer= new JButton ("Terminer la partie");
 
@@ -75,8 +75,8 @@ public class Affichage extends JFrame{
 
 	private static JButton tabBoutton[][] = new JButton[8][8];
 	private static JButton tabPiece[][] = new JButton[6][2];
-	
-	
+
+
 	private static Partie p = new Partie();
 
 
@@ -315,7 +315,7 @@ public class Affichage extends JFrame{
 		pan.removeAll();
 
 		pan.setSize(400, 100);
-		pan.setLayout(new GridLayout(8,8));
+		pan.setLayout(new GridLayout(9,8));
 		for(int i=0; i<8; i++){
 			for(int j=0; j<8 ; j++){
 
@@ -413,22 +413,16 @@ public class Affichage extends JFrame{
 			afficherAide();
 		}
 
-		/*JTextField txt = new JTextField("null");
+		JTextField txt = new JTextField("null");
 		if(p.getTour()%2 == 0){
 			txt.setText("Noirs jouent");
 		}
 		else if(p.getTour()%2 ==1){
 			txt.setText("Blancs jouent");
 		}
-		pan.add(txt);*/
+		pan.add(txt);
 
-		/*if( p.getCaseCliquee()!= null && p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]!=null && p.getEchiquier()!=null )
-			System.out.println(p.getEchiquier().estPrenable(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]));
-		//if( p.getCaseCliquee()!= null && p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]!=null && p.getEchiquier()!=null )
-			System.out.println(p.getEchiquier().estBloquee(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]));
-		//if( p.getCaseCliquee()!= null && p.getMat().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]!=null && p.getEchiquier()!=null )
-			System.out.println(p.getEchiquier().estPrenable(p.getEchiquier().getTableau()[p.getCaseCliquee().getI()][p.getCaseCliquee().getJ()]));
-		 */
+
 		return pan;
 	}
 
@@ -443,18 +437,9 @@ public class Affichage extends JFrame{
 		creer.addActionListener(new EcouteurMenu());
 		terminer.addActionListener(new EcouteurDebutFin());
 
-		if(p.getTour()%2 == 0){
-			txt.setText("Aux noirs de jouer \n\n timer");
-
-		}
-		else if(p.getTour()%2 ==1){
-			txt.setText("Aux Blancs de Jouer \n\n timer");
-		}
-
 		pan2.add(revenir);
 		pan2.add(aideBoutton);
 		pan2.add(creer);
-		pan2.add(txt);
 		pan2.add(terminer);
 		pan2.setSize(50,20);
 
@@ -735,28 +720,28 @@ public class Affichage extends JFrame{
 	}
 
 
-		public static class EcouteurDebutFin implements ActionListener{
-			public void actionPerformed(ActionEvent e){
-				if (e.getSource() == commencer){
-					setCommencerBool(true);
-					fenEchiquier.dispose();
-					monPanel.removeAll();
-					afficherPartieStandard();	
-				}
-				if (e.getSource() == terminer){
-					fenEchiquier.dispose();
-					p.setFinDePartie(true);
-					menuExit();
-
-				}
-
-
+	public static class EcouteurDebutFin implements ActionListener{
+		public void actionPerformed(ActionEvent e){
+			if (e.getSource() == commencer){
+				setCommencerBool(true);
+				fenEchiquier.dispose();
+				monPanel.removeAll();
+				afficherPartieStandard();	
+			}
+			if (e.getSource() == terminer){
+				fenEchiquier.dispose();
+				p.setFinDePartie(true);
+				menuExit();
 
 			}
+
+
 
 		}
 
 	}
+
+}
 
 
 
